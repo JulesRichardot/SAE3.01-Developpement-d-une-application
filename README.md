@@ -25,7 +25,7 @@ Le but de ce projet est de créer :
 
 ## Equipe du projet
 Ce projet est réalisé par l'équipe suivante : 
-- **[Mehdi ARRAB]()**
+- **[Mehdi ARRAB](https://github.com/jadoothepooh/)**
 - **[Lasry BESKIWIN](https://github.com/Lasryy)**
 - **[Rania Bousfiha](https://github.com/rania212)**
 - **[Safiya NGUYEN](https://github.com/safiya-ng)**
