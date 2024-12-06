@@ -16,11 +16,11 @@ Le répertoire principal est organisé comme suit :
 
 ```bash
 SAE3.01/
-├───data
+├───data/
 │       create_excel.py
 │       inventaire_perso.xlsx
 │       
-└───script_nettoyage
+└───script_nettoyage/
         main.py
         nettoyage.py
         test_utils.py
