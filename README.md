@@ -10,6 +10,22 @@ Le but de ce projet est de créer :
 - une base de données relationnelle pour structurer les informations sur les jeux.
 - une interface utilisateur simple et intuitive.
 
+## Structure du répertoire :
+
+Le répertoire principal est organisé comme suit : 
+
+repertoire_principal/
+├───data
+│       create_excel.py
+│       inventaire_perso.xlsx
+│       
+└───script_nettoyage
+        main.py
+        nettoyage.py
+        test_utils.py
+        utils.py
+        utils_test.py
+
 ## Fonctionnalités Principales
 - **Nettoyage des données** : Traitement et correction des incohérences dans les fichiers Excel.
 - **Importation des données** : Création de tables et insertion des données dans la base de données.
