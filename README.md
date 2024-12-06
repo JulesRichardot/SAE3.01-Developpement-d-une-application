@@ -14,7 +14,8 @@ Le but de ce projet est de créer :
 
 Le répertoire principal est organisé comme suit : 
 
-repertoire_principal/
+```bash
+SAE3.01/
 ├───data
 │       create_excel.py
 │       inventaire_perso.xlsx
@@ -25,6 +26,7 @@ repertoire_principal/
         test_utils.py
         utils.py
         utils_test.py
+```
 
 ## Fonctionnalités Principales
 - **Nettoyage des données** : Traitement et correction des incohérences dans les fichiers Excel.
