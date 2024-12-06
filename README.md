@@ -23,6 +23,14 @@ Le but de ce projet est de créer :
 - **Outils de modélisation** : Diagrammes Entité-Association
 - **Interface utilisateur** : HTML, CSS, JavaScript
 
+## Installation
+Assurez-vous d'avoir installé la bibliothèque nécessaires en exécutant la commande suivante :
+```bash
+pip install pandas
+```
+
+De plus, lorsque vous lancez les fichiers, il faut **impérativement** être dans le répertoire principal donc avoir comme sous-répertoire : data/ et script_nettoyage/ .
+
 ## Equipe du projet
 Ce projet est réalisé par l'équipe suivante : 
 - **[Mehdi ARRAB](https://github.com/jadoothepooh/)**
