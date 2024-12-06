@@ -1,5 +1,4 @@
-import pandas as pd
-from script_nettoyage.utils import *
+from utils import *
 
 def remplacer_chaine_vide(chaine: str) -> bool:
     """
@@ -15,7 +14,7 @@ def remplacer_chaine_vide(chaine: str) -> bool:
         return None
     return chaine
 
-def nettoyer_excel(data: pd.DataFrame) -> pd.DataFrame:
+def nettoyer_excel(data: pd.DataFrame) -> bool: # CHANGER LE RETURN APRES
     """
     Fonction qui va faire un nettoyage complet sur les données Excel.
     Cette fonction va effectuer plusieurs étapes: 
@@ -33,18 +32,6 @@ def nettoyer_excel(data: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: DataFrame nettoyé
     """
 
-    # Supprimer les doublons
-    data_sans_doublons = data.drop_duplicates()
+    # Il faudrait utiliser les fonctions de utils pour nettoyer (plus lisible mais sûrement pas utile)
 
-    # Gérer les valeurs manquantes -> remplace les cases vides ou espaces
-    for colonne in data_sans_doublons.columns:
-        # on vérifie si c'est une colonne de type TEXT
-        if data_sans_doublons[colonne].dtype == 'object': 
-            data_sans_doublons[colonne] = data_sans_doublons[colonne].apply(remplacer_chaine_vide)
-
-    # Enlever les espaces en trop dans les colonnes de texte
-    for colonne in data_sans_doublons.columns:
-        if data_sans_doublons[colonne].dtype == 'object':
-            data_sans_doublons[colonne] = data_sans_doublons[colonne].str.strip()
-
-    return data_sans_doublons
+    return None

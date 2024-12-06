@@ -1,79 +1,135 @@
 import pandas as pd
 
+"""
+Fichier qui me sert juste pour des tests en local.
+"""
 
-def excelToId(data: pd.DataFrame) -> pd.DataFrame:
+def enleve_espace(chaine: str) -> str:
     """
-    Retourne tout les identifiants.
+    Enlève les espaces au début et à la fin d'une chaîne.
+    Si la chaîne est ou vide ou 'NR' on retourne None.
 
     Args:
-        data (pd.DataFrame): DataFrame qui contient les données excel
+        chaine (str): La chaîne à nettoyer
 
     Returns:
-        pd.Series: une série pandas qui contient les valeurs de la colonne 'Unnamed: 0'
+        str: La valeur nettoyée
     """
-    return data["Unnamed: 0"]
+    chaine = str(chaine).strip() # Enlever les espaces début et fin
+    if chaine == '' or chaine == 'NR':
+        return None
+    return chaine
 
-def excelToTitre(data: pd.DataFrame) -> pd.DataFrame:
+
+def excelToId(data: pd.DataFrame) -> pd.Series:
     """
-    Retourne tout les titres.
-
+    Retourne tous les identifiants après nettoyage.
+    
     Args:
         data (pd.DataFrame): DataFrame qui contient les données excel
-
+    
     Returns:
-        pd.Series: une série pandas qui contient les valeurs de la colonne 'TITRE'
+        pd.Series: une série pandas nettoyée contenant les identifiants
     """
-    return data["TITRE"]
+    ids = data["Unnamed: 0"].apply(enleve_espace)
+    ids = ids[ids.notna()] # Supprime les valeurs NaN
+    return ids
 
-def excelToRef(data: pd.DataFrame) -> pd.DataFrame:
+
+def excelToTitre(data: pd.DataFrame) -> pd.Series:
     """
-    Retourne toutes les références.
-
+    Retourne les titres après nettoyage (strip, enlever les vides).
+    
     Args:
         data (pd.DataFrame): DataFrame qui contient les données excel
-
+    
     Returns:
-        pd.Series: une série pandas qui contient les valeurs de la colonne 'REFERENCES (éditeur/distributeur)'
+        pd.Series: une série pandas nettoyée contenant les titres
     """
-    return data["REFERENCES (éditeur/distributeur)"]
+    titres = data["TITRE"]
+    titres_clean = titres.apply(enleve_espace)
+    return titres_clean
 
-def excelToAuteur(data: pd.DataFrame) -> pd.DataFrame:
+
+def excelToRef(data: pd.DataFrame) -> pd.Series:
     """
-    Retourne tout les auteurs.
-
+    Retourne les références après nettoyage (strip, vérifier les vides).
+    
     Args:
         data (pd.DataFrame): DataFrame qui contient les données excel
-
+    
     Returns:
-        pd.Series: une série pandas qui contient les valeurs de la colonne 'AUTEURS'
+        pd.Series: une série pandas nettoyée contenant les références
     """
-    return data["AUTEURS"]
+    refs = data["REFERENCES (éditeur/distributeur)"]
+    titres_clean = refs.apply(enleve_espace)
+    return titres_clean
 
-def excelToDateParutionDebut(data: pd.DataFrame) -> pd.DataFrame:
+
+def excelToAuteur(data: pd.DataFrame) -> pd.Series:
     """
-    Retourne toutes les dates de début de parution.
-
+    Retourne les auteurs après nettoyage (strip, 'NR' devient None).
+    
     Args:
         data (pd.DataFrame): DataFrame qui contient les données excel
-
+    
     Returns:
-        pd.Series: une série pandas qui contient les valeurs de la colonne 'DATE DE PARUTION DEBUT'
+        pd.Series: une série pandas nettoyée contenant les auteurs
     """
-    return data["DATA DE PARUTION DEBUT"]
+    auteurs = data["AUTEURS"]
+    auteurs_clean = auteurs.apply(enleve_espace)
+    return auteurs_clean
 
-def excelToDateParutionFin(data: pd.DataFrame) -> pd.DataFrame:
+
+def excelToDateParutionDebut(data: pd.DataFrame) -> pd.Series:
     """
-    Retourne toutes les dates de fin de parution.
-
+    Retourne les dates de début de parution après nettoyage (strip, vérifier les dates négatives).
+    
     Args:
         data (pd.DataFrame): DataFrame qui contient les données excel
-
+    
     Returns:
-        pd.Series: une série pandas qui contient les valeurs de la colonne 'DATE DE PARUTION FIN'
+        pd.Series: une série pandas nettoyée contenant les dates de début de parution
     """
-    return data["DATA DE PARUTION FIN"]
+    dates_debut = data["DATE DE PARUTION DEBUT"]
 
-def excelToInformation(data: pd.DataFrame) -> pd.DataFrame:
+    # Nettoyer les dates
+    date_debut_clean = []
+    for date in dates_debut:
+        date = enleve_espace(date)
+        if date == '' or date is None or not date.isdigit() or int(date) < 0:
+            date_debut_clean.append(None)  # None si date vide ou négatif
+        else:
+            date_debut_clean.append(date)
+    
+    return pd.Series(date_debut_clean)
+
+
+def excelToDateParutionFin(data: pd.DataFrame) -> pd.Series:
+    """
+    Retourne les dates de fin de parution après nettoyage (strip, vérifier les dates négatives).
+    
+    Args:
+        data (pd.DataFrame): DataFrame qui contient les données excel
+    
+    Returns:
+        pd.Series: une série pandas nettoyée contenant les dates de fin de parution
+    """
+    dates_fin = data["DATE DE PARUTION FIN"].apply(enleve_espace)
+    
+    # Nettoyer les dates
+    date_debut_fin = []
+    for date in dates_fin:
+        date = enleve_espace(date)
+        if date == '' or date is None or not date.isdigit() or int(date) < 0:
+            date_debut_fin.append(None)  # None si date vide ou négatif
+        else:
+            date_debut_fin.append(date)
+    
+    return pd.Series(date_debut_fin)
+
+# A FAIRE MAIS BIZARRE
+def excelToInformation(data: pd.DataFrame) -> pd.Series:
     """
     Retourne toutes les informations.
 
@@ -85,19 +141,25 @@ def excelToInformation(data: pd.DataFrame) -> pd.DataFrame:
     """
     return data["INFORMATION DATA"]
 
-def excelToVersion(data: pd.DataFrame) -> pd.DataFrame:
-    """
-    Retourne toutes les versions.
 
+def excelToVersion(data: pd.DataFrame) -> pd.Series:
+    """
+    Retourne les versions après nettoyage (strip, vider les vides).
+    
     Args:
         data (pd.DataFrame): DataFrame qui contient les données excel
-
+    
     Returns:
-        pd.Series: une série pandas qui contient les valeurs de la colonne 'VERSION'
+        pd.Series: une série pandas nettoyée contenant les versions
     """
-    return data["VERSION"]
+    versions = data["VERSION"]
+    
+    # Nettoyer les versions
+    versions_clean = versions.apply(enleve_espace)
+    return versions_clean
 
-def excelToNbJoueurs(data: pd.DataFrame) -> pd.DataFrame:
+# A FAIRE MAIS BIZARRE AUSSI
+def excelToNbJoueurs(data: pd.DataFrame) -> pd.Series:
     """
     Retourne toutes les nombres de joueurs
 
@@ -109,7 +171,8 @@ def excelToNbJoueurs(data: pd.DataFrame) -> pd.DataFrame:
     """
     return data["NOMBRE DE JOUEURS"]
 
-def excelToAge(data: pd.DataFrame) -> pd.DataFrame:
+# DECIDEMMENT TOUT EST BIZARRE
+def excelToAge(data: pd.DataFrame) -> pd.Series:
     """
     Retourne tout les âges.
 
@@ -121,19 +184,31 @@ def excelToAge(data: pd.DataFrame) -> pd.DataFrame:
     """
     return data["AGE INDIQUE (cf colonne B)"]
 
-def excelToMotsCles(data: pd.DataFrame) -> pd.DataFrame:
-    """
-    Retourne tout les mots clés.
 
+def excelToMotsCles(data: pd.DataFrame) -> pd.Series:
+    """
+    Retourne les mots-clés après nettoyage (mettre en lowercase).
+    
     Args:
         data (pd.DataFrame): DataFrame qui contient les données excel
-
+    
     Returns:
-        pd.Series: une série pandas qui contient les valeurs de la colonne 'MOTS CLES'
+        pd.Series: une série pandas nettoyée contenant les mots-clés
     """
-    return data["MOTS CLES"]
+    mots_cles = data["MOTS CLES"]
+    
+    mots_cles_clean = []
+    
+    for x in mots_cles:
+        # Enlever les espaces et mettre en lower
+        valeur_clean = str(x).strip().lower()
+        mots_cles_clean.append(valeur_clean)
 
-def excelToNumBoite(data: pd.DataFrame) -> pd.DataFrame:
+    return pd.Series(mots_cles_clean)
+    
+
+# QUE FAIRE DE CA ?
+def excelToNumBoite(data: pd.DataFrame) -> pd.Series:
     """
     Retourne tout les numéros de boîte.
 
@@ -145,7 +220,8 @@ def excelToNumBoite(data: pd.DataFrame) -> pd.DataFrame:
     """
     return data["N Boîte"]
 
-def excelToLocalisation(data: pd.DataFrame) -> pd.DataFrame:
+# A FAIRE EN FONCTION DU CLIENT
+def excelToLocalisation(data: pd.DataFrame) -> pd.Series:
     """
     Retourne toutes les localisations au CNJ.
 
@@ -157,20 +233,32 @@ def excelToLocalisation(data: pd.DataFrame) -> pd.DataFrame:
     """
     return data["LOCALISATION_CNJ"]
 
+
 def excelToMecanisme(data: pd.DataFrame) -> pd.DataFrame:
     """
-    Retourne tout les mécanismes.
+    Retourne tous les mécanismes après nettoyage des valeurs.
 
     Args:
         data (pd.DataFrame): DataFrame qui contient les données excel
 
     Returns:
-        pd.Series: une série pandas qui contient les valeurs de la colonne 'MECANISME (cf colonne A)' et aussi les deux colonnes à côtés de lui
+        pd.DataFrame: un DataFrame contenant les trois colonnes de mécanisme nettoyées
     """
+    # Trouver la position de la colonne "MECANISME (cf colonne A)"
     index_meca = data.columns.get_loc("MECANISME (cf colonne A)")
-    return data.iloc[:, [index_meca, index_meca+1, index_meca+2]]
+    
+    # Sélectionner les 3 colonnes des mécanismes
+    mecanismes = data.iloc[:, [index_meca, index_meca + 1, index_meca + 2]]
+    
+    # Appliquer le nettoyage sur chaque colonne
+    for col in mecanismes.columns:
+        mecanismes[col] = mecanismes[col].apply(enleve_espace)
+    
+    return mecanismes
 
-def excelToCollectionOrigine(data: pd.DataFrame) -> pd.DataFrame:
+
+# A FAIRE
+def excelToCollectionOrigine(data: pd.DataFrame) -> pd.Series:
     """
     Retourne toutes les collections d'origine.
 
@@ -182,7 +270,8 @@ def excelToCollectionOrigine(data: pd.DataFrame) -> pd.DataFrame:
     """
     return data["Collection d'origine (cf colonne C)"]
 
-def excelToEtat(data: pd.DataFrame) -> pd.DataFrame:
+# A FAIRE
+def excelToEtat(data: pd.DataFrame) -> pd.Series:
     """
     Retourne tout les états.
 
@@ -194,7 +283,8 @@ def excelToEtat(data: pd.DataFrame) -> pd.DataFrame:
     """
     return data["Etat"]
 
-def excelToCodeBarre(data: pd.DataFrame) -> pd.DataFrame:
+# A FAIRE OU A OUBLIER
+def excelToCodeBarre(data: pd.DataFrame) -> pd.Series:
     """
     Retourne tout les codes barres.
 
@@ -205,6 +295,7 @@ def excelToCodeBarre(data: pd.DataFrame) -> pd.DataFrame:
         pd.Series: une série pandas qui contient les valeurs de la colonne 'Code barre'
     """
     return data["Code barre"]
+
 
 def excelGetLine(data: pd.DataFrame, indice: int) -> pd.Series:
     """
