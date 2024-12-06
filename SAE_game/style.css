@@ -1,1 +1,196 @@
+/* Styles généraux */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Banniere */
+#banniere {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+
+#banniere input {
+    margin: 0 10px;
+    padding: 12px 20px;
+    background-color: #444;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#banniere input:hover {
+    background-color: #555;
+}
+
+/* Recherche */
+input[type="search"] {
+    width: 80%;
+    margin: 20px auto;
+    display: block;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Présentation */
+#presentation {
+    text-align: center;
+    margin: 40px 0;
+}
+
+#presentation h1 {
+    font-size: 32px;
+    color: #333;
+}
+
+#presentation h4 {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.Bouton {
+    padding: 12px 30px;
+    margin: 10px 5px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.Bouton:hover {
+    background-color: #0056b3;
+}
+
+/* Section des jeux populaires */
+#jeux_pop {
+    background-color: #e0e0e0;
+    padding: 40px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+#jeux_pop h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+#jeux_pop div {
+    display: inline-block;
+    background-color: #fff;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#jeux_pop div:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Section des informations */
+.infos_comp {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.infos_comp div {
+    display: inline-block;
+    margin: 0 20px;
+    font-size: 16px;
+}
+
+/* Section jeux similaires */
+.jeux-similaires {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.jeux-similaires h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    margin: 10px;
+    width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+}
+
+.card h3 {
+    font-size: 22px;
+    color: #007BFF;
+}
+
+.card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer .colonne {
+    text-align: center;
+}
+
+footer h4 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer ul li {
+    margin: 8px 0;
+}
+
+footer ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
 
