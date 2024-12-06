@@ -27,7 +27,7 @@ Le but de ce projet est de créer :
 Ce projet est réalisé par l'équipe suivante : 
 - **[Mehdi ARRAB]()**
 - **[Lasry BESKIWIN](https://github.com/Lasryy)**
-- **[Rania Bousfiha]()**
+- **[Rania Bousfiha](https://github.com/rania212)**
 - **[Safiya NGUYEN](https://github.com/safiya-ng)**
 - **[Ahash PARTHIPAN](https://github.com/AhashPARTHIPAN)**
 - **[Jules RICHARDOT](https://github.com/JulesRichardot)**
