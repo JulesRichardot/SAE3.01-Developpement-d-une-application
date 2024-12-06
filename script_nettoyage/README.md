@@ -3,9 +3,6 @@
 ## Script de nettoyage
 Ce répertoire contient les scripts permettant de nettoyer le fichier Excel.
 
-## Structure du répertoire
-**FAIRE SUR LINUX C'EST PLUS SIMPLE**
-
 ## Fonctionnement
 
 ###  `utils.py` (sûrement inutile pour la suite)
@@ -18,15 +15,6 @@ Il y a plusieurs étapes pour ce nettoyage :
 2. **Gestion des valeurs manquantes** : Les valeurs manquantes dans les colonnes de texte sont remplacées par `None`.
 3. **Enlèvement des espaces inutiles** : Les espaces avant et après les chaînes de texte sont supprimés pour éviter les erreurs liées aux valeurs de texte mal formatées.
 4. **CONTINUER A RAJOUTER**
-
-## Installation
-Assurez-vous d'avoir installé les bibliothèques nécessaires en exécutant la commande suivante :
-```bash
-pip install pandas
-```
-**A CONTINUER**
-
-
 
 ## Equipe du projet
 Ce projet est réalisé par l'équipe suivante : 
