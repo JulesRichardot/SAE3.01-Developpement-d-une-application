@@ -4,10 +4,7 @@
 Ce répertoire contient les scripts permettant de nettoyer le fichier Excel.
 
 ## Structure du répertoire
-script_nettoyage/
-│
-├── nettoyage.py       # Contient les fonctions de nettoyage des données
-└── utils.py           # Contient les fonctions utilitaires pour extraire des colonnes
+**FAIRE SUR LINUX C'EST PLUS SIMPLE**
 
 ## Fonctionnement
 
