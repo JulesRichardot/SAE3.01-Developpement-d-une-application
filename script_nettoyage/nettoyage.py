@@ -32,6 +32,19 @@ def nettoyer_excel(data: pd.DataFrame) -> bool: # CHANGER LE RETURN APRES
         pd.DataFrame: DataFrame nettoyé
     """
 
+    jeux = data.rename(columns={
+        "Unnamed: 0": "id_jeu",
+        "TITRE": "titre_jeu",
+        "DATE DE PARUTION DEBUT": "date_parution_debut",
+        "DATE DE PARUTION FIN": "date_parution_fin",
+        "AGE INDIQUE (cf colonne B)": "age_min",
+        "MOTS CLES": "mots_cles",
+        "VERSION": "version"
+    })[[
+        "id_jeu", "titre_jeu", "date_parution_debut", "date_parution_fin",
+        "nb_joueur_min", "nb_joueur_max", "age_min", "mots_cles", "version"
+    ]]
+
     # Il faudrait utiliser les fonctions de utils pour nettoyer (plus lisible mais sûrement pas utile)
 
     return None
