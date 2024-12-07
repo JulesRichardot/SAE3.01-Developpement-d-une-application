@@ -15,7 +15,7 @@ Le but de ce projet est de créer :
 Le répertoire principal est organisé comme suit : 
 
 ```bash
-├───SAE
+└───SAE
     ├───data
     │       create_excel.py
     │       inventaire_perso.xlsx
