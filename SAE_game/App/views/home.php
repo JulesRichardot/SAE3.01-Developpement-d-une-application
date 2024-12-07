@@ -1,20 +1,26 @@
-<?php
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Bienvenue sur la page d'accueil</h1>
 
-// Charger les dépendances nécessaires
-require_once __DIR__ . '/../models/Model.php'; // Inclure le modèle pour accéder à la base de données
-
-/**
- * Contrôleur pour la page d'accueil
- */
-
-// Récupérer la connexion à la base de données via le modèle
-$model = Model::getInstance();
-$conn = $model->getConnection();
-
-// Exemple : Récupérer tous les jeux dans la base de données
-$query = $conn->prepare("SELECT * FROM jeux");
-$query->execute();
-$games = $query->fetchAll(PDO::FETCH_ASSOC); // Récupère les résultats sous forme de tableau associatif
-
-// Charger la vue associée
-require_once __DIR__ . '/../views/index.php'; // Inclure la vue 
+    <h2>Liste des jeux</h2>
+    <ul>
+        <?php if (!empty($games)): ?>
+            <?php foreach ($games as $game): ?>
+                <li>
+                    <strong><?= htmlspecialchars($game['titre_jeu']) ?></strong>
+                    <p><?= htmlspecialchars($game['description']) ?></p>
+                </li>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Aucun jeu trouvé.</p>
+        <?php endif; ?>
+    </ul>
+</body>
+</html>
