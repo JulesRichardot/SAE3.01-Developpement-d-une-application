@@ -15,17 +15,23 @@ Le but de ce projet est de créer :
 Le répertoire principal est organisé comme suit : 
 
 ```bash
-SAE3.01/
-├───data/
-│       create_excel.py
-│       inventaire_perso.xlsx
-│       
-└───script_nettoyage/
-        main.py
-        nettoyage.py
-        test_utils.py
-        utils.py
-        utils_test.py
+├───SAE
+    ├───data
+    │       create_excel.py
+    │       inventaire_perso.xlsx
+    │
+    ├───SAE_game
+    │       boite_jeu.html
+    │       index.html
+    │       index.php
+    │       Jeu_presentation.html
+    │       style.css
+    │
+    └───script_nettoyage
+            main.py
+            nettoyage.py
+            utils.py
+            utils_test.py
 ```
 
 ## Fonctionnalités Principales
