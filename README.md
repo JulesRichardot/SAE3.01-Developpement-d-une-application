@@ -15,21 +15,35 @@ Le but de ce projet est de créer :
 Le répertoire principal est organisé comme suit : 
 
 ```bash
-└───SAE
+SAE3.01-main
+    │   README.md
+    │
     ├───data
     │       create_excel.py
     │       inventaire_perso.xlsx
+    │       README.md
     │
     ├───SAE_game
-    │       boite_jeu.html
-    │       index.html
-    │       index.php
-    │       Jeu_presentation.html
-    │       style.css
+    │   │   boite_jeu.html
+    │   │   index.html
+    │   │   index.php
+    │   │   Jeu_presentation.html
+    │   │   style.css
+    │   │
+    │   └───App
+    │       ├───controllers
+    │       │       HomeController.php
+    │       │
+    │       ├───models
+    │       │       Database.php
+    │       │
+    │       └───views
+    │               home.php
     │
     └───script_nettoyage
             main.py
             nettoyage.py
+            README.md
             utils.py
             utils_test.py
 ```
