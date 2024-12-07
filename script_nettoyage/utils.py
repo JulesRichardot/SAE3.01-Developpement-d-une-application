@@ -174,15 +174,22 @@ def excelToNbJoueurs(data: pd.DataFrame) -> pd.Series:
 # DECIDEMMENT TOUT EST BIZARRE
 def excelToAge(data: pd.DataFrame) -> pd.Series:
     """
-    Retourne tout les âges.
+    Retourne l'âge minimum après nettoyage des valeurs incohérentes.
 
     Args:
-        data (pd.DataFrame): DataFrame qui contient les données excel
+        data (pd.DataFrame): DataFrame qui contient les données Excel
 
     Returns:
-        pd.Series: une série pandas qui contient les valeurs de la colonne 'AGE INDIQUE (cf colonne B)'
+        pd.Series: Une série contenant les âges nettoyés
     """
-    return data["AGE INDIQUE (cf colonne B)"]
+    def clean_age(val):
+        try:
+            age = int(val)
+            return age if age >= 0 else None
+        except:
+            return None
+
+    return data["AGE INDIQUE (cf colonne B)"].apply(clean_age)
 
 
 def excelToMotsCles(data: pd.DataFrame) -> pd.Series:
