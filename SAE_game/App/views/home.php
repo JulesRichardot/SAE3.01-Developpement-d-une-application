@@ -12,9 +12,9 @@ $model = Model::getInstance();
 $conn = $model->getConnection();
 
 // Exemple : Récupérer tous les jeux dans la base de données
-$query = $conn->prepare("SELECT * FROM jeux"); // Remplace "jeux" par le nom réel de ta table
+$query = $conn->prepare("SELECT * FROM jeux");
 $query->execute();
 $games = $query->fetchAll(PDO::FETCH_ASSOC); // Récupère les résultats sous forme de tableau associatif
 
 // Charger la vue associée
-require_once __DIR__ . '/../views/index.php'; // Inclure la vue (par exemple, index.php)
+require_once __DIR__ . '/../views/index.php'; // Inclure la vue 
