@@ -159,19 +159,48 @@ def excelToVersion(data: pd.DataFrame) -> pd.Series:
     return versions_clean
 
 # A FAIRE MAIS BIZARRE AUSSI
+import re
+
 def excelToNbJoueurs(data: pd.DataFrame) -> pd.Series:
     """
-    Retourne toutes les nombres de joueurs
-
+    Nettoie et normalise les informations de la colonne 'NOMBRE DE JOUEURS'.
+    
     Args:
-        data (pd.DataFrame): DataFrame qui contient les données excel
-
+        data (pd.DataFrame): DataFrame contenant les données du fichier excel.
+    
     Returns:
-        pd.Series: une série pandas qui contient les valeurs de la colonne 'NOMBRE DE JOUEURS'
+        pd.Series: Série pandas nettoyée et normalisée contenant les informations sur le nombre de joueurs.
     """
-    return data["NOMBRE DE JOUEURS"]
+    nb_joueur = data["NOMBRE DE JOUEURS"]
+    nb_joueur_clean = []
 
-# DECIDEMMENT TOUT EST BIZARRE
+    for nb in nb_joueur:
+        res = ""
+        nb = str(enleve_espace(nb)) # on transforme toujours en string
+        liste_nb = nb.split(" ") # pour séparer les élements de la chaine
+        for char in liste_nb:
+            if char.isdigit(): # si c'est un num on ajoute dans le resultat
+                res += char
+            elif char == "ou": # si c'est un "ou" on rajoute
+                res += " " + char
+            elif char == "à": # si c'est un "à" on met "-"
+                res += "-"
+            elif char == "équipes": # si équipe alors on l'ajoute
+                res += " " + char
+            elif char == "+": # si + alors on met plus
+                res += " plus"
+            elif char == "et" or char == "joueurs": # on passe pour "et" et joueurs
+                pass
+            else: # pour le reste on met None
+                res += "None"
+        nb_joueur_clean.append(res)
+
+    data["NOMBRE DE JOUEURS"] = nb_joueur_clean
+    return data["NOMBRE DE JOUEURS"]
+        
+
+
+# A FAIRE
 def excelToAge(data: pd.DataFrame) -> pd.Series:
     """
     Retourne l'âge minimum après nettoyage des valeurs incohérentes.
@@ -214,7 +243,7 @@ def excelToMotsCles(data: pd.DataFrame) -> pd.Series:
     return pd.Series(mots_cles_clean)
     
 
-# QUE FAIRE DE CA ?
+# A FAIRE
 def excelToNumBoite(data: pd.DataFrame) -> pd.Series:
     """
     Retourne tout les numéros de boîte.
