@@ -159,7 +159,6 @@ def excelToVersion(data: pd.DataFrame) -> pd.Series:
     return versions_clean
 
 # A FAIRE MAIS BIZARRE AUSSI
-import re
 
 def excelToNbJoueurs(data: pd.DataFrame) -> pd.Series:
     """
@@ -171,6 +170,16 @@ def excelToNbJoueurs(data: pd.DataFrame) -> pd.Series:
     Returns:
         pd.Series: Série pandas nettoyée et normalisée contenant les informations sur le nombre de joueurs.
     """
+    # dico qui représente les associations possibles
+    equivalent = {
+        "ou": " ou",
+        "à": "-",
+        "équipes": " en équipe",
+        "+": " plus",
+        "et": "",
+        "joueurs": ""
+    }
+
     nb_joueur = data["NOMBRE DE JOUEURS"]
     nb_joueur_clean = []
 
@@ -178,21 +187,15 @@ def excelToNbJoueurs(data: pd.DataFrame) -> pd.Series:
         res = ""
         nb = str(enleve_espace(nb)) # on transforme toujours en string
         liste_nb = nb.split(" ") # pour séparer les élements de la chaine
+
         for char in liste_nb:
             if char.isdigit(): # si c'est un num on ajoute dans le resultat
                 res += char
-            elif char == "ou": # si c'est un "ou" on rajoute
-                res += " " + char
-            elif char == "à": # si c'est un "à" on met "-"
-                res += "-"
-            elif char == "équipes": # si équipe alors on l'ajoute
-                res += " " + char
-            elif char == "+": # si + alors on met plus
-                res += " plus"
-            elif char == "et" or char == "joueurs": # on passe pour "et" et joueurs
-                pass
+            elif char in equivalent:
+                res += equivalent[char]
             else: # pour le reste on met None
                 res += "None"
+
         nb_joueur_clean.append(res)
 
     data["NOMBRE DE JOUEURS"] = nb_joueur_clean
