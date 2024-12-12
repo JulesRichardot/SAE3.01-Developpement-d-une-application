@@ -1,10 +1,9 @@
 /* Styles généraux */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #293358; /* Bleu clair */
+    background-color: #f4f4f4; /* Gris clair pour un fond doux */
     margin: 0;
     padding: 0;
-    color: white; /* Pour le texte par défaut */
 }
 
 h1, h2, h3, h4 {
@@ -12,24 +11,48 @@ h1, h2, h3, h4 {
 }
 
 /* Bannière */
-#banniere {
-    background-color: #1A2035; /* Bleu foncé */
-    color: white;
-    text-align: center;
-    padding: 15px 0;
+.nav-header {
+    background-color: rgba(41, 51, 88, 1);
+    display: flex;
+    flex-wrap: wrap; /* Permet de passer à une nouvelle ligne si nécessaire */
+    width: 100%;
+    gap: 20px;
+    color: #fff;
+    justify-content: space-between;
+    padding: 31px 64px;
+    font: 400 24px Poppins, sans-serif;
+    box-sizing: border-box; /* Évite les débordements liés au padding */
 }
+
+.logo {
+    aspect-ratio: 2.18;
+    object-fit: contain;
+    object-position: center;
+    width: 240px;
+    max-width: 100%;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux liens de passer à une nouvelle ligne */
+    gap: 100px; /* Réduit l'espacement entre les liens */
+    margin: auto 0;
+    max-width: 100%; /* Empêche les débordements horizontaux */
+}
+
 #banniere input {
     margin: 0 10px;
     padding: 12px 20px;
-    background-color: #AA927D; /* Beige/Marron */
+    background-color: rgba(41, 51, 88, 1); 
     color: white;
     border: none;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
 }
+
 #banniere input:hover {
-    background-color: #1A2035; /* Bleu foncé */
+    background-color: rgba(41, 51, 88, 1); /* Bleu encore plus sombre */
 }
 
 /* Recherche */
@@ -40,7 +63,7 @@ input[type="search"] {
     padding: 12px;
     font-size: 16px;
     border-radius: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
 }
 
 /* Présentation */
@@ -48,61 +71,69 @@ input[type="search"] {
     text-align: center;
     margin: 40px 0;
 }
+
 #presentation h1 {
     font-size: 32px;
-    color: #AA927D; /* Beige/Marron */
+    color: #004080; /* Bleu sombre */
 }
+
 #presentation h4 {
     font-size: 18px;
-    color: #666;
+    color: #666; /* Gris doux */
     margin-bottom: 30px;
 }
+
 .Bouton {
     padding: 12px 30px;
     margin: 10px 5px;
-    background-color: #AA927D; /* Beige/Marron */
+    background-color: rgba(41, 51, 88, 1); /* Bleu bouton */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
 }
+
 .Bouton:hover {
-    background-color: #1A2035; /* Bleu foncé */
+    background-color: rgba(41, 51, 88, 1); /* Bleu plus foncé */
 }
 
 /* Section des jeux populaires */
 #jeux_pop {
-    background-color: #1A2035; /* Bleu foncé */
+    background-color: #e0e0e0; /* Gris très clair */
     padding: 40px;
     margin: 20px 0;
     text-align: center;
 }
+
 #jeux_pop h2 {
     font-size: 28px;
+    color: rgba(41, 51, 88, 1); /* Bleu sombre */
     margin-bottom: 30px;
-    color: #AA927D; /* Beige/Marron */
 }
+
 #jeux_pop div {
     display: inline-block;
-    background-color: #AA927D; /* Beige/Marron */
-    color: #1A2035; /* Bleu foncé */
+    background-color: #fff; /* Fond blanc */
     padding: 20px;
     margin: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: rgba(41, 51, 88, 1); /* Texte bleu */
 }
+
 #jeux_pop div:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Section des informations */
 .infos_comp {
-    background-color: #1A2035; /* Bleu foncé */
+    background-color: #333; /* Noir/gris foncé */
     color: white;
     text-align: center;
     padding: 20px 0;
 }
+
 .infos_comp div {
     display: inline-block;
     margin: 0 20px;
@@ -114,18 +145,20 @@ input[type="search"] {
     margin: 40px 0;
     text-align: center;
 }
+
 .jeux-similaires h2 {
     font-size: 28px;
+    color: rgba(41, 51, 88, 1); /* Bleu sombre */
     margin-bottom: 30px;
-    color: #AA927D; /* Beige/Marron */
 }
+
 .cards {
     display: flex;
     justify-content: center;
 }
+
 .card {
-    background-color: #AA927D; /* Beige/Marron */
-    color: #1A2035; /* Bleu foncé */
+    background-color: #fff; /* Fond blanc */
     padding: 20px;
     margin: 10px;
     width: 250px;
@@ -133,45 +166,56 @@ input[type="search"] {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     font-size: 16px;
+    color: rgba(41, 51, 88, 1); /* Texte bleu */
 }
+
 .card h3 {
     font-size: 22px;
-    color: #293358; /* Bleu clair */
+    color: rgba(41, 51, 88, 1); /* Bleu bouton */
 }
+
 .card p {
     font-size: 14px;
-    color: #666;
+    color: #666; /* Gris doux */
 }
+
 .card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Footer */
 footer {
-    background-color: #1A2035; /* Bleu foncé */
+    background-color: rgba(41, 51, 88, 1); /* Bleu sombre */
     color: white;
     padding: 30px 0;
     display: flex;
     justify-content: space-around;
 }
+
 footer .colonne {
     text-align: center;
 }
+
 footer h4 {
     font-size: 20px;
     margin-bottom: 15px;
 }
+
 footer ul {
     list-style-type: none;
     padding: 0;
 }
+
 footer ul li {
     margin: 8px 0;
 }
+
 footer ul li a {
     color: white;
     text-decoration: none;
 }
+
 footer ul li a:hover {
     text-decoration: underline;
 }
+
