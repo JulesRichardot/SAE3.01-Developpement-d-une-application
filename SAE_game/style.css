@@ -1,9 +1,10 @@
 /* Styles généraux */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4; /* Gris clair pour un fond doux */
+    background-color: #293358; /* Bleu clair */
     margin: 0;
     padding: 0;
+    color: white; /* Pour le texte par défaut */
 }
 
 h1, h2, h3, h4 {
@@ -12,25 +13,23 @@ h1, h2, h3, h4 {
 
 /* Bannière */
 #banniere {
-    background-color: #004080; /* Bleu sombre */
+    background-color: #1A2035; /* Bleu foncé */
     color: white;
     text-align: center;
     padding: 15px 0;
 }
-
 #banniere input {
     margin: 0 10px;
     padding: 12px 20px;
-    background-color: #005bb5; /* Bleu moyen */
+    background-color: #AA927D; /* Beige/Marron */
     color: white;
     border: none;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
 }
-
 #banniere input:hover {
-    background-color: #003366; /* Bleu encore plus sombre */
+    background-color: #1A2035; /* Bleu foncé */
 }
 
 /* Recherche */
@@ -41,7 +40,7 @@ input[type="search"] {
     padding: 12px;
     font-size: 16px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
 }
 
 /* Présentation */
@@ -49,69 +48,61 @@ input[type="search"] {
     text-align: center;
     margin: 40px 0;
 }
-
 #presentation h1 {
     font-size: 32px;
-    color: #004080; /* Bleu sombre */
+    color: #AA927D; /* Beige/Marron */
 }
-
 #presentation h4 {
     font-size: 18px;
-    color: #666; /* Gris doux */
+    color: #666;
     margin-bottom: 30px;
 }
-
 .Bouton {
     padding: 12px 30px;
     margin: 10px 5px;
-    background-color: #007BFF; /* Bleu bouton */
+    background-color: #AA927D; /* Beige/Marron */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
 }
-
 .Bouton:hover {
-    background-color: #0056b3; /* Bleu plus foncé */
+    background-color: #1A2035; /* Bleu foncé */
 }
 
 /* Section des jeux populaires */
 #jeux_pop {
-    background-color: #e0e0e0; /* Gris très clair */
+    background-color: #1A2035; /* Bleu foncé */
     padding: 40px;
     margin: 20px 0;
     text-align: center;
 }
-
 #jeux_pop h2 {
     font-size: 28px;
-    color: #004080; /* Bleu sombre */
     margin-bottom: 30px;
+    color: #AA927D; /* Beige/Marron */
 }
-
 #jeux_pop div {
     display: inline-block;
-    background-color: #fff; /* Fond blanc */
+    background-color: #AA927D; /* Beige/Marron */
+    color: #1A2035; /* Bleu foncé */
     padding: 20px;
     margin: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #004080; /* Texte bleu */
 }
-
 #jeux_pop div:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Section des informations */
 .infos_comp {
-    background-color: #333; /* Noir/gris foncé */
+    background-color: #1A2035; /* Bleu foncé */
     color: white;
     text-align: center;
     padding: 20px 0;
 }
-
 .infos_comp div {
     display: inline-block;
     margin: 0 20px;
@@ -123,20 +114,18 @@ input[type="search"] {
     margin: 40px 0;
     text-align: center;
 }
-
 .jeux-similaires h2 {
     font-size: 28px;
-    color: #004080; /* Bleu sombre */
     margin-bottom: 30px;
+    color: #AA927D; /* Beige/Marron */
 }
-
 .cards {
     display: flex;
     justify-content: center;
 }
-
 .card {
-    background-color: #fff; /* Fond blanc */
+    background-color: #AA927D; /* Beige/Marron */
+    color: #1A2035; /* Bleu foncé */
     padding: 20px;
     margin: 10px;
     width: 250px;
@@ -144,55 +133,45 @@ input[type="search"] {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     font-size: 16px;
-    color: #004080; /* Texte bleu */
 }
-
 .card h3 {
     font-size: 22px;
-    color: #005bb5; /* Bleu bouton */
+    color: #293358; /* Bleu clair */
 }
-
 .card p {
     font-size: 14px;
-    color: #666; /* Gris doux */
+    color: #666;
 }
-
 .card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Footer */
 footer {
-    background-color: #004080; /* Bleu sombre */
+    background-color: #1A2035; /* Bleu foncé */
     color: white;
     padding: 30px 0;
     display: flex;
     justify-content: space-around;
 }
-
 footer .colonne {
     text-align: center;
 }
-
 footer h4 {
     font-size: 20px;
     margin-bottom: 15px;
 }
-
 footer ul {
     list-style-type: none;
     padding: 0;
 }
-
 footer ul li {
     margin: 8px 0;
 }
-
 footer ul li a {
     color: white;
     text-decoration: none;
 }
-
 footer ul li a:hover {
     text-decoration: underline;
 }
