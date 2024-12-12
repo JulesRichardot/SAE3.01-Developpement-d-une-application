@@ -1,19 +1,5 @@
 from utils import *
 
-def remplacer_chaine_vide(chaine: str) -> bool:
-    """
-    Remplace par None les chaînes vides ou ceux qui sont composées d'espaces
-
-    Args:
-        chaine (str): La chaîne à vérifier
-    
-    Returns:
-        None ou la valeure originale
-    """
-    if isinstance(chaine, str) and chaine.strip() == '':
-        return None
-    return chaine
-
 def nettoyer_excel(data: pd.DataFrame) -> bool: # CHANGER LE RETURN APRES
     """
     Fonction qui va faire un nettoyage complet sur les données Excel.
@@ -32,19 +18,62 @@ def nettoyer_excel(data: pd.DataFrame) -> bool: # CHANGER LE RETURN APRES
         pd.DataFrame: DataFrame nettoyé
     """
 
+    data = data.drop_duplicates()
+
+    
     jeux = data.rename(columns={
         "Unnamed: 0": "id_jeu",
         "TITRE": "titre_jeu",
+        "REFERENCES (éditeur/distributeur)": "References",
+        "AUTEURS": "auteurs",
         "DATE DE PARUTION DEBUT": "date_parution_debut",
         "DATE DE PARUTION FIN": "date_parution_fin",
+        "INFORMATION DATE": "information_date",
+        "VERSION": "version",
+        "NOMBRE DE JOUEURS": "nombre_joueurs",
         "AGE INDIQUE (cf colonne B)": "age_min",
         "MOTS CLES": "mots_cles",
-        "VERSION": "version"
+        "N Boîte": "num_boite",
+        "LOCALISATION_CNJ": "localisation_cnj",
+        "MECANISME (cf colonne A)": "mecanisme1",
+        "Unnamed: 14": "mecanisme2",
+        "Unnamed: 15": "mecanisme3",
+        "Collection d'origine (cf colonne C)": "collection_origine",
+        "Etat": "etat", 
+        "Code barre": "code_barre"
     })[[
-        "id_jeu", "titre_jeu", "date_parution_debut", "date_parution_fin",
-        "nb_joueur_min", "nb_joueur_max", "age_min", "mots_cles", "version"
+        "id_jeu", "titre_jeu", "References", "auteurs", "date_parution_debut", "date_parution_fin", "information_date", "version", "nombre_joueurs", "age_min", "mots_cles","num_boite", "localisation_cnj", "mecanisme1", "mecanisme2", "mecanisme3", "collection_origine", "etat", "code_barre" 
     ]]
 
-    # Il faudrait utiliser les fonctions de utils pour nettoyer (plus lisible mais sûrement pas utile)
+    jeux["id_jeu"] = excelToId(data)
+    jeux["titre_jeu"] = excelToTitre(data)
+    jeux["auteurs"] = excelToAuteur(data)
+    jeux["data_parution_debut"] = excelToDateParutionDebut(data)
+    jeux["data_parution_fin"] = excelToDateParutionFin(data)
+    jeux["informations_date"] = excelToInformation(data)
+    jeux["version"] = excelToVersion(data)
+    jeux["nombre_joueurs"] = excelToNbJoueurs(data)
+    jeux["age_min"] = excelToAge(data)
+    jeux["mots_cles"] = excelToMotsCles(data)
+    jeux["num_boite"] = excelToNumBoite(data)
+    jeux["localisation_cnj"] = excelToLocalisation(data)
+    mecas = excelToMecanisme(data)
+    jeux["mecanisme1"], jeux["mecanisme2"], jeux["mecanisme3"] = mecas["MECANISME (cf colonne A)"], mecas["Unnamed: 14"], mecas["Unnamed: 15"]
+    jeux["collection_origine"] = excelToCollectionOrigine(data)
+    jeux["etat"] = excelToEtat(data)
+    jeux["code_barre"] = excelToCodeBarre(data)
 
-    return None
+    #optionnel
+    #jeux_trie = excelTrieParId(jeux)
+    
+
+    file_path = "SAE3.01-main/SAE3.01-main/data/inventaire_perso.xlsx"
+    jeux.to_excel(file_path, index=False)
+    print(f"\nle fichier a été sauvegardé ici : {file_path}")
+
+
+
+path = "inventaire_extrait.xlsx"
+
+data = pd.read_excel(path)
+nettoyer_excel(data)
