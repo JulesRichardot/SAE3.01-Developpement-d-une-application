@@ -68,13 +68,13 @@ def nettoyer_excel(data: pd.DataFrame) -> bool: # CHANGER LE RETURN APRES
     #jeux_trie = excelTrieParId(jeux)
     
 
-    file_path = "SAE3.01-main/SAE3.01-main/data/inventaire_perso.xlsx" # en fonction de votre emplacement
+    file_path = "./data/inventaire_perso.xlsx" # en fonction de votre emplacement
     jeux.to_excel(file_path, index=False)
     print(f"\nle fichier a été sauvegardé ici : {file_path}")
 
 
 
-path = "inventaire_extrait.xlsx" # en fonction de l'emplacement du fichier
+path = "../../inventaire_extrait.xlsx" # en fonction de l'emplacement du fichier
 
 data = pd.read_excel(path)
 nettoyer_excel(data)
