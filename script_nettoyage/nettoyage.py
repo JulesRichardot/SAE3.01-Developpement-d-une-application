@@ -48,9 +48,9 @@ def nettoyer_excel(data: pd.DataFrame) -> bool: # CHANGER LE RETURN APRES
     jeux["id_jeu"] = excelToId(data)
     jeux["titre_jeu"] = excelToTitre(data)
     jeux["auteurs"] = excelToAuteur(data)
-    jeux["data_parution_debut"] = excelToDateParutionDebut(data)
-    jeux["data_parution_fin"] = excelToDateParutionFin(data)
-    jeux["informations_date"] = excelToInformation(data)
+    jeux["date_parution_debut"] = excelToDateParutionDebut(data)
+    jeux["date_parution_fin"] = excelToDateParutionFin(data)
+    jeux["information_date"] = excelToInformation(data)
     jeux["version"] = excelToVersion(data)
     jeux["nombre_joueurs"] = excelToNbJoueurs(data)
     jeux["age_min"] = excelToAge(data)
@@ -63,17 +63,18 @@ def nettoyer_excel(data: pd.DataFrame) -> bool: # CHANGER LE RETURN APRES
     jeux["etat"] = excelToEtat(data)
     jeux["code_barre"] = excelToCodeBarre(data)
 
+
     #optionnel
     #jeux_trie = excelTrieParId(jeux)
     
 
-    file_path = "SAE3.01-main/SAE3.01-main/data/inventaire_perso.xlsx"
+    file_path = "SAE3.01-main/SAE3.01-main/data/inventaire_perso.xlsx" # en fonction de votre emplacement
     jeux.to_excel(file_path, index=False)
     print(f"\nle fichier a été sauvegardé ici : {file_path}")
 
 
 
-path = "inventaire_extrait.xlsx"
+path = "inventaire_extrait.xlsx" # en fonction de l'emplacement du fichier
 
 data = pd.read_excel(path)
 nettoyer_excel(data)
