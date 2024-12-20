@@ -47,4 +47,33 @@ class Model
         return self::$instance;
     }
 
+     public function getNbJeux(){
+        $req = $this->bd->prepare('SELECT COUNT(*) FROM Jeux');
+        $req->execute();
+        $tab = $req->fetch(PDO::FETCH_NUM);
+        return $tab[0];
+    }
+
+    public function getJeu($name){
+        $req = $this->bd->prepare('SELECT * FROM Jeux WHERE titre = '. $name );
+        $req->execute();
+        $tab = $req->fetchall(PDO::FETCH_ASSOC);
+        return $tab
+    }
+
+    public function getNbExemplaire($jeux){
+        $req = $this->bd->prepare();
+        $req->execute();
+        return
+    }
+
+    public function getJeuParCategorie($categorie){}
+
+    public function getToutesLesBoitesJeu($jeu){}
+
+    public function getBoiteAttributSpecifique($attribut){}
+
+?>
+
+
 ?>
