@@ -1,6 +1,3 @@
--- Fichier : queries-test.sql
--- Description : Requêtes SQL pour tester la base de données.
-
 SELECT * FROM Jeux;
 
 SELECT j.*
