@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Classe Model
- * 
- * Gère la connexion à la base de données avec le design pattern Singleton.
- */
 class Model
 {
     private $bd; // Connexion à la base de données
@@ -17,7 +12,7 @@ class Model
      */
     private function __construct()
     {
-        $dsn = 'mysql:dbname=nom_de_la_base;host=localhost'; // Remplacez par vos informations
+        $dsn = 'mysql:dbname=nom_de_la_base;host=localhost'; //nom bd
         $username = 'votre_utilisateur'; // Ajoutez votre utilisateur
         $password = 'votre_mot_de_passe'; // Ajoutez votre mot de passe
 
