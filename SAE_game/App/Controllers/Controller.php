@@ -7,14 +7,13 @@ abstract class Controller
      */
     public function __construct()
     {
-
-        //On détermine s'il existe dans l'url un paramètre action correspondant à une action du contrôleur
+        // On détermine s'il existe dans l'url un paramètre 'action' correspondant à une action du contrôleur
         if (isset($_GET['action']) and method_exists($this, "action_" . $_GET["action"])) {
-            //Si c'est le cas, on appelle cette action
+            // Si c'est le cas, on appelle cette action
             $action = "action_" . $_GET["action"];
             $this->$action();
         } else {
-            //Sinon, on appelle l'action par défaut
+            // Sinon, on appelle l'action par défaut
             $this->action_default();
         }
     }
@@ -32,17 +31,16 @@ abstract class Controller
      */
     protected function render($vue, $data = [])
     {
-
-        //On extrait les données à afficher
+        // On extrait les données à afficher
         extract($data);
 
-        //On teste si la vue existe
+        // On teste si la vue existe
         $file_name = "Views/view_" . $vue . '.php';
         if (file_exists($file_name)) {
-            //Si oui, on l'affiche
+            // Si oui, on l'affiche
             include $file_name;
         } else {
-            //Sinon, on affiche la page d'->action_error
+            // Sinon, on affiche la page d'->action_error
             $this->action_error("La vue n'existe pas !");
         }
         // Pour terminer le script
@@ -63,3 +61,5 @@ abstract class Controller
         $this->render("message", $data);
     }
 }
+
+?>
