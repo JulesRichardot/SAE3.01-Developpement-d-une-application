@@ -17,9 +17,9 @@ class Model
      */
     private function __construct()
     {
-        $dsn = ''; // Ajouter le DSN (exemple : 'mysql:dbname=;host=') 
-        $username = ''; // Ajouter le nom d'utilisateur
-        $password = ''; // Ajouter le mot de passe
+        $dsn = 'mysql:dbname=nom_de_la_base;host=localhost'; // Remplacez par vos informations
+        $username = 'votre_utilisateur'; // Ajoutez votre utilisateur
+        $password = 'votre_mot_de_passe'; // Ajoutez votre mot de passe
 
         try {
             // Tentative de connexion à la base de données
@@ -47,19 +47,21 @@ class Model
         return self::$instance;
     }
 
-    public function getNbJeux(){
+    public function getNbJeux()
+    {
         $req = $this->bd->prepare('SELECT COUNT(*) FROM Jeux');
         $req->execute();
         $tab = $req->fetch(PDO::FETCH_NUM);
         return $tab[0];
     }
 
-    public function getJeu($name){
+    public function getJeu($name)
+    {
         $req = $this->bd->prepare('SELECT * FROM Jeux WHERE titre = :name');
         $req->bindParam(':name', $name, PDO::PARAM_STR);
         $req->execute();
         $tab = $req->fetchAll(PDO::FETCH_ASSOC);
-        return $tab; // Ajout du point-virgule manquant
+        return $tab;
     }
 
     public function getNbExemplaire($jeux)
@@ -68,7 +70,15 @@ class Model
         $req->bindParam(':jeux', $jeux, PDO::PARAM_INT);
         $req->execute();
         $tab = $req->fetch(PDO::FETCH_NUM);
-        return $tab[0]; 
+        return $tab[0];
+    }
+
+    public function getJeuxPop()
+    {
+        // Assurez-vous que la table 'Jeux' contient une colonne 'popularite'
+        $req = $this->bd->prepare('SELECT * FROM Jeux ORDER BY popularite DESC LIMIT 10');
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getJeuParCategorie($categorie)
@@ -102,14 +112,4 @@ class Model
     }
 }
 
-// Test du code
-$model = Model::getInstance();
-
-try {
-    // Test simple pour vérifier la connexion à la base de données
-    $nbJeux = $model->getNbJeux();
-    echo "Le nombre de jeux dans la base de données est : $nbJeux";
-} catch (Exception $e) {
-    echo "Erreur : " . $e->getMessage();
-}
 ?>
