@@ -19,6 +19,8 @@ def nettoyer_excel(data: pd.DataFrame) -> bool: # CHANGER LE RETURN APRES
     """
 
     data = data.drop_duplicates()
+    data = nettoyer_lignes_vides(data)
+    
 
     
     jeux = data.rename(columns={
