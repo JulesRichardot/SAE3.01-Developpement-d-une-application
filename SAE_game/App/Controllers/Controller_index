@@ -1,0 +1,21 @@
+<?php
+
+class Controller_index extends Controller
+{
+    public function action_index()
+    {
+
+        // On récupère le modèle
+        $m = Model::getModel();
+        $data = [
+            //On récupère lesjeux populaires
+            "liste" => $m->getJeuxPop(),
+        ];
+        $this->render("index", $data);
+    }
+
+    public function action_default()
+    {
+        $this->action_index();
+    }
+}
