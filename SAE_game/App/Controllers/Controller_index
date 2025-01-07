@@ -6,7 +6,8 @@ class Controller_index extends Controller
     {
 
         // On récupère le modèle
-        $m = Model::getModel();
+        $m = Model::getInstance(); // Utilisation de la méthode getInstance()
+
         $data = [
             //On récupère lesjeux populaires
             "liste" => $m->getJeuxPop(),
