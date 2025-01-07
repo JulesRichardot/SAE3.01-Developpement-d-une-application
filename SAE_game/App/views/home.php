@@ -10,17 +10,18 @@
     <h1>Bienvenue sur la page d'accueil</h1>
 
     <h2>Liste des jeux</h2>
-    <ul>
-        <?php if (!empty($games)): ?>
-            <?php foreach ($games as $game): ?>
-                <li>
-                    <strong><?= htmlspecialchars($game['titre_jeu']) ?></strong>
-                    <p><?= htmlspecialchars($game['description']) ?></p>
-                </li>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>Aucun jeu trouvé.</p>
-        <?php endif; ?>
-    </ul>
+<ul>
+    <?php if (!empty($liste)): ?>
+        <?php foreach ($liste as $game): ?>
+            <li>
+                <strong><?= htmlspecialchars($game['titre_jeu']) ?></strong>
+                <p><?= htmlspecialchars($game['description']) ?></p>
+            </li>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>Aucun jeu trouvé.</p>
+    <?php endif; ?>
+</ul>
+
 </body>
 </html>
