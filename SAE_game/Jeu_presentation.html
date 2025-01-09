@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 1</title>
-     <link href="style.css" rel="stylesheet"/>
+    <title>Présentation du Jeu</title>
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
     <!-- Tête de page -->
-    <div id="banniere">
-        <input type='button' id="Accueil" value="Accueil"/>
-        <input type='button' class="vers_page" id="Categories" value="Catégories"/>
-        <input type='button' class="vers_page" id="Categories" value="Decouvrir"/>
-        <input type='button' class="vers_page" id="Categories" value="Mon Compte"/>
-        <input type='button' class="Bouton Blanc" value="Connexion"/>
-        <input type='button' class="Bouton Noir" value="S'inscrire"/>
-    </div>
+    <header class="nav-header">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e24d432f71ae5fc037e972e78951ca15052e5e8c7824a911375a22f8623cb7b3?placeholderIfAbsent=true&apiKey=d20a853adbac4dde9b424a402120db37" alt="Games Collection Logo" class="logo">
+        <nav class="nav-links">
+            <a href="#" class="nav-link">Accueil</a>
+            <a href="#" class="nav-link">Catégories</a>
+            <a href="#" class="nav-link">Découvrir</a>
+            <a href="#" class="nav-link">Mon Compte</a>
+        </nav>
+    </header>
+
+    <!-- Présentation du jeu -->
     <div class="container">
         <!-- Section gauche -->
         <div class="section-gauche">
-            <div class="image-placeholder"></div>
-            <p>Nombre d'exemplaire : <strong>5</strong></p>
-            <button class="boutton">Voir les boîtes</button>
+            <div class="game-image"></div>
+            <p><strong>Nombre d'exemplaires :</strong> 5</p>
+            <button class="Bouton">Voir les boîtes</button>
         </div>
 
         <!-- Section droite -->
@@ -29,11 +32,11 @@
             <h1>Nom du jeu</h1>
             <p><span>Éditeur :</span> Nom éditeur(s)</p>
             <p><span>Auteur :</span> Nom auteur(s)</p>
-            <p><span>Âge :</span> X-Y</p>
+            <p><span>Âge :</span> X-Y ans</p>
             <p><span>Durée des parties :</span> X à Y minutes</p>
             <p><span>Nombre de joueurs :</span> X à Y joueurs</p>
-            <p><span>Date de parution :</span> XXXX - YYYY</p>
-            <p><span>Mécanisme :</span> Liste mécanismes</p>
+            <p><span>Date de parution :</span> YYYY</p>
+            <p><span>Mécanisme :</span> Liste des mécanismes</p>
             <p><span>Version :</span> Nom version</p>
             <p><span>Mots-clés :</span> Liste mots-clés</p>
         </div>
@@ -64,35 +67,27 @@
     <!-- Pied de page -->
     <footer>
         <div class="colonne">
-            <h4>À propos.</h4>
+            <h4>À propos</h4>
             <ul>
                 <li><a href="#">UI design</a></li>
                 <li><a href="#">UX design</a></li>
                 <li><a href="#">Wireframing</a></li>
-                <li><a href="#">Diagramming</a></li>
-                <li><a href="#">Brainstorming</a></li>
             </ul>
         </div>
         <div class="colonne">
-            <h4>Contact.</h4>
+            <h4>Contact</h4>
             <ul>
-                <li><a href="#">Design</a></li>
-                <li><a href="#">Prototyping</a></li>
-                <li><a href="#">Development features</a></li>
-                <li><a href="#">Collaboration features</a></li>
-            </ul>
-        </div>
-        <div class="colonne">
-            <h4>Mentions légales.</h4>
-            <ul>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Best practices</a></li>
                 <li><a href="#">Support</a></li>
-                <li><a href="#">Developers</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+        <div class="colonne">
+            <h4>Mentions légales</h4>
+            <ul>
+                <li><a href="#">Politique de confidentialité</a></li>
+                <li><a href="#">Conditions générales</a></li>
             </ul>
         </div>
     </footer>
-
-
 </body>
 </html>
