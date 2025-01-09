@@ -8,14 +8,18 @@
 </head>
 <body>
     <!-- Tête de page -->
-    <div id="banniere">
-        <input type='button' id="Accueil" value="Accueil"/>
-        <input type='button' class="vers_page" id="Categories" value="Catégories"/>
-        <input type='button' class="vers_page" id="Categories" value="Decouvrir"/>
-        <input type='button' class="vers_page" id="Categories" value="Mon Compte"/>
-        <input type='button' class="Bouton Blanc" value="Connexion"/>
-        <input type='button' class="Bouton Noir" value="S'inscrire"/>
-    </div>
+    <header class="nav-header">
+        <a href="index.html">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e24d432f71ae5fc037e972e78951ca15052e5e8c7824a911375a22f8623cb7b3?placeholderIfAbsent=true&apiKey=d20a853adbac4dde9b424a402120db37" alt="Logo" class="logo">
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Accueil</a>
+            <a href="decouvrir.html" class="nav-link">Découvrir</a>
+            <a href="monCompte.html" class="nav-link">Mon Compte</a>
+            <a href="connexion_inscription.html" class="nav-link">Connexion/Inscription</a>
+        </nav>
+    </header>
     <div class="container">
         <!-- Colonne de l'image -->
         <div>
@@ -61,21 +65,27 @@
     <div class="jeux-similaires">
         <h2>Autres jeux similaires :</h2>
         <div class="cards">
-            <div class="card">
+            <a href="#">
+                <div class="card">
                 <h3>Titre du jeu</h3>
                 <p>Catégorie du jeu</p>
-                <p>Nombre d'exemplaires disponibles.</p>
-            </div>
-            <div class="card">
+                <p>Nombre d'exemplaires disponibles</p>
+                </div>
+            </a>
+            <a href="#">
+                <div class="card">
                 <h3>Titre du jeu</h3>
                 <p>Catégorie du jeu</p>
-                <p>Nombre d'exemplaires disponibles.</p>
-            </div>
-            <div class="card">
+                <p>Nombre d'exemplaires disponibles</p>
+                </div>
+            </a>
+            <a href="#">
+                <div class="card">
                 <h3>Titre du jeu</h3>
                 <p>Catégorie du jeu</p>
-                <p>Nombre d'exemplaires disponibles.</p>
-            </div>
+                <p>Nombre d'exemplaires disponibles</p>
+                </div>
+            </a>
         </div>
     </div>
 
