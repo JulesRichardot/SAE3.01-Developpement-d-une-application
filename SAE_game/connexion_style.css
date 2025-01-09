@@ -108,3 +108,20 @@ form input {
 .hidden {
     display: none;
 }
+
+/* Supprime le soulignement des liens de navigation */
+.nav-link {
+    text-decoration: none;
+    color: white; /* Assure que les liens conservent leur couleur blanche */
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: rgba(41, 51, 88, 1); /* Fond bleu pour ressembler à un bouton */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ajoute un effet au survol des liens */
+.nav-link:hover {
+    background-color: #2b3b6a; /* Fond bleu plus foncé au survol */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Ombre lors du survol */
+}

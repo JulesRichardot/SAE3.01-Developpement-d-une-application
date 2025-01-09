@@ -10,12 +10,15 @@
 <body>
     <!-- Tête de page -->
     <header class="nav-header">
-        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e24d432f71ae5fc037e972e78951ca15052e5e8c7824a911375a22f8623cb7b3?placeholderIfAbsent=true&apiKey=d20a853adbac4dde9b424a402120db37" alt="Logo" class="logo">
+        <a href="index.html">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e24d432f71ae5fc037e972e78951ca15052e5e8c7824a911375a22f8623cb7b3?placeholderIfAbsent=true&apiKey=d20a853adbac4dde9b424a402120db37" alt="Logo" class="logo">
+        </a>
+
         <nav class="nav-links">
-            <a href="#" class="nav-link">Accueil</a>
-            <a href="#" class="nav-link">Catégories</a>
-            <a href="#" class="nav-link">Découvrir</a>
-            <a href="#" class="nav-link">Mon Compte</a>
+            <a href="index.html" class="nav-link">Accueil</a>
+            <a href="Categories.html" class="nav-link">Découvrir</a>
+            <a href="page_administration.html" class="nav-link">Mon Compte</a>
+            <a href="connexion_inscription.html" class="nav-link">Connexion/Inscription</a>
         </nav>
     </header>
 
@@ -32,7 +35,7 @@
                     <label for="password-connexion">Mot de passe</label>
                     <input type="password" id="password-connexion" name="password" placeholder="Votre mot de passe" required>
 
-                    <button type="submit" class="Bouton">Se connecter</button>
+                    <button type="submit" class="Bouton nav-link">Se connecter</button>
                     <a href="#" class="lien">Mot de passe oublié ?</a>
                 </form>
             </div>
@@ -50,7 +53,7 @@
                     <label for="password-inscription">Mot de passe</label>
                     <input type="password" id="password-inscription" name="password" placeholder="Votre mot de passe" required>
 
-                    <button type="submit" class="Bouton">S'inscrire</button>
+                    <button type="submit" class="Bouton nav-link">S'inscrire</button>
                 </form>
             </div>
         </div>
