@@ -1,0 +1,110 @@
+
+
+.connexion-inscription {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 900px; /* Limite la largeur maximale */
+}
+
+.connexion, .inscription {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    flex-basis: 48%; /* Taille des sections */
+    max-width: 400px; /* Largeur maximale pour chaque formulaire */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form input {
+    width: 80%; /* Réduit la largeur des inputs */
+    padding: 10px; /* Ajuste le padding pour un design plus compact */
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.Bouton {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(41, 51, 88, 1); /* Bleu bouton */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+.lien {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: rgba(41, 51, 88, 1);
+    text-decoration: none;
+}
+
+.lien:hover {
+    text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+    .connexion-inscription {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .connexion, .inscription {
+        flex-basis: 100%;
+    }
+
+    .nav-links {
+        gap: 20px;
+        justify-content: center;
+    }
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    padding: 20px;
+}
+
+/* Styles pour les boutons de switch */
+.switch-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Espace au-dessus des boutons */
+}
+
+.switch-buttons button {
+    background-color: rgba(41, 51, 88, 1); /* Couleur bleue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.switch-buttons .active {
+    background-color: #2b3b6a; /* Bleu plus sombre pour indiquer le bouton actif */
+}
+
+/* Cache la section inscription par défaut */
+.hidden {
+    display: none;
+}

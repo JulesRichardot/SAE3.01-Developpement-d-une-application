@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion / Inscription</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="connexion_style.css">
+</head>
+<body>
+    <!-- Tête de page -->
+    <header class="nav-header">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e24d432f71ae5fc037e972e78951ca15052e5e8c7824a911375a22f8623cb7b3?placeholderIfAbsent=true&apiKey=d20a853adbac4dde9b424a402120db37" alt="Logo" class="logo">
+        <nav class="nav-links">
+            <a href="#" class="nav-link">Accueil</a>
+            <a href="#" class="nav-link">Catégories</a>
+            <a href="#" class="nav-link">Découvrir</a>
+            <a href="#" class="nav-link">Mon Compte</a>
+        </nav>
+    </header>
+
+    <!-- Section principale -->
+    <div class="container">
+        <div class="connexion-inscription">
+            <!-- Section Connexion -->
+            <div class="connexion">
+                <h2>Connexion</h2>
+                <form action="#" method="post">
+                    <label for="email-connexion">Email</label>
+                    <input type="email" id="email-connexion" name="email" placeholder="Votre email" required>
+
+                    <label for="password-connexion">Mot de passe</label>
+                    <input type="password" id="password-connexion" name="password" placeholder="Votre mot de passe" required>
+
+                    <button type="submit" class="Bouton">Se connecter</button>
+                    <a href="#" class="lien">Mot de passe oublié ?</a>
+                </form>
+            </div>
+
+            <!-- Section Inscription -->
+            <div class="inscription">
+                <h2>Inscription</h2>
+                <form action="#" method="post">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+
+                    <label for="email-inscription">Email</label>
+                    <input type="email" id="email-inscription" name="email" placeholder="Votre email" required>
+
+                    <label for="password-inscription">Mot de passe</label>
+                    <input type="password" id="password-inscription" name="password" placeholder="Votre mot de passe" required>
+
+                    <button type="submit" class="Bouton">S'inscrire</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pied de page -->
+    <footer>
+        <div class="colonne">
+            <h4>À propos</h4>
+            <ul>
+                <li><a href="#">UI design</a></li>
+                <li><a href="#">UX design</a></li>
+                <li><a href="#">Wireframing</a></li>
+            </ul>
+        </div>
+        <div class="colonne">
+            <h4>Contact</h4>
+            <ul>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+        <div class="colonne">
+            <h4>Mentions légales</h4>
+            <ul>
+                <li><a href="#">Politique de confidentialité</a></li>
+                <li><a href="#">Conditions générales</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
