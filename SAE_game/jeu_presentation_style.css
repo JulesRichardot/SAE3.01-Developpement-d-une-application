@@ -1,0 +1,158 @@
+/* Style général de la page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(41, 51, 88, 1);
+    padding: 20px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: rgba(41, 51, 88, 1);
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #2b3b6a;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    background-color: white;
+}
+
+.section-gauche {
+    width: 45%;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.game-image {
+    width: 100%;
+    height: 250px;
+    background: url('https://via.placeholder.com/250') no-repeat center center;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.Bouton {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(41, 51, 88, 1);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.Bouton:hover {
+    background-color: #2b3b6a;
+}
+
+.info-section {
+    width: 45%;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-section h1 {
+    color: rgba(41, 51, 88, 1);
+}
+
+.info-section p {
+    color: #555;
+}
+
+.jeux-similaires {
+    padding: 40px;
+    background-color: white;
+    text-align: center;
+}
+
+.jeux-similaires h2 {
+    font-size: 24px;
+    color: rgba(41, 51, 88, 1);
+    margin-bottom: 20px;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    width: 30%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    color: rgba(41, 51, 88, 1);
+}
+
+.card p {
+    color: #555;
+}
+
+footer {
+    background-color: rgba(41, 51, 88, 1);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.colonne {
+    width: 30%;
+}
+
+.colonne h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.colonne ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.colonne ul li {
+    margin-bottom: 10px;
+}
+
+.colonne a {
+    color: white;
+    text-decoration: none;
+}
+
+.colonne a:hover {
+    text-decoration: underline;
+}
