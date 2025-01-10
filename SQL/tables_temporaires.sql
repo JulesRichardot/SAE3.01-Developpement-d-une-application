@@ -64,7 +64,7 @@ CREATE TABLE auteur (
 );
 
 CREATE TABLE categorie (
-    categorie_id INT AUTO_INCREMENT PRIMARY KEY,
+    id_categorie INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL
 );
 
@@ -106,7 +106,7 @@ CREATE TABLE jeu_categorie (
     id_categorie INT NOT NULL,
     PRIMARY KEY (id_jeu, id_categorie),
     FOREIGN KEY (id_jeu) REFERENCES jeu(id_jeu),
-    FOREIGN KEY (id_categorie) REFERENCES categorie(categorie_id)
+    FOREIGN KEY (id_categorie) REFERENCES categorie(id_categorie)
 );
 
 CREATE TABLE jeu_auteur (
