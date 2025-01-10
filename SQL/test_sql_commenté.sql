@@ -1,5 +1,5 @@
 -- 1. Tester les jeux les plus empruntés
--- Cette requête affiche les jeux triés par leur popularité (nombre d'emprunts)
+-- Affiche les jeux triés par leur popularité (nombre d'emprunts)
 SELECT 
     j.titre AS jeu,
     COUNT(p.pret_id) AS nb_emprunts
@@ -29,7 +29,7 @@ SELECT
     b.boite_id AS boite
 FROM Boite b
 JOIN Jeu j ON b.jeu_id = j.jeu_id
-WHERE b.boite_id NOT IN (SELECT boite_id FROM Pret);
+WHERE b.boite_id NOT IN (SELECT DISTINCT boite_id FROM Pret);
 
 -- 4. Tester les emprunteurs d’un jeu spécifique
 -- Par exemple, affiche les utilisateurs ayant emprunté "Valorant"
@@ -96,7 +96,7 @@ SELECT
     u.nom AS utilisateur,
     u.email AS email
 FROM Utilisateur u
-WHERE u.utilisateur_id NOT IN (SELECT emprunteur_id FROM Pret);
+WHERE u.utilisateur_id NOT IN (SELECT DISTINCT emprunteur_id FROM Pret);
 
 -- 10. Tester le nombre d'emprunts par utilisateur
 -- Affiche combien de jeux chaque utilisateur a emprunté
