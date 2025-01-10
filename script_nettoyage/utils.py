@@ -23,6 +23,7 @@ def nettoyer_lignes_vides(data: pd.DataFrame) -> pd.DataFrame:
     
     return data_clean
 
+
 def enleve_espace(chaine: str) -> str:
     """
     Enlève les espaces au début et à la fin d'une chaîne.
@@ -169,8 +170,14 @@ def excelToInformation(data: pd.DataFrame) -> pd.Series:
     Returns:
         pd.Series: une série pandas qui contient les valeurs de la colonne 'INFORMATION DATA'
     """
-    info = data["INFORMATION DATE"].apply(enleve_espace)
-    return info
+    infos = data["INFORMATION DATE"].apply(enleve_espace)
+    infos_clean = []
+    for info in infos:
+        if info is None: #-------------------------------------------------------------------------------------------------------
+            infos_clean.append(None)
+        else:
+            infos_clean.append(info.title())
+    return pd.Series(infos_clean)
 
 def excelToVersion(data: pd.DataFrame) -> pd.Series:
     """
@@ -205,7 +212,7 @@ def excelToNbJoueurs(data: pd.DataFrame) -> pd.Series:
     """
     # dico qui représente les associations possibles
     equivalent = {
-        "ou": "",
+        "ou": "-",
         "à": "-",
         "équipes": " en équipes ",
         "+": " ou plus ",
