@@ -1,5 +1,27 @@
 import pandas as pd
 
+def nettoyer_lignes_vides(data: pd.DataFrame) -> pd.DataFrame:
+    """
+    Supprime les lignes où l'identifiant (colonne 'Unnamed: 0') est absent ou invalide.
+    
+    Args:
+        data (pd.DataFrame): DataFrame contenant les données Excel.
+    
+    Returns:
+        pd.DataFrame: DataFrame sans les lignes ayant des identifiants manquants.
+    """
+    # Nettoyer les espaces et transformer en NaN si la valeur est vide ou 'NR'
+    data['Unnamed: 0'] = data['Unnamed: 0'].apply(enleve_espace)
+    
+    # Supprimer les lignes où 'Unnamed: 0' est vide ou "NULL"
+    data_clean = data[
+        (data['Unnamed: 0'].notna()) &
+        (data['Unnamed: 0'] != 'NULL') &
+        (data['Unnamed: 0'] != 'NR') &
+        (data['Unnamed: 0'] != '')
+    ]
+    
+    return data_clean
 
 def enleve_espace(chaine: str) -> str:
     """
