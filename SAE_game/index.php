@@ -1,6 +1,6 @@
 <?php
 // Inclure la connexion à la base de données ou le modèle si nécessaire
-require_once('model.php');
+require_once "Model.php";
 
 // Récupérer les jeux populaires depuis la base de données
 $model = Model::getInstance();
