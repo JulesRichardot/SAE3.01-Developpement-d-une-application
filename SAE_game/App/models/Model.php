@@ -31,6 +31,11 @@ class Model
         }
     }
 
+    // Méthode publique pour accéder à la variable privée $bd
+    public function getDb() {
+        return $this->bd;
+    }
+
     /**
      * Retourne l'instance unique de la classe.
      */
@@ -102,6 +107,13 @@ class Model
     {
         $req = $this->bd->prepare('SELECT * FROM exemplaires WHERE id_boite = :id_boite');
         $req->bindParam(':id_boite', $id_boite, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Fonction pour récupérer un jeu aléatoire
+    public function getJeuAleatoire($bd) {
+        $req = $bd->prepare('SELECT * FROM jeu ORDER BY RAND() LIMIT 1');
         $req->execute();
         return $req->fetch(PDO::FETCH_ASSOC);
     }
