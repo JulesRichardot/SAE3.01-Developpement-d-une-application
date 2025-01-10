@@ -295,8 +295,6 @@ table th {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-
-
 /* Connexion et inscription */
 .connexion-inscription {
     display: flex;
@@ -424,4 +422,8 @@ form .lien:hover {
     flex-direction: column;
     align-items: center; /* Centrer horizontalement */
     gap: 20px; /* Espacement entre les éléments */
+}
+
+a {
+    text-decoration: none;
 }
