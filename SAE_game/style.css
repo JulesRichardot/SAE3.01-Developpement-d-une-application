@@ -1,209 +1,125 @@
 /* Styles généraux */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4; /* Gris clair pour un fond doux */
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
 }
 
 h1, h2, h3, h4 {
     font-family: 'Arial', sans-serif;
+    color: rgba(41, 51, 88, 1);
 }
 
-/* Bannière */
+h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+/* Boutons généraux */
+button, .Bouton, .reserve-button {
+    padding: 10px 20px;
+    background-color: rgba(41, 51, 88, 1);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover, .Bouton:hover, .reserve-button:hover {
+    background-color: #333;
+}
+
+/* Inputs */
+input[type="search"], input[type="text"], input[type="email"], input[type="password"], select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Bannières */
 .nav-header {
     background-color: rgba(41, 51, 88, 1);
     display: flex;
-    flex-wrap: wrap; /* Permet de passer à une nouvelle ligne si nécessaire */
-    width: 100%;
-    gap: 20px;
-    color: #fff;
     justify-content: space-between;
-    padding: 15px 30px;
-    font: 400 18px Poppins, sans-serif;
-    box-sizing: border-box; /* Évite les débordements liés au padding */
+    padding: 31px 64px;
+    color: white;
+    gap: 20px;
 }
 
 .logo {
-    aspect-ratio: 2.18;
+    width: 240px;
     object-fit: contain;
-    object-position: center;
-    width: 180px;
-    max-width: 100%;
 }
 
 .nav-links {
     display: flex;
-    flex-wrap: wrap; /* Permet aux liens de passer à une nouvelle ligne */
-    gap: 40px; /* Réduit l'espacement entre les liens */
-    margin: auto 0;
-    max-width: 100%; /* Empêche les débordements horizontaux */
+    gap: 10px;
+
 }
 
-#banniere input {
-    margin: 0 8px;
-    padding: 10px 15px;
-    background-color: rgba(41, 51, 88, 1); 
-    color: white;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-#banniere input:hover {
-    background-color: rgba(41, 51, 88, 1); /* Bleu encore plus sombre */
-}
-
-/* Recherche */
-input[type="search"] {
-    width: 80%;
-    margin: 20px auto;
-    display: block;
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-/* Présentation */
-#presentation {
+/* Sections générales */
+.container {
     text-align: center;
-    margin: 40px 0;
+    margin: 40px auto;
 }
 
-#presentation h1 {
-    font-size: 32px;
-    color: #004080; /* Bleu sombre */
-}
-
-#presentation h4 {
-    font-size: 18px;
-    color: #666; /* Gris doux */
-    margin-bottom: 30px;
-}
-
-.Bouton {
-    padding: 12px 30px;
-    margin: 10px 5px;
-    background-color: rgba(41, 51, 88, 1); /* Bleu bouton */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.Bouton:hover {
-    background-color: rgba(41, 51, 88, 1); /* Bleu plus foncé */
-}
-
-/* Section des jeux populaires */
-#jeux_pop {
-    background-color: #e0e0e0; /* Gris très clair */
-    padding: 40px;
-    margin: 20px 0;
-    text-align: center;
-}
-
-#jeux_pop h2 {
-    font-size: 28px;
-    color: rgba(41, 51, 88, 1); /* Bleu sombre */
-    margin-bottom: 30px;
-}
-
-#jeux_pop div {
-    display: inline-block;
-    background-color: #fff; /* Fond blanc */
-    padding: 20px;
-    margin: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: rgba(41, 51, 88, 1); /* Texte bleu */
-}
-
-#jeux_pop div:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Section des informations */
-.infos_comp {
-    background-color: #333; /* Noir/gris foncé */
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-}
-
-.infos_comp div {
-    display: inline-block;
-    margin: 0 20px;
-    font-size: 16px;
-}
-
-/* Section jeux similaires */
-.jeux-similaires {
-    margin: 40px 0;
-    text-align: center;
-}
-
-.jeux-similaires h2 {
-    font-size: 28px;
-    color: rgba(41, 51, 88, 1); /* Bleu sombre */
-    margin-bottom: 30px;
-}
-
-.cards {
+/* Cartes et boîtes */
+.cards, .boites {
     display: flex;
     justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px auto;
 }
 
-.cards a {
-    text-decoration: none;
-    margin: 0;
-}
-
-.card {
-    background-color: #fff; /* Fond blanc */
-    padding: 20px;
-    margin: 10px;
-    width: 250px;
+.card, .categorie, .boite {
+    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     text-align: center;
-    font-size: 16px;
-    color: rgba(41, 51, 88, 1); /* Texte bleu */
+    width: 250px;
 }
 
-.card h3 {
-    font-size: 22px;
-    color: rgba(41, 51, 88, 1); /* Bleu bouton */
+.card:hover, .categorie:hover, .boite:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.card p {
+.card h3, .categorie h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card p, .boite p {
     font-size: 14px;
-    color: #666; /* Gris doux */
-}
-
-.card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    color: #666;
 }
 
 /* Footer */
 footer {
     background-color: rgba(41, 51, 88, 1); /* Bleu sombre */
-    color: white;
+    color: white; /* Texte blanc */
     padding: 30px 0;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 footer .colonne {
     text-align: center;
+    margin: 10px;
 }
 
 footer h4 {
     font-size: 20px;
     margin-bottom: 15px;
+    color: white; /* Assurez-vous que les titres restent en blanc */
 }
 
 footer ul {
@@ -216,93 +132,270 @@ footer ul li {
 }
 
 footer ul li a {
-    color: white;
+    color: white; /* Assurez-vous que les liens sont bien en blanc */
     text-decoration: none;
 }
 
 footer ul li a:hover {
+    text-decoration: underline; /* Ajoute une indication au survol */
+}
+
+/* Section jeux similaires */
+.jeux-similaires {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.jeux-similaires h2 {
+    font-size: 28px;
+    color: rgba(41, 51, 88, 1);
+    margin-bottom: 30px;
+}
+
+/* Section administration */
+.admin-section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.admin-section h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+/* Tête de page */
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: rgba(41, 51, 88, 1);
+    color: white;
+}
+
+.nav-header .nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+.nav-header .nav-links a:hover {
     text-decoration: underline;
 }
 
-
-/*pour que ça rende mieux*/
-.nav-link {
-    text-decoration: none;
-    color: white; /* Assure que les liens conservent leur couleur blanche */
-    font-size: 18px;
-    padding: 10px 20px;
-    background-color: rgba(41, 51, 88, 1); /* Fond bleu pour ressembler à un bouton */
-    border-radius: 5px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+.logo {
+    width: 200px;
 }
 
-/* Ajoute un effet au survol des liens */
-.nav-link:hover {
-    background-color: #2b3b6a; /* Fond bleu plus foncé au survol */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Ombre lors du survol */
+/* Barre de recherche */
+.search-bar {
+    text-align: center;
+    margin: 20px 0;
 }
 
-.connexion-inscription {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-    width: 100%;
-    max-width: 900px; /* Limite la largeur maximale */
-}
-
-.connexion, .inscription {
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    flex-basis: 48%; /* Taille des sections */
-    max-width: 400px; /* Largeur maximale pour chaque formulaire */
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-form input {
-    width: 80%; /* Réduit la largeur des inputs */
-    padding: 10px; /* Ajuste le padding pour un design plus compact */
-    margin-bottom: 15px;
+.search-bar input[type="search"] {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
 }
 
-.Bouton {
-    width: 100%;
-    padding: 12px;
-    background-color: rgba(41, 51, 88, 1); /* Bleu bouton */
+/* Présentation */
+#presentation {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+#presentation h1 {
+    font-size: 36px;
+    color: rgba(41, 51, 88, 1);
+}
+
+#presentation h4 {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.actions .Bouton {
+    margin: 10px;
+    padding: 12px 20px;
+    background-color: rgba(41, 51, 88, 1);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+}
+
+.actions .Bouton:hover {
+    background-color: #333;
+}
+
+/* Section des jeux populaires */
+#jeux_pop {
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 40px 0;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+}
+
+.card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 
-.lien {
+
+/* Connexion et inscription */
+.connexion-inscription {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacement entre les sections */
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.connexion, .inscription {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px; /* Largeur fixe pour un alignement cohérent */
+    text-align: left;
+}
+
+.connexion h2, .inscription h2 {
+    font-size: 24px;
+    color: rgba(41, 51, 88, 1);
+    margin-bottom: 20px;
+}
+
+form label {
     display: block;
+    font-size: 14px;
+    color: rgba(41, 51, 88, 1);
+    margin-bottom: 5px;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+form .Bouton {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(41, 51, 88, 1);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+form .Bouton:hover {
+    background-color: #333;
+}
+
+form .lien {
+    display: block;
+    text-align: right;
     margin-top: 10px;
     font-size: 14px;
     color: rgba(41, 51, 88, 1);
     text-decoration: none;
 }
 
-.lien:hover {
+form .lien:hover {
     text-decoration: underline;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Prend toute la hauteur de la fenêtre */
+
+/* Recherche Avancée */
+.recherche-avancee {
+    margin: 40px auto;
     padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Conteneur centré et largeur fixe */
+}
+
+.recherche-avancee .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.recherche-avancee label {
+    display: block;
+    font-size: 14px;
+    color: rgba(41, 51, 88, 1);
+    margin-bottom: 5px;
+}
+
+.recherche-avancee input,
+.recherche-avancee select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.recherche-avancee button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgba(41, 51, 88, 1);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.recherche-avancee button:hover {
+    background-color: #333;
 }
