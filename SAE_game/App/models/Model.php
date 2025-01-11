@@ -46,27 +46,7 @@ class Model
         }
         return self::$instance;
     }
-    public function verifyPassword($username, $password)
-{
-    // Récupération de l'utilisateur dans la base de données
-    $req = $this->bd->prepare('SELECT * FROM users WHERE username = :username');
-    $req->bindParam(':username', $username, PDO::PARAM_STR);
-    $req->execute();
-
-    // Vérifie si l'utilisateur existe
-    $user = $req->fetch(PDO::FETCH_ASSOC);
-
-    if ($user) {
-        // Vérifie le mot de passe avec password_verify
-        if (password_verify($password, $user['password'])) {
-            return true; // Le mot de passe est correct
-        } else {
-            return false; // Le mot de passe est incorrect
-        }
-    } else {
-        return false; // L'utilisateur n'existe pas
-    }
-}
+  
 
     public function getNbJeux()
     {
