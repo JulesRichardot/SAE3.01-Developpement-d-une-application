@@ -50,7 +50,7 @@ class Model
 
     public function getNbJeux()
     {
-        $req = $this->bd->prepare('SELECT COUNT(*) FROM Jeux');
+        $req = $this->bd->prepare('SELECT COUNT(*) FROM jeu');
         $req->execute();
         $tab = $req->fetch(PDO::FETCH_NUM);
         return $tab[0];
@@ -58,7 +58,7 @@ class Model
 
     public function getJeu($name)
     {
-        $req = $this->bd->prepare('SELECT * FROM Jeux WHERE titre = :name');
+        $req = $this->bd->prepare('SELECT * FROM jeu WHERE titre = :name');
         $req->bindParam(':name', $name, PDO::PARAM_STR);
         $req->execute();
         $tab = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -67,7 +67,7 @@ class Model
 
     public function getNbExemplaire($jeux)
     {
-        $req = $this->bd->prepare('SELECT COUNT(*) FROM exemplaires WHERE id_jeu = :jeux');
+        $req = $this->bd->prepare('SELECT COUNT(*) FROM exemplaires WHERE jeu_id = :jeux');
         $req->bindParam(':jeux', $jeux, PDO::PARAM_INT);
         $req->execute();
         $tab = $req->fetch(PDO::FETCH_NUM);
@@ -77,47 +77,43 @@ class Model
     public function getJeuxPop()
     {
         // Assurez-vous que la table 'Jeux' contient une colonne 'popularite'
-        $req = $this->bd->prepare('SELECT * FROM Jeux ORDER BY popularite DESC LIMIT 10');
+        $req = $this->bd->prepare('SELECT * FROM jeu ORDER BY popularite DESC LIMIT 10');
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getJeuParCategorie($categorie)
-    {
+      {
         $req = $this->bd->prepare('
             SELECT j.* 
-            FROM jeux j
-            JOIN jeux_categories jc ON j.id_jeu = jc.id_jeu
-            JOIN categories c ON jc.id_categorie = c.id_categorie
-            WHERE c.nom_categorie = :categorie
+            FROM jeu j
+            JOIN jeu_categorie jc ON j.id_jeu = jc.id_jeu
+            JOIN categorie c ON jc.id_categorie = c.id_categorie
+            WHERE c.nom = :categorie
         ');
         $req->bindParam(':categorie', $categorie, PDO::PARAM_STR);
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
-
     public function getToutesLesBoitesJeu($id_jeu)
     {
-        $req = $this->bd->prepare('SELECT * FROM exemplaires WHERE id_jeu = :id_jeu');
+        $req = $this->bd->prepare('SELECT * FROM boite WHERE jeu_id = :id_jeu');
         $req->bindParam(':id_jeu', $id_jeu, PDO::PARAM_INT);
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
-
     public function getBoiteAttributSpecifique($id_boite)
     {
-        $req = $this->bd->prepare('SELECT * FROM exemplaires WHERE id_boite = :id_boite');
+        $req = $this->bd->prepare('SELECT * FROM boite WHERE id_boite = :id_boite');
         $req->bindParam(':id_boite', $id_boite, PDO::PARAM_INT);
         $req->execute();
         return $req->fetch(PDO::FETCH_ASSOC);
     }
-
     // Fonction pour récupérer un jeu aléatoire
-    public function getJeuAleatoire($bd) {
-        $req = $bd->prepare('SELECT * FROM jeu ORDER BY RAND() LIMIT 1');
-        $req->execute();
-        return $req->fetch(PDO::FETCH_ASSOC);
-    }
+  public function getJeuAleatoire() {
+    $req = $this->bd->prepare('SELECT * FROM jeu ORDER BY RAND() LIMIT 1');
+    $req->execute();
+    return $req->fetch(PDO::FETCH_ASSOC);
 }
 
 ?>
