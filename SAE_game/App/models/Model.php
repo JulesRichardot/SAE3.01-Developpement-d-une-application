@@ -65,15 +65,14 @@ class Model
         return $tab;
     }
 
-    public function getNbExemplaire($jeux)
+        public function getNbExemplaire($jeux)
     {
-        $req = $this->bd->prepare('SELECT COUNT(*) FROM exemplaires WHERE jeu_id = :jeux');
+        $req = $this->bd->prepare('SELECT COUNT(*) FROM boite WHERE jeu_id = :jeux');
         $req->bindParam(':jeux', $jeux, PDO::PARAM_INT);
         $req->execute();
         $tab = $req->fetch(PDO::FETCH_NUM);
         return $tab[0];
     }
-
     public function getJeuxPop()
     {
         // Assurez-vous que la table 'Jeux' contient une colonne 'popularite'
