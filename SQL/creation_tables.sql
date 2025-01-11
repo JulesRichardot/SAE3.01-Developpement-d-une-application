@@ -1,5 +1,3 @@
-USE test_sae_bd;
-
 DROP TABLE IF EXISTS TempJeux;
 
 CREATE TABLE TempJeux (
