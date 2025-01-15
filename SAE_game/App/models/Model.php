@@ -90,6 +90,16 @@ class Model
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getJeuParId($id)
+    {
+        $req = $this->bd->prepare('SELECT * FROM jeu WHERE titre = :id');
+        $req->bindParam(':id_jeu', $id, PDO::PARAM_INT);
+        $req->execute();
+        $tab = $req->fetchAll(PDO::FETCH_ASSOC);
+        return $tab;
+    }
+    
     public function getToutesLesBoitesJeu($id_jeu)
     {
         $req = $this->bd->prepare('SELECT * FROM boite WHERE jeu_id = :id_jeu');
