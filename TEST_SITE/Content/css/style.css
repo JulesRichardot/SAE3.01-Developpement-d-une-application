@@ -1,0 +1,446 @@
+/*------------------HEADER------------------*/
+
+/* Styles généraux */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Arial', sans-serif;
+    color: rgba(41, 51, 88, 1);
+}
+
+/* Titre de la section */
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: rgba(41, 51, 88, 1);
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+/* Boutons généraux */
+button, .Bouton, .reserve-button {
+    padding: 10px 20px;
+    background-color: rgba(41, 51, 88, 1);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover, .Bouton:hover, .reserve-button:hover {
+    background-color: #333;
+}
+
+/* Inputs */
+input[type="search"], input[type="text"], input[type="email"], input[type="password"], select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Bannières */
+.nav-header {
+    background-color: rgba(41, 51, 88, 1);
+    display: flex;
+    justify-content: space-between;
+    padding: 31px 64px;
+    color: white;
+    gap: 20px;
+}
+
+.logo {
+    width: 240px;
+    object-fit: contain;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white; /* Assure que les liens conservent leur couleur blanche */
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: rgba(41, 51, 88, 1); /* Fond bleu pour ressembler à un bouton */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ajoute un effet au survol des liens */
+.nav-link:hover {
+    background-color: #2b3b6a; /* Fond bleu plus foncé au survol */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Ombre lors du survol */
+}
+
+
+
+
+/*-----------------------BODY--------------------------*/
+/* Sections générales */
+.container {
+    text-align: center;
+    margin: 40px auto;
+}
+
+/* Cartes et boîtes */
+.cards, .boites {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px auto;
+}
+
+.card, .categorie, .boite {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+}
+
+.card:hover, .categorie:hover, .boite:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card h3, .categorie h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card p, .boite p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Section jeux similaires */
+.jeux-similaires {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.jeux-similaires h2 {
+    font-size: 28px;
+    color: rgba(41, 51, 88, 1);
+    margin-bottom: 30px;
+}
+
+/* Section administration */
+.admin-section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.admin-section h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+/* Tête de page */
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: rgba(41, 51, 88, 1);
+    color: white;
+}
+
+.nav-header .nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+.logo {
+    width: 200px;
+}
+
+/* Barre de recherche */
+.search-bar {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.search-bar input[type="search"] {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Présentation */
+#presentation {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+#presentation h1 {
+    font-size: 36px;
+    color: rgba(41, 51, 88, 1);
+}
+
+#presentation h4 {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.actions .Bouton {
+    margin: 10px;
+    padding: 12px 20px;
+    background-color: rgba(41, 51, 88, 1);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.actions .Bouton:hover {
+    background-color: #333;
+}
+
+/* Section des jeux populaires */
+/* Section contenant le titre et la carte de jeu */
+#jeux_pop {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Ajustements de la carte (cette section est maintenant un élément en bloc) */
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+    margin: 20px auto; /* Centrer la carte horizontalement et ajouter un espacement vertical */
+}
+
+.card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Connexion et inscription */
+.connexion-inscription {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacement entre les sections */
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.connexion, .inscription {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px; /* Largeur fixe pour un alignement cohérent */
+    text-align: left;
+}
+
+.connexion h2, .inscription h2 {
+    font-size: 24px;
+    color: rgba(41, 51, 88, 1);
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    font-size: 14px;
+    color: rgba(41, 51, 88, 1);
+    margin-bottom: 5px;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+form .Bouton {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(41, 51, 88, 1);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+form .Bouton:hover {
+    background-color: #333;
+}
+
+form .lien {
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    font-size: 14px;
+    color: rgba(41, 51, 88, 1);
+    text-decoration: none;
+}
+
+form .lien:hover {
+    text-decoration: underline;
+}
+
+
+/* Recherche Avancée */
+.recherche-avancee {
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Conteneur centré et largeur fixe */
+}
+
+.recherche-avancee .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.recherche-avancee label {
+    display: block;
+    font-size: 14px;
+    color: rgba(41, 51, 88, 1);
+    margin-bottom: 5px;
+}
+
+.recherche-avancee input,
+.recherche-avancee select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.recherche-avancee button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgba(41, 51, 88, 1);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.recherche-avancee button:hover {
+    background-color: #333;
+}
+
+
+/* Section principale (centrer le contenu de la section) */
+.decouvrir-section {
+    text-align: center;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrer horizontalement */
+    gap: 20px; /* Espacement entre les éléments */
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.icone { width: 16px; }
+
+/* Liste des pages de résultats */
+.listePages { width : 400px; margin : auto; padding-top : 20px; text-align: center; }
+.listePages p { color : blue; padding: 0px; margin:0px;}
+a.lienStart { text-decoration: none; display: inline-block; width : 25px; font-size: smaller; color : blue;}
+a.active { color : red;}
+
+
+/*----------------------FOOTER-----------------------------------------*/
+/* Footer */
+footer {
+    background-color: rgba(41, 51, 88, 1); /* Bleu sombre */
+    color: white; /* Texte blanc */
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+footer .colonne {
+    text-align: center;
+    margin: 10px;
+}
+
+footer h4 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: white; /* Assurez-vous que les titres restent en blanc */
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer ul li {
+    margin: 8px 0;
+}
+
+footer ul li a {
+    color: white; /* Assurez-vous que les liens sont bien en blanc */
+    text-decoration: none;
+}
+
+footer ul li a:hover {
+    text-decoration: underline; /* Ajoute une indication au survol */
+}
