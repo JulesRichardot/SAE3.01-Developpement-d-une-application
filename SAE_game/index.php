@@ -8,6 +8,17 @@ $jeuxPopulaires = $model->getJeuParCategorie('populaire'); // Récupère les jeu
 $jeu1 = $model->getJeuAleatoire();
 $jeu2 = $model->getJeuAleatoire();
 $jeu3 = $model->getJeuAleatoire();
+
+if (!$jeu1) {
+    $jeu1 = ['id_jeu' => 0, 'titre' => 'Aucun jeu', 'mots_cles' => 'Non disponible'];
+}
+if (!$jeu2) {
+    $jeu2 = ['id_jeu' => 0, 'titre' => 'Aucun jeu', 'mots_cles' => 'Non disponible'];
+}
+if (!$jeu3) {
+    $jeu3 = ['id_jeu' => 0, 'titre' => 'Aucun jeu', 'mots_cles' => 'Non disponible'];
+}
+
 ?>
 
 <!DOCTYPE html>
