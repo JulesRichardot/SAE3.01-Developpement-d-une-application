@@ -105,10 +105,10 @@ class Model
         return $req->fetch(PDO::FETCH_ASSOC);
     }
     // Fonction pour récupérer un jeu aléatoire
-  public function getJeuAleatoire() {
-    $req = $this->bd->prepare('SELECT * FROM jeu ORDER BY RAND() LIMIT 1');
-    $req->execute();
-    return $req->fetch(PDO::FETCH_ASSOC);
+    public function getJeuAleatoire() {
+        $req = $this->bd->prepare('SELECT * FROM jeu ORDER BY RAND() LIMIT 1');
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC);
+    }
 }
-
 ?>
