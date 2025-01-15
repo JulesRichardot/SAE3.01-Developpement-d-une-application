@@ -4,11 +4,10 @@ require_once "./App/models/Model.php";
 // Récupérer les jeux populaires depuis la base de données
 $model = Model::getInstance();
 $jeuxPopulaires = $model->getJeuParCategorie('populaire'); // Récupère les jeux de la catégorie "populaire"
-$db = $model->getDb();
 
-$jeu1 = $model->getJeuAleatoire($db);
-$jeu2 = $model->getJeuAleatoire($db);
-$jeu3 = $model->getJeuAleatoire($db);
+$jeu1 = $model->getJeuAleatoire();
+$jeu2 = $model->getJeuAleatoire();
+$jeu3 = $model->getJeuAleatoire();
 ?>
 
 <!DOCTYPE html>
