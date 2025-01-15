@@ -9,7 +9,7 @@
 <body>
     <!-- Tête de page -->
     <header class="nav-header">
-        <a href="index.php">
+        <a href="?">
             <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e24d432f71ae5fc037e972e78951ca15052e5e8c7824a911375a22f8623cb7b3?placeholderIfAbsent=true&apiKey=d20a853adbac4dde9b424a402120db37" alt="Logo" class="logo">
         </a>        
         <nav class="nav-links">

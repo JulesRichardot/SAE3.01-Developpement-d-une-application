@@ -16,49 +16,72 @@ class Controller_list extends Controller
         $this->action_last();
     }
 
-    public function action_detailsBoite()
-    {
+    public function action_jeuPresentation() {
         $data = false;
 
-        if (isset($_GET["id"]) and preg_match("/^[1-9]\d*$/", $_GET["id"])) {
-            $m = Model::getInstance();
-            $data = $m->getDetailsBoite($_GET["id"]);
+        if (isset($_GET["id_jeu"]) and preg_match("/^[1-9]\d*$/", $_GET["id_jeu"])) {
+            $m = Model::getModel();
+            $data = $m->getJeuParId($_GET["id_jeu"]);
         }
         //Si on a bien un prix nobel d'identifiant$_GET["id"]
         if ($data !== false) {
-            $this->render("informations", $data);
+            $this->render("jeuPresentation", $data);
         } else {
-            $this->action_error("Il n'y a pas de boîte avec cette identifiant.");
+            $this->action_error("Pas de jeu avec cet id !");
         }
     }
+    
 
 
     public function action_pagination()
-{
-    $start = isset($_GET["start"]) && preg_match("/^\d+$/", $_GET["start"]) ? $_GET["start"] : 1;
-    $m = Model::getModel();
-    $nb_jeux = $m->getNbJeux();
-    $nb_total_pages = ceil($nb_jeux / 25);
+    {
+        $start = 1;
+        if (isset($_GET["start"]) and preg_match("/^\d+$/", $_GET["start"]) and $_GET["start"] > 0) {
+            $start = $_GET["start"];
+        }
 
-    if ($start > $nb_total_pages) {
-        $this->action_error("Page inexistante");
+        $m = Model::getModel();
+
+        //Récupération du nombre total de prix nobel
+        $nb_jeux = $m->getNbJeux();
+
+        $nb_total_pages = ceil($nb_jeux / 25);
+        if ($nb_total_pages < $start) {
+            $this->action_error("The page does not exist!");
+        }
+
+        //Détermination du premier résultat à récupérer dans la base de données
+        $offset = ($start - 1) * 25;
+
+        //Détermination du début et de la fin des numéros de page à afficher
+        $debut = $start - 5;
+        if($debut <= 0 ){
+            $debut = 1;
+        }
+        
+        $fin = $debut + 9;
+        if($fin > $nb_total_pages){
+            $fin = $nb_total_pages;
+        }
+        
+        $data = [
+            //Nb prix nobels
+            'nb_total_pages' => $nb_total_pages,
+
+            //indice de la page de résultats visualisée
+            'active' => $start,
+
+            //Récupération des prix nobel de la page $start
+            'liste' => $m->getJeuxWithLimit($offset, 25),
+
+            //Début et fin des urls des pages
+            'debut' => $debut,
+
+            'fin' => $fin
+        ];
+
+        //Affichage de la vue
+        $this->render("pagination", $data);
     }
-
-    $offset = ($start - 1) * 25;
-    $jeux = $m->getJeuxWithLimit($offset, 25);
-    $debut = max(1, $start - 5);
-    $fin = min($debut + 9, $nb_total_pages);
-
-    $data = [
-        'jeux' => $jeux,
-        'active' => $start,
-        'debut' => $debut,
-        'fin' => $fin,
-        'nb_total_pages' => $nb_total_pages
-    ];
-
-    $this->render("pagination", $data);
-}
-
 
 }

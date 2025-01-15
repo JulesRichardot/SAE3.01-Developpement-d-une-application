@@ -49,6 +49,15 @@ class Model
         return $tab[0];
     }
 
+    public function getJeuParId($id)
+    {
+        $req = $this->bd->prepare('SELECT * FROM jeu WHERE id_jeu = :id_jeu');
+        $req->bindParam(':id_jeu', $id, PDO::PARAM_INT);
+        $req->execute();
+        $tab = $req->fetchAll(PDO::FETCH_ASSOC);
+        return $tab[0];
+    }
+
     public function getJeuxWithLimit($offset = 0, $limit = 25)
     {
         $requete = $this->bd->prepare('Select * from jeu WHERE date_parution_debut IS NOT NULL ORDER BY date_parution_debut DESC LIMIT :limit OFFSET :offset');
