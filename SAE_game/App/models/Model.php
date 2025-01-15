@@ -31,10 +31,6 @@ class Model
         }
     }
 
-    // Méthode publique pour accéder à la variable privée $bd
-    public function getDb() {
-        return $this->bd;
-    }
 
     /**
      * Retourne l'instance unique de la classe.
