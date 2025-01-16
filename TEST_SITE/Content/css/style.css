@@ -8,6 +8,7 @@ body {
     padding: 0;
 }
 
+
 h1, h2, h3, h4 {
     font-family: 'Arial', sans-serif;
     color: rgba(41, 51, 88, 1);
@@ -261,75 +262,97 @@ table th {
 .card:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
-
-/* Connexion et inscription */
-.connexion-inscription {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Espacement entre les sections */
-    margin: 40px auto;
-    padding: 20px;
+	
+/* Section principale Connexion/Inscription */
+#connexion_inscription {
+    display: flex; /* Organisation en ligne */
+    justify-content: center; /* Centre horizontalement */
+    gap: 20px; /* Espacement entre les deux colonnes */
+    margin: 40px auto; /* Espacement vertical */
+    padding: 20px; /* Espacement interne */
 }
 
-.connexion, .inscription {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 400px; /* Largeur fixe pour un alignement cohérent */
-    text-align: left;
+/* Blocs Connexion et Inscription */
+#connexion_inscription .connexion,
+#connexion_inscription .inscription {
+    background-color: #fff; /* Fond blanc */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    padding: 20px; /* Espacement interne */
+    width: 400px; /* Largeur fixe */
+    text-align: left; /* Alignement des textes à gauche */
 }
 
-.connexion h2, .inscription h2 {
+/* Titres des sections */
+#connexion_inscription .connexion h2,
+#connexion_inscription .inscription h2 {
     font-size: 24px;
-    color: rgba(41, 51, 88, 1);
-    margin-bottom: 20px;
+    color: rgba(41, 51, 88, 1); /* Couleur principale */
+    margin-bottom: 20px; /* Espacement sous le titre */
 }
 
-form label {
-    display: block;
+/* Formulaire et champs */
+#connexion_inscription form label {
+    display: block; /* Le label est sur sa propre ligne */
     font-size: 14px;
-    color: rgba(41, 51, 88, 1);
-    margin-bottom: 5px;
+    color: rgba(41, 51, 88, 1); /* Couleur principale */
+    margin-bottom: 5px; /* Espacement sous le label */
 }
 
-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+#connexion_inscription form input {
+    width: 100%; /* Le champ prend toute la largeur */
+    padding: 10px; /* Espacement interne */
+    margin-bottom: 15px; /* Espacement entre les champs */
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 14px; /* Taille de la police */
+}
+
+/* Bouton de formulaire */
+#connexion_inscription form .Bouton {
+    display: block; /* Le bouton prend toute la largeur */
+    width: 100%; /* Largeur à 100% */
+    padding: 10px; /* Espacement interne */
+    background-color: rgba(41, 51, 88, 1); /* Couleur principale */
+    color: #fff; /* Texte blanc */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 16px; /* Taille de la police */
+    cursor: pointer; /* Curseur en mode pointer */
+    text-align: center; /* Alignement centré du texte */
+}
+
+#connexion_inscription form .Bouton:hover {
+    background-color: #333; /* Couleur au survol */
+}
+
+/* Lien dans les formulaires */
+#connexion_inscription form .lien {
+    display: block; /* Le lien est sur sa propre ligne */
+    text-align: right; /* Aligné à droite */
+    margin-top: 10px; /* Espacement au-dessus */
+    font-size: 14px; /* Taille de la police */
+    color: rgba(41, 51, 88, 1); /* Couleur principale */
+    text-decoration: none; /* Pas de soulignement */
+}
+
+#connexion_inscription form .lien:hover {
+    text-decoration: underline; /* Soulignement au survol */
+}
+
+/* Messages d'erreur et de succès */
+#connexion_inscription .error {
+    color: red; /* Texte rouge pour les erreurs */
     font-size: 14px;
+    margin-bottom: 10px;
+    text-align: center; /* Centré */
 }
 
-form .Bouton {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: rgba(41, 51, 88, 1);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-}
-
-form .Bouton:hover {
-    background-color: #333;
-}
-
-form .lien {
-    display: block;
-    text-align: right;
-    margin-top: 10px;
+#connexion_inscription .success {
+    color: green; /* Texte vert pour les succès */
     font-size: 14px;
-    color: rgba(41, 51, 88, 1);
-    text-decoration: none;
-}
-
-form .lien:hover {
-    text-decoration: underline;
+    margin-bottom: 10px;
+    text-align: center; /* Centré */
 }
 
 
