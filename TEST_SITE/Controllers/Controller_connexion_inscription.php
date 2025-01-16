@@ -93,7 +93,7 @@ public function action_inscription()
         exit;
     }
 
-    // Hachage du mot de passe
+    // **Hachage du mot de passe**
     $motDePasseHash = password_hash($motDePasse, PASSWORD_BCRYPT);
 
     // Création de l'utilisateur
@@ -103,5 +103,6 @@ public function action_inscription()
     header('Location: index.php?controller=connexion_inscription&action=afficher&succes=Inscription réussie.');
     exit;
 }
+
 
 }
