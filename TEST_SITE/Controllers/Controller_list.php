@@ -23,6 +23,7 @@ class Controller_list extends Controller
             $m = Model::getModel();
             $data = [ "unJeux" => $m->getJeuParId($_GET["id_jeu"]),
             "nb_boite" => $m->getNbBoite($_GET["id_jeu"]),
+            "jeuSim" => $m->getJeuSimilaire($_GET["id_jeu"]),
         ];
         }
         //Si on a bien un prix nobel d'identifiant$_GET["id"]
