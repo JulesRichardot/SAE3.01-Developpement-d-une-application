@@ -40,6 +40,13 @@ def enleve_espace(chaine: str) -> str:
         return None
     return chaine
 
+def verifier_annee(annee):
+    if pd.isna(annee) or not str(annee).isdigit():
+        return None  # Remplacer par NULL si la valeur n'est pas un nombre valide
+    annee_int = int(annee)
+    if annee_int < 1901 or annee_int > 2155:  # Vérifier si l'année est dans la plage valide de MySQL
+        return None  # Remplacer par NULL si l'année est hors de la plage
+    return annee_int  # Retourner l'année si elle est valide
 
 def excelToId(data: pd.DataFrame) -> pd.Series:
     """
@@ -54,14 +61,22 @@ def excelToId(data: pd.DataFrame) -> pd.Series:
     
     ids = data["Unnamed: 0"]
     tab = []
+    
     for id in ids:
-        try: # on essaye de passer id en int
-            float_id = float(id)
-            if float_id.is_integer():
-                tab.append(int(float_id)) # on ajoute au tab le id
-        except ValueError: # si pas possible, erreur
-            tab.append(id) # on ajoute quand même l'id pour ne pas rater la ligne
+        if pd.isna(id) or str(id).strip() == '':
+            tab.append(None)  # Ajoute None pour les identifiants vides ou invalides
+        else:
+            try:
+                float_id = float(id)
+                if float_id.is_integer():
+                    tab.append(int(float_id))  # Ajoute l'ID sous forme d'entier
+                else:
+                    tab.append(None)  # Si l'ID n'est pas un entier valide, on met None
+            except ValueError:
+                tab.append(None)  # En cas d'erreur de conversion, on met None
+    
     return pd.Series(tab)
+
 
 def excelToTitre(data: pd.DataFrame) -> pd.Series:
     """
@@ -77,7 +92,10 @@ def excelToTitre(data: pd.DataFrame) -> pd.Series:
     titres_clean = titres.apply(enleve_espace)
     titres_clean_title = []
     for titre in titres_clean:
-        titres_clean_title.append(titre.title())
+        if titre is None:
+            titres_clean_title.append(None)
+        else:
+            titres_clean_title.append(titre.title())
     return pd.Series(titres_clean_title)
 
 def excelToRef(data: pd.DataFrame) -> pd.Series:
@@ -126,11 +144,12 @@ def excelToDateParutionDebut(data: pd.DataFrame) -> pd.Series:
         pd.Series: une série pandas nettoyée contenant les dates de début de parution
     """
     dates_debut = data["DATE DE PARUTION DEBUT"].apply(enleve_espace)
+    dates_debut = dates_debut.apply(verifier_annee)
 
     # Nettoyer les dates
     date_debut_clean = []
     for date in dates_debut:
-        if date is None or (not(date.isdigit())) or (int(date) < 0):
+        if date is None:
             date_debut_clean.append(None)  # None si date vide ou négatif
         else:
             date_debut_clean.append(date)
@@ -148,17 +167,17 @@ def excelToDateParutionFin(data: pd.DataFrame) -> pd.Series:
         pd.Series: une série pandas nettoyée contenant les dates de fin de parution
     """
     dates_fin = data["DATE DE PARUTION FIN"].apply(enleve_espace)
+    dates_fin = dates_fin.apply(verifier_annee)
     
     # Nettoyer les dates
-    date_debut_fin = []
+    date_fin_clean = []
     for date in dates_fin:
-        date = enleve_espace(date)
-        if date == '' or date is None or not date.isdigit() or int(date) < 0:
-            date_debut_fin.append(None)  # None si date vide ou négatif
+        if date is None:
+            date_fin_clean.append(None)  # None si date vide ou négatif
         else:
-            date_debut_fin.append(date)
+            date_fin_clean.append(date)
     
-    return pd.Series(date_debut_fin)
+    return pd.Series(date_fin_clean)
 
 def excelToInformation(data: pd.DataFrame) -> pd.Series:
     """
@@ -295,22 +314,33 @@ def excelToMotsCles(data: pd.DataFrame) -> pd.Series:
     
 def excelToNumBoite(data: pd.DataFrame) -> pd.Series:
     """
-    Retourne tout les numéros de boîte.
+    Retourne tous les numéros de boîte après nettoyage.
 
     Args:
-        data (pd.DataFrame): DataFrame qui contient les données excel
+        data (pd.DataFrame): DataFrame qui contient les données Excel
 
     Returns:
-        pd.Series: une série pandas qui contient les valeurs de la colonne 'N Boîte'
+        pd.Series: une série pandas qui contient les valeurs nettoyées de la colonne 'N Boîte'
     """
-    numsBoite = data["N Boîte"].apply(enleve_espace)
+    numsBoite = data["N Boîte"].apply(enleve_espace)  # Appliquer nettoyage
     numsBoite_clean = []
+    
     for num in numsBoite:
-        if num is None or not num.isdigit():
+        if num is None:
             numsBoite_clean.append(None)
         else:
-            numsBoite_clean.append(num)
+            try:
+                # Supprimer les espaces invisibles et forcer la conversion en int
+                num_clean = str(num).strip()  # Enlever les espaces
+                if num_clean.isdigit():  # Vérifier si la valeur est numérique
+                    numsBoite_clean.append(int(num_clean))  # Convertir en entier
+                else:
+                    numsBoite_clean.append(None)  # Si ce n'est pas un entier valide, mettre None
+            except ValueError:
+                numsBoite_clean.append(None)  # En cas d'erreur, ajouter None
+    
     return pd.Series(numsBoite_clean)
+
 
 def excelToLocalisation(data: pd.DataFrame) -> pd.Series:
     """
