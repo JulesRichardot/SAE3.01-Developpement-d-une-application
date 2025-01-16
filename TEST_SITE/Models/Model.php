@@ -105,6 +105,25 @@ class Model
     return $req->fetch(PDO::FETCH_ASSOC);
 }
 
+    public function getUtilisateurParMail($email)
+{
+    $sql = "SELECT * FROM utilisateur WHERE email = :email";
+    $stmt = $this->bd->prepare($sql);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+public function ajouterUtilisateur($nom, $email, $motDePasse)
+{
+    $sql = "INSERT INTO utilisateur (nom, email, mot_de_passe, role) VALUES (:nom, :email, :mot_de_passe, 'Utilisateur')";
+    $stmt = $this->bd->prepare($sql);
+    $stmt->bindValue(':nom', $nom, PDO::PARAM_STR);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt->bindValue(':mot_de_passe', $motDePasse, PDO::PARAM_STR);
+    $stmt->execute();
+}
+
 }
 
 ?>
