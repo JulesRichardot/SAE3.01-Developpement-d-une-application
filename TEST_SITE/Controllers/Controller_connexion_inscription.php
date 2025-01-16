@@ -66,41 +66,42 @@ class Controller_connexion_inscription extends Controller
     /**
      * Gère la soumission du formulaire d'inscription.
      */
-    public function action_inscription()
-    {
-        $nom = $_POST['nom'] ?? '';
-        $email = $_POST['email'] ?? '';
-        $motDePasse = $_POST['mot_de_passe'] ?? '';
+public function action_inscription()
+{
+    $nom = $_POST['nom'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $motDePasse = $_POST['mot_de_passe'] ?? '';
 
-        // Vérifie les champs vides
-        if (empty($nom) || empty($email) || empty($motDePasse)) {
-            header('Location: index.php?controller=connexion_inscription&action=afficher&erreur=Veuillez remplir tous les champs.');
-            exit;
-        }
-
-        // Vérifie que l'email est valide
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            header('Location: index.php?controller=connexion_inscription&action=afficher&erreur=Email invalide.');
-            exit;
-        }
-
-        // Vérifie si l'utilisateur existe déjà
-        $modele = Model::getModel();
-        $utilisateurExistant = $modele->getUtilisateurParMail($email);
-
-        if ($utilisateurExistant) {
-            header('Location: index.php?controller=connexion_inscription&action=afficher&erreur=Email déjà utilisé.');
-            exit;
-        }
-
-        // Hashage du mot de passe
-        $motDePasseHash = password_hash($motDePasse, PASSWORD_BCRYPT);
-
-        // Création de l'utilisateur
-        $modele->ajouterUtilisateur($nom, $email, $motDePasseHash);
-
-        // Redirection avec message de succès
-        header('Location: index.php?controller=connexion_inscription&action=afficher&succes=Inscription réussie.');
+    // Vérifie les champs vides
+    if (empty($nom) || empty($email) || empty($motDePasse)) {
+        header('Location: index.php?controller=connexion_inscription&action=afficher&erreur=Veuillez remplir tous les champs.');
         exit;
     }
+
+    // Vérifie que l'email est valide
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header('Location: index.php?controller=connexion_inscription&action=afficher&erreur=Email invalide.');
+        exit;
+    }
+
+    // Vérifie si l'utilisateur existe déjà
+    $modele = Model::getModel();
+    $utilisateurExistant = $modele->getUtilisateurParMail($email);
+
+    if ($utilisateurExistant) {
+        header('Location: index.php?controller=connexion_inscription&action=afficher&erreur=Email déjà utilisé.');
+        exit;
+    }
+
+    // Hachage du mot de passe
+    $motDePasseHash = password_hash($motDePasse, PASSWORD_BCRYPT);
+
+    // Création de l'utilisateur
+    $modele->ajouterUtilisateur($nom, $email, $motDePasseHash);
+
+    // Redirection avec message de succès
+    header('Location: index.php?controller=connexion_inscription&action=afficher&succes=Inscription réussie.');
+    exit;
+}
+
 }
