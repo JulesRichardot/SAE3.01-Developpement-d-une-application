@@ -124,6 +124,7 @@ public function ajouterUtilisateur($nom, $email, $motDePasse)
     $stmt->execute();
 }
 
+
 }
 
 ?>
