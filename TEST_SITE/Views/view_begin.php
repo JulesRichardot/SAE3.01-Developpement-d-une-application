@@ -16,6 +16,6 @@
             <a href="?" class="nav-link">Accueil</a>
             <a href="?controller=list&action=pagination" class="nav-link">Découvrir</a>
             <a href="monCompte.php" class="nav-link">Mon Compte</a>
-            <a href="connexion_inscription.php" class="nav-link">Connexion/Inscription</a>
+            <a href="?controller=connexion_inscription&action=afficher" class="nav-link">Connexion/Inscription</a>
         </nav>
     </header>
