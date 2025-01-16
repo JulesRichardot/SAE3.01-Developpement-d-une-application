@@ -124,7 +124,23 @@ public function ajouterUtilisateur($nom, $email, $motDePasse)
     $stmt->execute();
 }
 
+public function getJeuSimilaire($id_jeu){
 
+    $query = "SELECT mecanisme_id from jeu where id_jeu = :id_jeu";
+    $req = $this->bd->prepare($query);
+    $req->bindParam(':id_jeu', $id, PDO::PARAM_INT);
+    $req->execute();
+    $tab = $req->fetch(PDO::FETCH_ASSOC);
+    $meca = $tab["mecanisme_id"];
+    if (is_null($meca)){
+        $meca = 1;
+    }
+    $query = "SELECT * FROM jeu WHERE mecanisme_id = $meca ORDER BY RAND() LIMIT 3";
+    $req = $this->bd->prepare($query);
+    $req->execute();
+    $tab = $req->fetchAll(PDO::FETCH_ASSOC);
+    return $tab;
+}
 }
 
 ?>
