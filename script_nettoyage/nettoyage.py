@@ -47,6 +47,30 @@ def nettoyer_excel(data: pd.DataFrame) -> bool: # CHANGER LE RETURN APRES
         "id_jeu", "titre_jeu", "References", "auteurs", "date_parution_debut", "date_parution_fin", "information_date", "version", "nombre_joueurs", "age_min", "mots_cles","num_boite", "localisation_cnj", "mecanisme1", "mecanisme2", "mecanisme3", "collection_origine", "etat", "code_barre" 
     ]]
 
+    # Validation de l'id_jeu
+    def validation_id(jeu_id):
+        try:
+            val = int(jeu_id)
+            return val if val > 0 
+            else None  
+        except (ValueError, TypeError):
+            return None
+
+    jeux["id_jeu"] = jeux["id_jeu"].apply(validation_id)
+
+
+    # Validation des dates
+    def validation_annee(annee):
+        try:
+            annee = int(annee)
+            return anne if 1000 <= annee <= 2100
+            else None
+        except (ValueError, TypeError):
+            return None
+
+    jeux["date_parution_debut"] = jeux["date_parution_debut"].apply(validation_annee)
+    jeux["date_parution_fin"] = jeux["date_parution_fin"].apply(validation_annee)
+
     jeux["id_jeu"] = excelToId(data)
     jeux["titre_jeu"] = excelToTitre(data)
     jeux["auteurs"] = excelToAuteur(data)
@@ -59,8 +83,14 @@ def nettoyer_excel(data: pd.DataFrame) -> bool: # CHANGER LE RETURN APRES
     jeux["mots_cles"] = excelToMotsCles(data)
     jeux["num_boite"] = excelToNumBoite(data)
     jeux["localisation_cnj"] = excelToLocalisation(data)
+    
+    # Nettoyage des mécanismes
     mecas = excelToMecanisme(data)
-    jeux["mecanisme1"], jeux["mecanisme2"], jeux["mecanisme3"] = mecas["MECANISME (cf colonne A)"], mecas["Unnamed: 14"], mecas["Unnamed: 15"]
+    jeux["mecanisme1"], jeux["mecanisme2"], jeux["mecanisme3"] = 
+        mecas["MECANISME (cf colonne A)"], 
+        mecas["Unnamed: 14"], 
+        mecas["Unnamed: 15"]
+    
     jeux["collection_origine"] = excelToCollectionOrigine(data)
     jeux["etat"] = excelToEtat(data)
     jeux["code_barre"] = excelToCodeBarre(data)
@@ -69,13 +99,13 @@ def nettoyer_excel(data: pd.DataFrame) -> bool: # CHANGER LE RETURN APRES
     #optionnel
     #jeux_trie = excelTrieParId(jeux)
     
-
+    # Export des données nettoyées
     file_path = "./data/inventaire_perso.xlsx" # en fonction de votre emplacement
     jeux.to_excel(file_path, index=False)
     jeux.to_csv('C:/ProgramData/MySQL/MySQL Server 9.1/Uploads/inventaire.csv', index=False)
     print(f"\nle fichier a été sauvegardé ici : {file_path}")
 
-
+    
 
 path = "../inventaire_extrait.xlsx" # en fonction de l'emplacement du fichier
 
