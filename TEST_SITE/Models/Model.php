@@ -98,6 +98,13 @@ class Model
     return $req->fetchAll(PDO::FETCH_ASSOC);
 }
 
+    public function getNbBoite($id_jeu){
+    $query = "SELECT count(*) as nb_boite from boite join jeu On boite.jeu_id = jeu.id_jeu where boite.jeu_id = $id_jeu and jeu.id_jeu = $id_jeu; ";
+    $req = $this->bd->prepare($query);
+    $req->execute();
+    return $req->fetch(PDO::FETCH_ASSOC);
+}
+
 }
 
 ?>
