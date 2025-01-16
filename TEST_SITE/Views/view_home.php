@@ -24,7 +24,7 @@
         <tbody>
             <?php foreach ($jeux as $jeu): ?>
                 <tr>
-                    <td><?= htmlspecialchars($jeu['titre']) ?></td>
+                    <td><a href="?controller=list&action=jeuPresentation&id_jeu=<?= $jeu['id_jeu'] ?>"><?= htmlspecialchars($jeu['titre']) ?></a></td>
                     <td><?= htmlspecialchars($jeu['nombre_emprunts']) ?></td>
                 </tr>
             <?php endforeach; ?>
