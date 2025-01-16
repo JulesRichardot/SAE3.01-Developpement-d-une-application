@@ -21,7 +21,9 @@ class Controller_list extends Controller
 
         if (isset($_GET["id_jeu"]) and preg_match("/^[1-9]\d*$/", $_GET["id_jeu"])) {
             $m = Model::getModel();
-            $data = $m->getJeuParId($_GET["id_jeu"]);
+            $data = [ "unJeux" => $m->getJeuParId($_GET["id_jeu"]),
+            "nb_boite" => $m->getNbBoite($_GET["id_jeu"]),
+        ];
         }
         //Si on a bien un prix nobel d'identifiant$_GET["id"]
         if ($data !== false) {
