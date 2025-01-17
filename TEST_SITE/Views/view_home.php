@@ -1,6 +1,12 @@
 <?php require_once "view_begin.php" ?>
 
 <section id="presentation">
+    <?php if (isset($_SESSION['utilisateur'])): ?>
+        <div>
+            <h1>Bienvenue, <?= htmlspecialchars($_SESSION['utilisateur']['nom']) ?>!</h1>
+        </div>
+    <?php endif; ?>
+
     <div>
         <h1>Chercher un jeu parmi nos <?= htmlspecialchars($nb_jeux) ?> jeux !</h1> <!-- Affichage du nombre total de jeux -->
         <input type="search" placeholder="Rechercher un jeu par titre ou catégories">
