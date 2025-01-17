@@ -6,7 +6,7 @@
         <div class="section-gauche">
             <div class="game-image"></div>
             <p><strong>Nombre d'exemplaires :</strong> <?php echo htmlspecialchars($nb_boite["nb_boite"])?></p>
-            <button class="Bouton">Voir les boîtes</button>
+            <a class="Bouton" href="?controller=list&action=boiteJeu&id_jeu=<?= $_GET["id_jeu"] ?>">Voir les boîtes</a>
         </div>
         <!-- Section droite -->
         <div class="info-section">
