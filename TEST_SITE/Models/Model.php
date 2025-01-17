@@ -194,32 +194,102 @@ public function getDateDeSortie(){
     return $tab;
 }
 
+
 public function ajouterUtilisateur($nom, $email, $motDePasse, $telephone = null, $adresse = null, $dateNaissance = null)
 {
-    // Ajout dans la table utilisateur
-    $sqlUtilisateur = "INSERT INTO utilisateur (nom, email, mot_de_passe, role) 
-                        VALUES (:nom, :email, :mot_de_passe, 'Utilisateur')";
+    // Insertion dans la table utilisateur
+    $sqlUtilisateur = "INSERT INTO utilisateur (nom, email, mot_de_passe, role) VALUES (:nom, :email, :mot_de_passe, 'Utilisateur')";
     $stmtUtilisateur = $this->bd->prepare($sqlUtilisateur);
-    $stmtUtilisateur->bindValue(':nom', $nom, PDO::PARAM_STR);
-    $stmtUtilisateur->bindValue(':email', $email, PDO::PARAM_STR);
-    $stmtUtilisateur->bindValue(':mot_de_passe', $motDePasse, PDO::PARAM_STR);
-    $stmtUtilisateur->execute();
+    $stmtUtilisateur->execute([
+        ':nom' => $nom,
+        ':email' => $email,
+        ':mot_de_passe' => $motDePasse
+    ]);
 
-    // Récupère l'ID de l'utilisateur créé
+    // Récupérer l'ID de l'utilisateur nouvellement inséré
     $utilisateurId = $this->bd->lastInsertId();
 
-    // Si des informations complémentaires sont fournies, les ajouter à emprunteur
-    if ($telephone || $adresse || $dateNaissance) {
-        $sqlEmprunteur = "INSERT INTO emprunteur (emprunteur_id, telephone, adresse, date_naissance) 
-                          VALUES (:emprunteur_id, :telephone, :adresse, :date_naissance)";
-        $stmtEmprunteur = $this->bd->prepare($sqlEmprunteur);
-        $stmtEmprunteur->bindValue(':emprunteur_id', $utilisateurId, PDO::PARAM_INT);
-        $stmtEmprunteur->bindValue(':telephone', $telephone, PDO::PARAM_STR);
-        $stmtEmprunteur->bindValue(':adresse', $adresse, PDO::PARAM_STR);
-        $stmtEmprunteur->bindValue(':date_naissance', $dateNaissance, PDO::PARAM_STR);
-        $stmtEmprunteur->execute();
+    // Insertion dans la table emprunteur
+    $sqlEmprunteur = "INSERT INTO emprunteur (emprunteur_id, telephone, adresse, date_naissance) VALUES (:emprunteur_id, :telephone, :adresse, :date_naissance)";
+    $stmtEmprunteur = $this->bd->prepare($sqlEmprunteur);
+    $stmtEmprunteur->execute([
+        ':emprunteur_id' => $utilisateurId,
+        ':telephone' => $telephone,
+        ':adresse' => $adresse,
+        ':date_naissance' => $dateNaissance
+    ]);
+}
+
+
+
+public function updateInfoGeneral($utilisateurId, $nom, $email)
+{
+    // Vérifie si l'email est déjà utilisé par un autre utilisateur
+    $sqlCheck = "SELECT utilisateur_id FROM utilisateur WHERE email = :email AND utilisateur_id != :utilisateur_id";
+    $stmtCheck = $this->bd->prepare($sqlCheck);
+    $stmtCheck->execute([
+        ':email' => $email,
+        ':utilisateur_id' => $utilisateurId
+    ]);
+
+    if ($stmtCheck->fetch()) {
+        throw new Exception("Email déjà utilisé par un autre utilisateur.");
+    }
+
+    // Met à jour les informations générales
+    $sqlUpdate = "UPDATE utilisateur SET nom = :nom, email = :email WHERE utilisateur_id = :utilisateur_id";
+    $stmtUpdate = $this->bd->prepare($sqlUpdate);
+    $stmtUpdate->execute([
+        ':nom' => $nom,
+        ':email' => $email,
+        ':utilisateur_id' => $utilisateurId
+    ]);
+}
+
+
+public function updateInfoComplementaire($utilisateurId, $telephone, $adresse, $dateNaissance)
+{
+    // Vérifie si l'utilisateur est déjà dans la table emprunteur
+    $sqlCheck = "SELECT COUNT(*) FROM emprunteur WHERE emprunteur_id = :utilisateur_id";
+    $stmtCheck = $this->bd->prepare($sqlCheck);
+    $stmtCheck->execute([':utilisateur_id' => $utilisateurId]);
+    $exists = $stmtCheck->fetchColumn();
+
+    if ($exists) {
+        // Mise à jour des informations complémentaires
+        $sqlUpdate = "UPDATE emprunteur 
+                      SET telephone = :telephone, adresse = :adresse, date_naissance = :date_naissance 
+                      WHERE emprunteur_id = :utilisateur_id";
+        $stmtUpdate = $this->bd->prepare($sqlUpdate);
+        $stmtUpdate->execute([
+            ':telephone' => $telephone,
+            ':adresse' => $adresse,
+            ':date_naissance' => $dateNaissance,
+            ':utilisateur_id' => $utilisateurId
+        ]);
+    } else {
+        // Insertion des informations complémentaires
+        $sqlInsert = "INSERT INTO emprunteur (emprunteur_id, telephone, adresse, date_naissance) 
+                      VALUES (:utilisateur_id, :telephone, :adresse, :date_naissance)";
+        $stmtInsert = $this->bd->prepare($sqlInsert);
+        $stmtInsert->execute([
+            ':utilisateur_id' => $utilisateurId,
+            ':telephone' => $telephone,
+            ':adresse' => $adresse,
+            ':date_naissance' => $dateNaissance
+        ]);
     }
 }
+
+public function getInfoComplementaire($utilisateurId)
+{
+    $sql = "SELECT telephone, adresse, date_naissance FROM emprunteur WHERE emprunteur_id = :utilisateur_id";
+    $stmt = $this->bd->prepare($sql);
+    $stmt->execute([':utilisateur_id' => $utilisateurId]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result ? $result : []; // Retourne un tableau vide si aucune donnée n'est trouvée
+}
+
 
 public function getUtilisateurs() {
     $query = "SELECT id_utilisateur, nom, email FROM utilisateur";
