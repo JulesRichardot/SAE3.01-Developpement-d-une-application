@@ -221,6 +221,32 @@ public function ajouterUtilisateur($nom, $email, $motDePasse, $telephone = null,
     }
 }
 
+public function getUtilisateurs() {
+    $query = "SELECT id_utilisateur, nom, email FROM utilisateur";
+    $req = $this->bd->prepare($query);
+    $req->execute();
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function getReservations() {
+    $query = "SELECT reservation.id_reservation, jeu.nom AS nom_jeu, utilisateur.nom AS utilisateur, 
+                     reservation.date_reservation, reservation.statut 
+              FROM reservation
+              INNER JOIN jeu ON reservation.jeu_id = jeu.id_jeu
+              INNER JOIN utilisateur ON reservation.utilisateur_id = utilisateur.id_utilisateur";
+    $req = $this->bd->prepare($query);
+    $req->execute();
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// Méthode pour récupérer tous les jeux
+public function getJeux() {
+    $query = "SELECT id_jeu, nom, categorie FROM jeu";
+    $req = $this->bd->prepare($query);
+    $req->execute();
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 
 }
