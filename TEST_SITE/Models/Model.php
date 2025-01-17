@@ -180,6 +180,23 @@ public function getNbJoueurs(){
     return $tab;
 }
 
+public function searchJeux($keyword) {
+    // Recherche dans le titre et les mots clés (mots_cles)
+    $req = $this->bd->prepare('
+        SELECT * FROM jeu
+        WHERE titre LIKE :keyword 
+        OR mots_cles LIKE :keyword
+    ');
+
+    // Préparer le mot-clé avec les % pour la recherche partielle
+    $likeKeyword = '%' . $keyword . '%';
+
+    $req->bindParam(':keyword', $likeKeyword, PDO::PARAM_STR);
+    $req->execute();
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 public function getDateDeSortie(){
     $req = $this->bd->prepare("SELECT DISTINCT date_parution_debut as date_sortie from jeu");
     $req->execute();
