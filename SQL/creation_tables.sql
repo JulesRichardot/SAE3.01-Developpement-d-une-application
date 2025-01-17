@@ -82,17 +82,18 @@ CREATE TABLE utilisateur (
     nom VARCHAR(50) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     mot_de_passe VARCHAR(255) NOT NULL,
-    role ENUM('Admin', 'Gestionnaire', 'Utilisateur') NOT NULL
+    role ENUM('Admin', 'Gestionnaire', 'Utilisateur') NOT NULL,
+    telephone VARCHAR(20),
+    adresse TEXT,
+    date_naissance DATE,
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE emprunteur (
     emprunteur_id INT PRIMARY KEY,
-    nom VARCHAR(255),
-    email VARCHAR(255),
-    adresse TEXT,
-    telephone VARCHAR(20),
     FOREIGN KEY (emprunteur_id) REFERENCES utilisateur(utilisateur_id)
 );
+
 
 CREATE TABLE mecanisme (
     mecanisme_id INT AUTO_INCREMENT PRIMARY KEY,
