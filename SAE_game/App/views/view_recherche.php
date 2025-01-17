@@ -6,18 +6,18 @@
     <!-- Formulaire de recherche -->
     <form class="recherche" action="#" method="GET">
         <div class="form-group">
-            <label for="mot-cle">Mot-clé</label>
-            <input type="text" id="mot-cle" name="mot-cle" placeholder="Rechercher par titre ou mots-clés">
+            <label for="terme">Mot-clé</label>
+            <input type="text" id="terme" name="terme" placeholder="Rechercher par titre ou mots-clés">
         </div>
         <div class="form-group">
             <button type="submit" class="Bouton">Rechercher</button>
         </div>
     </form>
 
-    <?php if (isset($jeux) && !empty($jeux)): ?>
+    <?php if (isset($resultats) && !empty($resultats)): ?>
         <h2>Résultats de la recherche</h2>
         <ul>
-            <?php foreach ($jeux as $jeu): ?>
+            <?php foreach ($resultats as $jeu): ?>
                 <li>
                     <strong><?php echo htmlspecialchars($jeu['titre']); ?></strong> - <?php echo htmlspecialchars($jeu['mots_cles']); ?>
                     <br>
@@ -25,8 +25,8 @@
                 </li>
             <?php endforeach; ?>
         </ul>
-    <?php elseif (isset($_GET['mot-cle']) && empty($jeux)): ?>
-        <p>Aucun jeu trouvé pour le mot-clé "<?php echo htmlspecialchars($_GET['mot-cle']); ?>".</p>
+    <?php elseif (isset($_GET['terme']) && empty($resultats)): ?>
+        <p>Aucun jeu trouvé pour le mot-clé "<?php echo htmlspecialchars($_GET['terme']); ?>".</p>
     <?php endif; ?>
 </div>
 
