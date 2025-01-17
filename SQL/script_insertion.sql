@@ -104,7 +104,8 @@ SELECT
     NULL  -- Vous pouvez mettre NULL pour la date de retour si elle n'est pas précisée
 FROM TempJeux t
 JOIN boite b ON t.num_boite = b.id_boite
-JOIN emprunteur e ON t.auteurs = e.nom  -- Associer l'emprunteur par exemple avec l'auteur
+JOIN utilisateur u ON u.email = t.auteurs  -- Associer par email si possible
+JOIN emprunteur e ON e.emprunteur_id = u.utilisateur_id -- Lier l'utilisateur à l'emprunteur
 WHERE t.information_date IS NOT NULL;
 
 
