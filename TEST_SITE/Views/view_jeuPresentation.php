@@ -3,11 +3,6 @@
     <!-- Présentation du jeu -->
     <div class="container">
         <!-- Section gauche -->
-        <div class="section-gauche">
-            <div class="game-image"></div>
-            <p><strong>Nombre d'exemplaires :</strong> <?php echo htmlspecialchars($nb_boite["nb_boite"])?></p>
-            <a class="Bouton" href="?controller=list&action=boiteJeu&id_jeu=<?= $_GET["id_jeu"] ?>">Voir les boîtes</a>
-        </div>
         <!-- Section droite -->
         <div class="info-section">
             <h1><?php echo htmlspecialchars($unJeux["titre"])?></h1>
@@ -19,6 +14,11 @@
             <p><span>Mécanisme :</span><?php echo htmlspecialchars($unJeux["nom_mecanisme"])?> </p>
             <p><span>Version :</span> <?php echo htmlspecialchars($unJeux["version"])?></p>
             <p><span>Mots-clés :</span> <?php echo htmlspecialchars($unJeux["mots_cles"])?></p>
+        </div>
+        <div class="section-gauche">
+            <div class="game-image"></div>
+            <p><strong>Nombre d'exemplaires :</strong> <?php echo htmlspecialchars($nb_boite["nb_boite"])?></p>
+            <a class="Bouton" href="?controller=list&action=boiteJeu&id_jeu=<?= $_GET["id_jeu"] ?>">Voir les boîtes</a>
         </div>
     </div>
     <!-- Section des jeux similaires -->
