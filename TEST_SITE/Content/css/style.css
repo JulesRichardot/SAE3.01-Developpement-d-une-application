@@ -300,7 +300,7 @@ table th {
 }
 
 #connexion_inscription form input {
-    width: 100%; /* Le champ prend toute la largeur */
+    width: 95%; /* Le champ prend toute la largeur */
     padding: 10px; /* Espacement interne */
     margin-bottom: 15px; /* Espacement entre les champs */
     border: 1px solid #ccc; /* Bordure grise */
