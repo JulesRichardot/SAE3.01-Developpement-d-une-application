@@ -141,6 +141,35 @@ public function getJeuSimilaire($id_jeu){
     $tab = $req->fetchAll(PDO::FETCH_ASSOC);
     return $tab;
 }
+
+public function getJeuParTitre($unTitre){
+    $req = $this->bd->prepare("SELECT * from jeu where titre = :unTitre");
+    $req->bindValue(':unTitre', $unTitre, PDO::PARAM_STR);
+    $req->execute();
+    $tab = $req->fetchAll(PDO::FETCH_ASSOC);
+    return $tab;
+}
+
+public function getCategories(){
+    $req = $this->bd->prepare("SELECT nom as nom_categorie from categorie");
+    $req->execute();
+    $tab = $req->fetchAll(PDO::FETCH_ASSOC);
+    return $tab;
+}
+
+public function getNbJoueurs(){
+    $req = $this->bd->prepare("SELECT DISTINCT nombre_de_joueurs from jeu");
+    $req->execute();
+    $tab = $req->fetchAll(PDO::FETCH_ASSOC);
+    return $tab;
+}
+
+public function getDateDeSortie(){
+    $req = $this->bd->prepare("SELECT DISTINCT date_parution_debut as date_sortie from jeu");
+    $req->execute();
+    $tab = $req->fetchAll(PDO::FETCH_ASSOC);
+    return $tab;
+}
 }
 
 ?>
