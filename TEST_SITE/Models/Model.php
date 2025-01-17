@@ -206,7 +206,7 @@ public function ajouterUtilisateur($nom, $email, $motDePasse, $telephone = null,
         ':mot_de_passe' => $motDePasse
     ]);
 
-    // Récupérer l'ID de l'utilisateur nouvellement inséré
+    // Récupérer l'ID de l'utilisateur crée
     $utilisateurId = $this->bd->lastInsertId();
 
     // Insertion dans la table emprunteur
