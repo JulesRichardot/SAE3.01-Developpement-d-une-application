@@ -1,6 +1,6 @@
 <?php require "view_begin.php"?>
 
-<h1>Liste des jeux - Page <?= $active ?></h1>
+<h1 id="presentation">Liste des jeux - Page <?= $active ?></h1>
 
 <?php require "view_liste_jeuPopulaire.php" ?>
 
