@@ -110,4 +110,15 @@ public function action_inscription()
     header('Location: index.php?controller=connexion_inscription&action=afficher&succes=Inscription réussie.');
     exit;
 }
+
+public function action_deconnexion()
+{
+    // Supprime toutes les données de la session
+    session_destroy();
+
+    // Redirige vers la page d'accueil
+    header('Location: index.php?controller=home');
+    exit;
+}
+
 }
