@@ -1,6 +1,6 @@
 <?php 
 
-class Controller_administration {
+class Controller_administration extends Controller {
 
     public function action_default()
     {
