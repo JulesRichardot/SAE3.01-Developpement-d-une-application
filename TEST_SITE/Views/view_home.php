@@ -8,14 +8,18 @@
     <?php endif; ?>
 
     <div>
-        <h1>Chercher un jeu parmi nos <?= htmlspecialchars($nb_jeux) ?> jeux !</h1> <!-- Affichage du nombre total de jeux -->
-        <input type="search" placeholder="Rechercher un jeu par titre ou catégories">
+        <h1>Chercher un jeu parmi nos <?= htmlspecialchars($nb_jeux) ?> jeux !</h1>
+        <!-- Formulaire de recherche -->
+        <form method="GET" action="?controller=list&action=search">
+            <input type="search" name="search_keyword" placeholder="Rechercher un jeu par titre ou catégories" required>
+            <button type="submit">Rechercher</button>
+        </form>
     </div>
 
     <div id="presentation">
         <h1>Collection de jeux de sociétés</h1>
         <h4>Découvrez et gérez votre collection de jeux de sociétés</h4>
-         <a href="?controller=list&action=pagination"><input type='button' class="Bouton" value="Découvrir"/></a>
+        <a href="?controller=list&action=pagination"><input type='button' class="Bouton" value="Découvrir"/></a>
         <input type='button' class="Bouton" value="Catégories"/>
     </div>
 
