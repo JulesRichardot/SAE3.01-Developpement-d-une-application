@@ -3,39 +3,40 @@
 <section id="monCompte">
     <h1>Mon Compte</h1>
 
-	<!-- Bouton d'administration visible uniquement pour les rôles autorisés -->
-	<?php if ($_SESSION['utilisateur']['role'] === 'Admin' || $_SESSION['utilisateur']['role'] === 'Gestionnaire'): ?>
-	    <div class="admin-button">
-		<a href="index.php?controller=administration&action=administration" class="Bouton">Accéder au panneau d'administration</a>
-	    </div>
-	<?php endif; ?>
-
-    <!-- Affichage et modification des informations générales -->
-    <h3>Informations générales</h3>
-    <form action="?controller=monCompte&action=updateGeneral" method="post">
+    <!-- Modifier les informations générales -->
+    <h2>Modifier les informations générales</h2>
+    <form action="?controller=monCompte&action=updateGenerale" method="post">
         <label for="nom">Nom</label>
-        <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($_SESSION['utilisateur']['nom']) ?>" required>
+        <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($utilisateur['nom']) ?>" required>
 
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" value="<?= htmlspecialchars($_SESSION['utilisateur']['email']) ?>" required>
+        <input type="email" id="email" name="email" value="<?= htmlspecialchars($utilisateur['email']) ?>" required>
 
-        <button type="submit" class="Bouton">Mettre à jour les informations générales</button>
+        <?php if (!empty($_GET['erreur_email'])): ?>
+            <p class="error-message"><?= htmlspecialchars($_GET['erreur_email']) ?></p>
+        <?php endif; ?>
+
+        <button type="submit" class="Bouton">Mettre à jour</button>
     </form>
 
-    <!-- Informations complémentaires -->
-    <h3>Informations complémentaires</h3>
-    <form action="?controller=monCompte&action=updateComplementary" method="post">
+
+    <!-- Modifier les informations complémentaires -->
+    <h2>Modifier les informations complémentaires</h2>
+    <form action="?controller=monCompte&action=updateComplementaire" method="post">
         <label for="telephone">Téléphone</label>
-        <input type="text" id="telephone" name="telephone" value="<?= htmlspecialchars($utilisateur['telephone'] ?? '') ?>">
+        <input type="text" id="telephone" name="telephone"
+            value="<?= htmlspecialchars($utilisateur['telephone'] ?? '') ?>">
 
         <label for="adresse">Adresse</label>
         <textarea id="adresse" name="adresse"><?= htmlspecialchars($utilisateur['adresse'] ?? '') ?></textarea>
 
         <label for="date_naissance">Date de naissance</label>
-        <input type="date" id="date_naissance" name="date_naissance" value="<?= htmlspecialchars($utilisateur['date_naissance'] ?? '') ?>">
+        <input type="date" id="date_naissance" name="date_naissance"
+            value="<?= htmlspecialchars($utilisateur['date_naissance'] ?? '') ?>">
 
-        <button type="submit" class="Bouton">Mettre à jour les informations complémentaires</button>
+        <button type="submit">Mettre à jour</button>
     </form>
+
 
     <!-- Modification du mot de passe -->
     <h3>Modifier le mot de passe</h3>
@@ -51,9 +52,7 @@
 
         <button type="submit" class="Bouton">Modifier le mot de passe</button>
     </form>
-	<br/><br/><br/>
+    <br /><br /><br />
 </section>
-
-
 
 <?php require_once "view_end.php"; ?>
