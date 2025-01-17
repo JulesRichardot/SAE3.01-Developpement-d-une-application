@@ -20,7 +20,7 @@
     </div>
 
     <h1>Nos 10 jeux les plus populaires chez nos utilisateurs !</h1>
-    <table>
+    <table class="table_rendu">
         <thead>
             <tr>
                 <th>Titre</th>
