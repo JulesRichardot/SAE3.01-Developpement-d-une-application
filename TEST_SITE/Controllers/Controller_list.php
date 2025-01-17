@@ -33,8 +33,41 @@ class Controller_list extends Controller
             $this->action_error("Pas de jeu avec cet id !");
         }
     }
+ 
+    public function action_boiteJeu() {
+        $model = Model::getModel();
+        
+        if (isset($_GET["id_jeu"]) and preg_match("/^[1-9]\d*$/", $_GET["id_jeu"])) {
+            // Récupération de toutes les boîtes associées au jeu
+            $boitesDisponibles = $model->getBoitesDisponibles($_GET["id_jeu"]);
+            
+            if ($boitesDisponibles === false || empty($boitesDisponibles)) {
+                $this->action_error("Aucune boîte disponible pour ce jeu.");
+                return; // Arrêter l'exécution si aucune boîte n'est trouvée
+            }
+            
+            // Récupération des informations sur le jeu
+            $jeuInfo = $model->getJeuParId($_GET["id_jeu"]);
+            if ($jeuInfo === false) {
+                $this->action_error("Aucun jeu trouvé avec cet identifiant.");
+                return;
+            }
     
-
+            // Récupération des jeux similaires
+            $jeuxSimilaires = $model->getJeuSimilaire($_GET["id_jeu"]);
+            
+            $data = [
+                'jeu' => $jeuInfo, // Informations sur le jeu
+                'boites' => $boitesDisponibles, // Toutes les boîtes disponibles
+                'nb_exemplaires' => count($boitesDisponibles), // Nombre de boîtes disponibles
+                'jeux_similaires' => $jeuxSimilaires // Jeux similaires
+            ];
+    
+            $this->render("boiteJeu", $data);
+        } else {
+            $this->action_error("Identifiant de jeu invalide.");
+        }
+    }
 
     public function action_pagination()
     {
@@ -86,5 +119,6 @@ class Controller_list extends Controller
         //Affichage de la vue
         $this->render("pagination", $data);
     }
-
 }
+
+?>
