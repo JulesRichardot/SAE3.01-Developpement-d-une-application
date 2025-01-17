@@ -3,6 +3,13 @@
 <section id="monCompte">
     <h1>Mon Compte</h1>
 
+	<!-- Bouton d'administration visible uniquement pour les rôles autorisés -->
+	<?php if ($_SESSION['utilisateur']['role'] === 'Admin' || $_SESSION['utilisateur']['role'] === 'Gestionnaire'): ?>
+	    <div class="admin-button">
+		<a href="index.php?controller=administration&action=administration" class="Bouton">Accéder au panneau d'administration</a>
+	    </div>
+	<?php endif; ?>
+
     <!-- Affichage et modification des informations générales -->
     <h3>Informations générales</h3>
     <form action="?controller=monCompte&action=updateGeneral" method="post">
