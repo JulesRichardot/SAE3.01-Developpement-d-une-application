@@ -153,7 +153,11 @@ class Controller_list extends Controller
             "nbJoueur"=>$m->getNbJoueurs(),
         ];
         
-        if (count($data) == 1){
+        if (isset($_GET["titre"])){
+            $id_jeu = $m->getJeuParTitre($_GET["titre"]["id_jeu"]);
+            $data = ["unJeux" => $m->getJeuParId($id_jeu),
+            "nb_boite" => $m->getNbBoite($id_jeu),
+            "jeuSim" => $m->getJeuSimilaire($id_jeu),];
             $this->render("jeuPresentation", $data);
         }
         else {
