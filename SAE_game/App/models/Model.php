@@ -91,6 +91,19 @@ class Model
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getBoitesDisponibles($id_jeu) {
+    $query = "SELECT boite.id_boite, boite.etat, localisation.salle, localisation.etagere 
+              FROM boite 
+              INNER JOIN localisation ON boite.localisation_id = localisation.localisation_id 
+              WHERE boite.jeu_id = :id_jeu";
+
+    $req = $this->bd->prepare($query);
+    $req->bindValue(":id_jeu", $id_jeu, PDO::PARAM_INT);
+    $req->execute();
+    
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+}
+
     public function getJeuParId($id)
     {
         $req = $this->bd->prepare('SELECT * FROM jeu WHERE titre = :id');
