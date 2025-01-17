@@ -194,29 +194,20 @@ public function getDateDeSortie(){
     return $tab;
 }
 
-public function ajouterUtilisateur($nom, $email, $motDePasse)
+public function ajouterUtilisateur($nom, $email, $motDePasse, $telephone = null, $adresse = null, $dateNaissance = null)
 {
-    $sql = "INSERT INTO utilisateur (nom, email, mot_de_passe, role) VALUES (:nom, :email, :mot_de_passe, 'Utilisateur')";
+    $sql = "INSERT INTO utilisateur (nom, email, mot_de_passe, role, telephone, adresse, date_naissance) 
+            VALUES (:nom, :email, :mot_de_passe, 'Utilisateur', :telephone, :adresse, :date_naissance)";
     $stmt = $this->bd->prepare($sql);
     $stmt->bindValue(':nom', $nom, PDO::PARAM_STR);
     $stmt->bindValue(':email', $email, PDO::PARAM_STR);
     $stmt->bindValue(':mot_de_passe', $motDePasse, PDO::PARAM_STR);
-    $stmt->execute();
-
-    // Retourne l'ID de l'utilisateur inséré
-    return $this->bd->lastInsertId();
-}
-
-public function ajouterEmprunteur($utilisateurId, $telephone, $adresse, $date_naissance)
-{
-    $sql = "INSERT INTO emprunteur (emprunteur_id, telephone, adresse, date_naissance) VALUES (:id, :telephone, :adresse, :date_naissance)";
-    $stmt = $this->bd->prepare($sql);
-    $stmt->bindValue(':id', $utilisateurId, PDO::PARAM_INT);
     $stmt->bindValue(':telephone', $telephone, PDO::PARAM_STR);
     $stmt->bindValue(':adresse', $adresse, PDO::PARAM_STR);
-    $stmt->bindValue(':date_naissance', $date_naissance, PDO::PARAM_STR);
+    $stmt->bindValue(':date_naissance', $dateNaissance, PDO::PARAM_STR);
     $stmt->execute();
 }
+
 
 }
 
