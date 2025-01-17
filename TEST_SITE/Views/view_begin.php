@@ -16,6 +16,12 @@
             <a href="?" class="nav-link">Accueil</a>
             <a href="?controller=list&action=pagination" class="nav-link">Découvrir</a>
             <a href="monCompte.php" class="nav-link">Mon Compte</a>
-            <a href="?controller=connexion_inscription&action=afficher" class="nav-link">Connexion/Inscription</a>
+            
+            <!-- Gère l'état connecté/déconnecté -->
+            <?php if (isset($_SESSION['utilisateur'])): ?>
+                <a href="?controller=connexion_inscription&action=deconnexion" class="nav-link">Se déconnecter</a>
+            <?php else: ?>
+                <a href="?controller=connexion_inscription&action=afficher" class="nav-link">Connexion/Inscription</a>
+            <?php endif; ?>
         </nav>
     </header>
