@@ -27,7 +27,7 @@
         <div class="cards">
             <?php foreach($jeuSim as $jeu) :?>
             <div class="card">
-                <h3><a href="?controller=list&action=jeuPresentation&id_jeu=<?= $jeu['id_jeu'] ?>"><?php echo htmlspecialchars($jeu["titre"])?></a></h3>
+                <h3><a href="?controller=list&action=jeuPresentation&id_jeu=<?= htmlspecialchars($jeu['id_jeu']) ?>"><?php echo htmlspecialchars($jeu["titre"])?></a></h3>
                 <p>Mecanisme : <?php echo htmlspecialchars($unJeux["nom_mecanisme"])?></p>
             </div>
             <?php endforeach ?>
