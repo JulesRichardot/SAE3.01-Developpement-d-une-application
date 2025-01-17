@@ -133,7 +133,7 @@ public function getJeuSimilaire($id_jeu){
     $tab = $req->fetch(PDO::FETCH_ASSOC);
     $meca = $tab["mecanisme_id"];
     if (is_null($meca)){
-        $meca = 1;
+        $meca = $meca = rand(1,204);
     }
     $query = "SELECT * FROM jeu WHERE mecanisme_id = $meca ORDER BY RAND() LIMIT 3";
     $req = $this->bd->prepare($query);
