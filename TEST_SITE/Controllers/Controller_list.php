@@ -33,6 +33,30 @@ class Controller_list extends Controller
             $this->action_error("Pas de jeu avec cet id !");
         }
     }
+
+    public function action_search() {
+    // Vérifier si le mot-clé est passé via l'URL
+    if (isset($_GET['search_keyword'])) {
+        $keyword = $_GET['search_keyword'];
+
+        $m = Model::getModel();
+        // Rechercher les jeux avec le mot-clé
+        $jeux = $m->searchJeux($keyword);
+
+        $nb_jeux = count($jeux);
+
+        $data = [
+            'jeux' => $jeux,  // Liste des jeux trouvés
+            'nb_jeux' => $nb_jeux,  // Nombre total de jeux trouvés
+        ];
+        
+        $this->render('view_home', $data);
+    } else {
+        // Si aucun mot-clé n'est fourni, rediriger ou afficher un message
+        $this->action_error('Veuillez entrer un mot-clé pour la recherche.');
+    }
+}
+
  
     public function action_boiteJeu() {
         $model = Model::getModel();
