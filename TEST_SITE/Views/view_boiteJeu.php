@@ -10,8 +10,6 @@
 
     <!-- Colonne des détails -->
     <div class="details-jeu">
-        <?php echo var_dump($jeu);
-        echo var_dump($boites); ?>
         <h1 class="titre"><?= htmlspecialchars($jeu['titre']) ?></h1>
         <div class="boite-dispo">
             <h3>Boîtes disponibles : <?= htmlspecialchars($nb_exemplaires) ?></h3>
