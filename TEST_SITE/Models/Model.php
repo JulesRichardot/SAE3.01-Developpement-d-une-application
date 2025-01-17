@@ -114,16 +114,6 @@ class Model
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-public function ajouterUtilisateur($nom, $email, $motDePasse)
-{
-    $sql = "INSERT INTO utilisateur (nom, email, mot_de_passe, role) VALUES (:nom, :email, :mot_de_passe, 'Utilisateur')";
-    $stmt = $this->bd->prepare($sql);
-    $stmt->bindValue(':nom', $nom, PDO::PARAM_STR);
-    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-    $stmt->bindValue(':mot_de_passe', $motDePasse, PDO::PARAM_STR);
-    $stmt->execute();
-}
-
 public function getBoitesDisponibles($id_jeu) {
     $query = "SELECT boite.id_boite, boite.etat, localisation.salle, localisation.etagere 
               FROM boite 
@@ -203,6 +193,31 @@ public function getDateDeSortie(){
     $tab = $req->fetchAll(PDO::FETCH_ASSOC);
     return $tab;
 }
+
+public function ajouterUtilisateur($nom, $email, $motDePasse)
+{
+    $sql = "INSERT INTO utilisateur (nom, email, mot_de_passe, role) VALUES (:nom, :email, :mot_de_passe, 'Utilisateur')";
+    $stmt = $this->bd->prepare($sql);
+    $stmt->bindValue(':nom', $nom, PDO::PARAM_STR);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt->bindValue(':mot_de_passe', $motDePasse, PDO::PARAM_STR);
+    $stmt->execute();
+
+    // Retourne l'ID de l'utilisateur inséré
+    return $this->bd->lastInsertId();
+}
+
+public function ajouterEmprunteur($utilisateurId, $telephone, $adresse, $date_naissance)
+{
+    $sql = "INSERT INTO emprunteur (emprunteur_id, telephone, adresse, date_naissance) VALUES (:id, :telephone, :adresse, :date_naissance)";
+    $stmt = $this->bd->prepare($sql);
+    $stmt->bindValue(':id', $utilisateurId, PDO::PARAM_INT);
+    $stmt->bindValue(':telephone', $telephone, PDO::PARAM_STR);
+    $stmt->bindValue(':adresse', $adresse, PDO::PARAM_STR);
+    $stmt->bindValue(':date_naissance', $date_naissance, PDO::PARAM_STR);
+    $stmt->execute();
+}
+
 }
 
 ?>
