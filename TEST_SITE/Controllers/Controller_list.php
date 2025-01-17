@@ -143,6 +143,24 @@ class Controller_list extends Controller
         //Affichage de la vue
         $this->render("pagination", $data);
     }
+
+    public function action_rechercheAvancee() {
+
+        $m = Model::getModel();
+        $data = [
+            "categorie" => $m->getCategories(),
+            "date"=>$m->getDateDeSortie(),
+            "nbJoueur"=>$m->getNbJoueurs(),
+        ];
+        
+        if (count($data) == 1){
+            $this->render("jeuPresentation", $data);
+        }
+        else {
+            $this->render("rechercheAvancee", $data);
+        }
+        
+    }
 }
 
 ?>
