@@ -49,9 +49,9 @@ class Model
         return $tab[0];
     }
 
-     public function getJeuParId($id)
+      public function getJeuParId($id)
     {
-        $query = "SELECT jeu.*, auteur.nom as nom_auteur, editeur.nom as nom_editeur, mecanisme.nom as nom_mecanisme FROM jeu JOIN jeu_auteur USING(id_jeu) JOIN auteur USING(auteur_id) join jeu_editeur on jeu_editeur.id_jeu = jeu.id_jeu JOIN editeur on editeur.editeur_id = jeu_editeur.editeur_id join mecanisme on jeu.mecanisme_id = mecanisme.mecanisme_id WHERE jeu.id_jeu=:id_jeu";
+        $query = "SELECT jeu.*, auteur.nom as nom_auteur, editeur.nom as nom_editeur, mecanisme.nom as nom_mecanisme FROM jeu Left JOIN jeu_auteur USING(id_jeu) Left JOIN auteur USING(auteur_id) Left join jeu_editeur on jeu_editeur.id_jeu = jeu.id_jeu Left JOIN editeur on editeur.editeur_id = jeu_editeur.editeur_id Left join mecanisme on jeu.mecanisme_id = mecanisme.mecanisme_id WHERE jeu.id_jeu=:id_jeu";
         $req = $this->bd->prepare($query);
         $req->bindParam(':id_jeu', $id, PDO::PARAM_INT);
         $req->execute();
