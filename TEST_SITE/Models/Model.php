@@ -125,21 +125,24 @@ public function ajouterUtilisateur($nom, $email, $motDePasse)
 }
 
 public function getJeuSimilaire($id_jeu){
-
-    $query = "SELECT mecanisme_id from jeu where id_jeu = :id_jeu";
+    $query = "SELECT mecanisme_id FROM jeu WHERE id_jeu = :id_jeu";
     $req = $this->bd->prepare($query);
-    $req->bindParam(':id_jeu', $id, PDO::PARAM_INT);
+    $req->bindParam(':id_jeu', $id_jeu, PDO::PARAM_INT); // Utilisation de la bonne variable
     $req->execute();
     $tab = $req->fetch(PDO::FETCH_ASSOC);
-    $meca = $tab["mecanisme_id"];
-    if (is_null($meca)){
-        $meca = $meca = rand(1,204);
+
+    if ($tab === false) {
+        return ["mecanisme_id" => "Inconnue"];
     }
-    $query = "SELECT * FROM jeu WHERE mecanisme_id = $meca ORDER BY RAND() LIMIT 3";
-    $req = $this->bd->prepare($query);
-    $req->execute();
-    $tab = $req->fetchAll(PDO::FETCH_ASSOC);
-    return $tab;
+    else {
+        $meca = $tab["mecanisme_id"];
+        $query = "SELECT * FROM jeu WHERE mecanisme_id = :meca ORDER BY RAND() LIMIT 3";
+        $req = $this->bd->prepare($query);
+        $req->bindParam(':meca', $meca, PDO::PARAM_INT); // Utilisation de la requête préparée
+        $req->execute();
+        $tab = $req->fetchAll(PDO::FETCH_ASSOC);
+        return $tab;
+    }
 }
 
 public function getJeuParTitre($unTitre){
