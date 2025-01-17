@@ -196,17 +196,31 @@ public function getDateDeSortie(){
 
 public function ajouterUtilisateur($nom, $email, $motDePasse, $telephone = null, $adresse = null, $dateNaissance = null)
 {
-    $sql = "INSERT INTO utilisateur (nom, email, mot_de_passe, role, telephone, adresse, date_naissance) 
-            VALUES (:nom, :email, :mot_de_passe, 'Utilisateur', :telephone, :adresse, :date_naissance)";
-    $stmt = $this->bd->prepare($sql);
-    $stmt->bindValue(':nom', $nom, PDO::PARAM_STR);
-    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-    $stmt->bindValue(':mot_de_passe', $motDePasse, PDO::PARAM_STR);
-    $stmt->bindValue(':telephone', $telephone, PDO::PARAM_STR);
-    $stmt->bindValue(':adresse', $adresse, PDO::PARAM_STR);
-    $stmt->bindValue(':date_naissance', $dateNaissance, PDO::PARAM_STR);
-    $stmt->execute();
+    // Ajout dans la table utilisateur
+    $sqlUtilisateur = "INSERT INTO utilisateur (nom, email, mot_de_passe, role) 
+                        VALUES (:nom, :email, :mot_de_passe, 'Utilisateur')";
+    $stmtUtilisateur = $this->bd->prepare($sqlUtilisateur);
+    $stmtUtilisateur->bindValue(':nom', $nom, PDO::PARAM_STR);
+    $stmtUtilisateur->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmtUtilisateur->bindValue(':mot_de_passe', $motDePasse, PDO::PARAM_STR);
+    $stmtUtilisateur->execute();
+
+    // Récupère l'ID de l'utilisateur créé
+    $utilisateurId = $this->bd->lastInsertId();
+
+    // Si des informations complémentaires sont fournies, les ajouter à emprunteur
+    if ($telephone || $adresse || $dateNaissance) {
+        $sqlEmprunteur = "INSERT INTO emprunteur (emprunteur_id, telephone, adresse, date_naissance) 
+                          VALUES (:emprunteur_id, :telephone, :adresse, :date_naissance)";
+        $stmtEmprunteur = $this->bd->prepare($sqlEmprunteur);
+        $stmtEmprunteur->bindValue(':emprunteur_id', $utilisateurId, PDO::PARAM_INT);
+        $stmtEmprunteur->bindValue(':telephone', $telephone, PDO::PARAM_STR);
+        $stmtEmprunteur->bindValue(':adresse', $adresse, PDO::PARAM_STR);
+        $stmtEmprunteur->bindValue(':date_naissance', $dateNaissance, PDO::PARAM_STR);
+        $stmtEmprunteur->execute();
+    }
 }
+
 
 
 }
