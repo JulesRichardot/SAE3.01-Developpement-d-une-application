@@ -128,21 +128,7 @@ class Model
         return $req->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function searchJeux($keyword) {
-    // Recherche dans le titre et les mots clés (mots_cles)
-    $req = $this->bd->prepare('
-        SELECT * FROM jeu
-        WHERE titre LIKE :keyword 
-        OR mots_cles LIKE :keyword
-    ');
 
-    // Préparer le mot-clé avec les % pour la recherche partielle
-    $likeKeyword = '%' . $keyword . '%';
-
-    $req->bindParam(':keyword', $likeKeyword, PDO::PARAM_STR);
-    $req->execute();
-    return $req->fetchAll(PDO::FETCH_ASSOC);
-}
 
     // Fonction pour récupérer un jeu aléatoire
     public function getJeuAleatoire() {
