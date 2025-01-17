@@ -49,6 +49,7 @@ public function action_connexion()
     if ($utilisateur) {
         // Vérification du mot de passe
         if (password_verify($motDePasse, $utilisateur['mot_de_passe'])) {
+            session_start();
             $_SESSION['utilisateur'] = [
                 'id' => $utilisateur['utilisateur_id'],
                 'nom' => $utilisateur['nom'],
