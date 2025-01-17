@@ -78,16 +78,19 @@ public function action_inscription()
     $nom = $_POST['nom'] ?? '';
     $email = $_POST['email'] ?? '';
     $motDePasse = $_POST['mot_de_passe'] ?? '';
+    $telephone = $_POST['telephone'] ?? null;
+    $adresse = $_POST['adresse'] ?? null;
+    $date_naissance = $_POST['date_naissance'] ?? null;
 
-    // Vérifie les champs vides
+    // Vérifie les champs obligatoires
     if (empty($nom) || empty($email) || empty($motDePasse)) {
-        header('Location: index.php?controller=connexion_inscription&action=afficher&erreur_inscription=Veuillez remplir tous les champs.&inscription_email=' . urlencode($email) . '&inscription_nom=' . urlencode($nom));
+        header('Location: index.php?controller=connexion_inscription&action=afficher&erreur_inscription=Veuillez remplir tous les champs obligatoires.');
         exit;
     }
 
     // Vérifie que l'email est valide
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header('Location: index.php?controller=connexion_inscription&action=afficher&erreur_inscription=Email invalide.&inscription_email=' . urlencode($email) . '&inscription_nom=' . urlencode($nom));
+        header('Location: index.php?controller=connexion_inscription&action=afficher&erreur_inscription=Email invalide.');
         exit;
     }
 
@@ -96,20 +99,21 @@ public function action_inscription()
     $utilisateurExistant = $modele->getUtilisateurParMail($email);
 
     if ($utilisateurExistant) {
-        header('Location: index.php?controller=connexion_inscription&action=afficher&erreur_inscription=Email déjà utilisé.&inscription_email=' . urlencode($email) . '&inscription_nom=' . urlencode($nom));
+        header('Location: index.php?controller=connexion_inscription&action=afficher&erreur_inscription=Email déjà utilisé.');
         exit;
     }
 
     // Hachage du mot de passe
     $motDePasseHash = password_hash($motDePasse, PASSWORD_BCRYPT);
 
-    // Création de l'utilisateur
-    $modele->ajouterUtilisateur($nom, $email, $motDePasseHash);
+    // Création de l'utilisateur avec informations complémentaires
+    $modele->ajouterUtilisateur($nom, $email, $motDePasseHash, $telephone, $adresse, $date_naissance);
 
     // Redirection avec message de succès
     header('Location: index.php?controller=connexion_inscription&action=afficher&succes=Inscription réussie.');
     exit;
 }
+
 
 public function action_deconnexion()
 {
