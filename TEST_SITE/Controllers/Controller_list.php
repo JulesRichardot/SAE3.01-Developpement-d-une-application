@@ -26,17 +26,8 @@ class Controller_list extends Controller
             "jeuSim" => $m->getJeuSimilaire($_GET["id_jeu"]),
         ];
         }
-        // juste pour la page de safiya je suppose, faire une autre action VOIR un autre controller
-        else if (isset($_GET["titre"])){
-            $m = Model::getModel();
-            $id_jeu = $m->getJeuParTitre($_GET["titre"])["id_jeu"];
-            $data = ["unJeux" => $m->getJeuParId($id_jeu),
-            "nb_boite" => $m->getNbBoite($id_jeu),
-            "jeuSim" => $m->getJeuSimilaire($id_jeu),];
-            $this->render("jeuPresentation", $data);
-        }
-
-        //Si on a bien un prix nobel d'identifiant$_GET["id"]
+        
+        //Si on a bien un jeu d'identifiant$_GET["id"]
         if ($data !== false) {
             $this->render("jeuPresentation", $data);
         } else {
@@ -150,27 +141,7 @@ public function action_rechercheParMotCle() {
         $this->render("pagination", $data);
     }
 
-    public function action_rechercheAvancee() {
-
-        $m = Model::getModel();
-        $data = [
-            "categorie" => $m->getCategories(),
-            "date"=>$m->getDateDeSortie(),
-            "nbJoueur"=>$m->getNbJoueurs(),
-        ];
-        
-        if (isset($_GET["titre"])){
-            $id_jeu = $m->getJeuParTitre($_GET["titre"]["id_jeu"]);
-            $data = ["unJeux" => $m->getJeuParId($id_jeu),
-            "nb_boite" => $m->getNbBoite($id_jeu),
-            "jeuSim" => $m->getJeuSimilaire($id_jeu),];
-            $this->render("jeuPresentation", $data);
-        }
-        else {
-            $this->render("rechercheAvancee", $data);
-        }
-        
-    }
+   
 }
 
 ?>
