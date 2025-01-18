@@ -148,14 +148,15 @@ public function getJeuSimilaire($id_jeu){
     }
 }
 
+//methode pour rechercher un jeu avec son titre partiel ou entier
+
 public function getJeuParTitre($unTitre){
-    $req = $this->bd->prepare("SELECT * from jeu where titre = :unTitre");
-    $req->bindValue(':unTitre', $unTitre, PDO::PARAM_STR);
+    $req = $this->bd->prepare('SELECT * from jeu where titre LIKE "%'.$unTitre.'%"');
+    //$req->bindValue(':unTitre', $unTitre, PDO::PARAM_STR);
     $req->execute();
     $tab = $req->fetchAll(PDO::FETCH_ASSOC);
-    return $tab[0];
+    return $tab;
 }
-
 public function getCategories(){
     $req = $this->bd->prepare("SELECT nom as nom_categorie from categorie");
     $req->execute();
