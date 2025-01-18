@@ -193,6 +193,46 @@ public function getDateDeSortie(){
     return $tab;
 }
 
+//rechercher par categorie, date, nb joueur
+public function getJeuxAvecFiltres($categorie, $nbJoueur, $dateSortie) {
+    // Base de la requête
+    $query = "SELECT jeu.* FROM jeu";
+    $conditions = [];
+    $params = [];
+
+    // Ajout des jointures et conditions pour la catégorie
+    if (!empty($categorie)) {
+        $query .= " JOIN jeu_categorie USING(id_jeu) JOIN categorie USING(id_categorie)";
+        $conditions[] = "categorie.nom = :categorie";
+        $params[':categorie'] = $categorie;
+    }
+
+    // Condition pour le nombre de joueurs
+    if (!empty($nbJoueur)) {
+        $conditions[] = "jeu.nombre_de_joueurs = :nbJoueur";
+        $params[':nbJoueur'] = $nbJoueur;
+    }
+
+    // Condition pour la date de sortie
+    if (!empty($dateSortie)) {
+        $conditions[] = "jeu.date_parution_debut = :dateSortie";
+        $params[':dateSortie'] = $dateSortie;
+    }
+
+    // Ajout des conditions à la requête
+    if (!empty($conditions)) {
+        $query .= " WHERE " . implode(" AND ", $conditions);
+    }
+
+    $req = $this->bd->prepare($query);
+
+    foreach ($params as $key => $value) {
+        $req->bindValue($key, $value, PDO::PARAM_STR);
+    }
+
+    $req->execute();
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+}
 
 public function ajouterUtilisateur($nom, $email, $motDePasse, $telephone = null, $adresse = null, $dateNaissance = null)
 {
