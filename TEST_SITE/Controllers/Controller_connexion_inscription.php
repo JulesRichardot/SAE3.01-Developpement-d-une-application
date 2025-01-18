@@ -110,6 +110,13 @@ class Controller_connexion_inscription extends Controller
             exit;
         }
 
+        // Vérifie que le numéro de téléphone est valide (optionnel)
+        if (!empty($telephone) && !preg_match('/^\+?[0-9 ]{8,15}$/', $telephone)) {
+            header('Location: index.php?controller=connexion_inscription&action=afficher&erreur_inscription=Numéro de téléphone invalide.');
+            exit;
+        }
+
+
         // Hachage du mot de passe
         $motDePasseHash = password_hash($motDePasse, PASSWORD_BCRYPT);
 
