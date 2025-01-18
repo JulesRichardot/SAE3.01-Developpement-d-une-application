@@ -62,7 +62,9 @@
         <input type="password" id="ancien_mot_de_passe" name="ancien_mot_de_passe" required>
 
         <label for="nouveau_mot_de_passe">Nouveau mot de passe</label>
+
         <input type="password" id="nouveau_mot_de_passe" name="nouveau_mot_de_passe" required>
+
 
         <label for="confirmation_mot_de_passe">Confirmer le nouveau mot de passe</label>
         <input type="password" id="confirmation_mot_de_passe" name="confirmation_mot_de_passe" required>
@@ -74,9 +76,11 @@
         <?php if (!empty($succes)): ?>
             <p class="success-message"><?= htmlspecialchars($succes) ?></p>
         <?php endif; ?>
+        <br /><br />
 
         <button type="submit" class="Bouton">Modifier le mot de passe</button>
     </form>
+
 
     <br /><br /><br />
 </section>
