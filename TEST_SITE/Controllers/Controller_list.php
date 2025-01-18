@@ -25,8 +25,8 @@ class Controller_list extends Controller
             "nb_boite" => $m->getNbBoite($_GET["id_jeu"]),
             "jeuSim" => $m->getJeuSimilaire($_GET["id_jeu"]),
         ];
-
-        // pour la page de safiya seulement je pense, il faudrait sûrement faire une autre action OU autre controller
+        }
+        // juste pour la page de safiya je suppose, faire une autre action VOIR un autre controller
         else if (isset($_GET["titre"])){
             $m = Model::getModel();
             $id_jeu = $m->getJeuParTitre($_GET["titre"])["id_jeu"];
@@ -35,8 +35,7 @@ class Controller_list extends Controller
             "jeuSim" => $m->getJeuSimilaire($id_jeu),];
             $this->render("jeuPresentation", $data);
         }
-        
-        }
+
         //Si on a bien un prix nobel d'identifiant$_GET["id"]
         if ($data !== false) {
             $this->render("jeuPresentation", $data);
