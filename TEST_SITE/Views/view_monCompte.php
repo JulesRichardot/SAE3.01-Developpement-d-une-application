@@ -5,36 +5,42 @@
 
 
     <!-- Bouton d'administration visible uniquement pour les rôles autorisés -->
-	<?php if ($_SESSION['utilisateur']['role'] === 'Admin' || $_SESSION['utilisateur']['role'] === 'Gestionnaire'): ?>
-	    <div class="admin-button">
-		<a href="index.php?controller=administration&action=administration" class="Bouton">Accéder au panneau d'administration</a>
-	    </div>
-	<?php endif; ?>
+    <?php if ($_SESSION['utilisateur']['role'] === 'Admin' || $_SESSION['utilisateur']['role'] === 'Gestionnaire'): ?>
+        <div class="admin-button">
+            <a href="index.php?controller=administration&action=administration" class="Bouton">Accéder au panneau
+                d'administration</a>
+        </div>
+    <?php endif; ?>
 
 
-    <!-- Modifier les informations générales -->
-    <h2>Modifier les informations générales</h2>
+    <!-- Informations générales -->
+    <h2>Informations générales</h2>
     <form action="?controller=monCompte&action=updateGenerale" method="post">
         <label for="nom">Nom</label>
         <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($utilisateur['nom']) ?>" required>
+        <?php if (!empty($erreur) && strpos($erreur, 'Nom') !== false): ?>
+            <p class="error-message"><?= htmlspecialchars($erreur) ?></p>
+        <?php endif; ?>
 
         <label for="email">Email</label>
         <input type="email" id="email" name="email" value="<?= htmlspecialchars($utilisateur['email']) ?>" required>
-
-        <?php if (!empty($_GET['erreur_email'])): ?>
-            <p class="error-message"><?= htmlspecialchars($_GET['erreur_email']) ?></p>
+        <?php if (!empty($erreur) && strpos($erreur, 'Email') !== false): ?>
+            <p class="error-message"><?= htmlspecialchars($erreur) ?></p>
         <?php endif; ?>
 
         <button type="submit" class="Bouton">Mettre à jour</button>
     </form>
 
 
-    <!-- Modifier les informations complémentaires -->
-    <h2>Modifier les informations complémentaires</h2>
+    <!-- Informations complémentaires -->
+    <h2>Informations complémentaires</h2>
     <form action="?controller=monCompte&action=updateComplementaire" method="post">
         <label for="telephone">Téléphone</label>
         <input type="text" id="telephone" name="telephone"
             value="<?= htmlspecialchars($utilisateur['telephone'] ?? '') ?>">
+        <?php if (!empty($erreur) && strpos($erreur, 'Numéro de téléphone') !== false): ?>
+            <p class="error-message"><?= htmlspecialchars($erreur) ?></p>
+        <?php endif; ?>
 
         <label for="adresse">Adresse</label>
         <textarea id="adresse" name="adresse"><?= htmlspecialchars($utilisateur['adresse'] ?? '') ?></textarea>
@@ -42,10 +48,12 @@
         <label for="date_naissance">Date de naissance</label>
         <input type="date" id="date_naissance" name="date_naissance"
             value="<?= htmlspecialchars($utilisateur['date_naissance'] ?? '') ?>">
+        <?php if (!empty($erreur) && strpos($erreur, 'Date de naissance') !== false): ?>
+            <p class="error-message"><?= htmlspecialchars($erreur) ?></p>
+        <?php endif; ?>
 
-        <button type="submit">Mettre à jour</button>
+        <button type="submit" class="Bouton">Mettre à jour</button>
     </form>
-
 
     <!-- Modification du mot de passe -->
     <h3>Modifier le mot de passe</h3>
@@ -61,6 +69,7 @@
 
         <button type="submit" class="Bouton">Modifier le mot de passe</button>
     </form>
+
     <br /><br /><br />
 </section>
 
