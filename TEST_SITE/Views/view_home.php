@@ -9,9 +9,9 @@
 
     <div>
         <h1>Chercher un jeu parmi nos <?= htmlspecialchars($nb_jeux) ?> jeux !</h1>
-        <!-- Formulaire de recherche -->
-        <form method="GET" action="?controller=list&action=search">
-            <input type="search" name="search_keyword" placeholder="Rechercher un jeu par titre ou catégories" required>
+        <!-- Formulaire de recherche par mot-clé -->
+        <form method="GET" action="?controller=list&action=searchMotCle">
+            <input type="search" name="mot_cle" placeholder="Rechercher un jeu par mot-clé" required>
             <button type="submit">Rechercher</button>
         </form>
     </div>
