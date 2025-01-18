@@ -342,17 +342,30 @@ table th {
 
 /* Messages d'erreur et de succès */
 #connexion_inscription .error {
-    color: red; /* Texte rouge pour les erreurs */
+    color: red;
     font-size: 14px;
     margin-bottom: 10px;
-    text-align: center; /* Centré */
+    text-align: center;
 }
 
 #connexion_inscription .success {
-    color: green; /* Texte vert pour les succès */
+    color: green;
     font-size: 14px;
     margin-bottom: 10px;
-    text-align: center; /* Centré */
+    text-align: center;
+}
+
+/* Messages d'erreur et de succès spécifiques */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.success-message {
+    color: green;
+    font-size: 14px;
+    margin-top: 5px;
 }
 
 
