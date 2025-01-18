@@ -312,37 +312,18 @@ class Model
      */
     public function updateInfoComplementaire($utilisateurId, $telephone, $adresse, $dateNaissance)
     {
-        // Vérifie si l'utilisateur est déjà dans la table emprunteur
-        $sqlCheck = "SELECT COUNT(*) FROM emprunteur WHERE emprunteur_id = :utilisateur_id";
-        $stmtCheck = $this->bd->prepare($sqlCheck);
-        $stmtCheck->execute([':utilisateur_id' => $utilisateurId]);
-        $exists = $stmtCheck->fetchColumn();
-
-        if ($exists) {
-            // Mise à jour des informations complémentaires
-            $sqlUpdate = "UPDATE emprunteur 
-                      SET telephone = :telephone, adresse = :adresse, date_naissance = :date_naissance 
-                      WHERE emprunteur_id = :utilisateur_id";
-            $stmtUpdate = $this->bd->prepare($sqlUpdate);
-            $stmtUpdate->execute([
-                ':telephone' => $telephone,
-                ':adresse' => $adresse,
-                ':date_naissance' => $dateNaissance,
-                ':utilisateur_id' => $utilisateurId
-            ]);
-        } else {
-            // Insertion des informations complémentaires
-            $sqlInsert = "INSERT INTO emprunteur (emprunteur_id, telephone, adresse, date_naissance) 
-                      VALUES (:utilisateur_id, :telephone, :adresse, :date_naissance)";
-            $stmtInsert = $this->bd->prepare($sqlInsert);
-            $stmtInsert->execute([
-                ':utilisateur_id' => $utilisateurId,
-                ':telephone' => $telephone,
-                ':adresse' => $adresse,
-                ':date_naissance' => $dateNaissance
-            ]);
-        }
+        $sqlUpdate = "UPDATE utilisateur 
+                  SET telephone = :telephone, adresse = :adresse, date_naissance = :date_naissance 
+                  WHERE utilisateur_id = :utilisateur_id";
+        $stmtUpdate = $this->bd->prepare($sqlUpdate);
+        $stmtUpdate->execute([
+            ':telephone' => $telephone,
+            ':adresse' => $adresse,
+            ':date_naissance' => $dateNaissance,
+            ':utilisateur_id' => $utilisateurId
+        ]);
     }
+
 
 
     /**
@@ -350,12 +331,13 @@ class Model
      */
     public function getInfoComplementaire($utilisateurId)
     {
-        $sql = "SELECT telephone, adresse, date_naissance FROM emprunteur WHERE emprunteur_id = :utilisateur_id";
+        $sql = "SELECT telephone, adresse, date_naissance FROM utilisateur WHERE utilisateur_id = :utilisateur_id";
         $stmt = $this->bd->prepare($sql);
         $stmt->execute([':utilisateur_id' => $utilisateurId]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ? $result : []; // Retourne un tableau vide si aucune donnée n'est trouvée
     }
+
 
 
 
