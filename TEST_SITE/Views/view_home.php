@@ -9,9 +9,11 @@
 
     <div>
         <h1>Chercher un jeu parmi nos <?= htmlspecialchars($nb_jeux) ?> jeux !</h1>
-        <!-- Formulaire de recherche par mot-clé -->
-        <form method="GET" action="?controller=list&action=searchMotCle">
+        <!-- Recherche par mots clés -->
+        <form method="GET" action="index.php">
             <input type="search" name="mot_cle" placeholder="Rechercher un jeu par mot-clé" required>
+            <input type="hidden" name="controller" value="list">
+            <input type="hidden" name="action" value="rechercheParMotCle">
             <button type="submit">Rechercher</button>
         </form>
     </div>
