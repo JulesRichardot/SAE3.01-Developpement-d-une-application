@@ -177,7 +177,7 @@ class Model
         return $tab;
     }
 
-    public function getMotCle($motCle)
+      public function getParMotCle($motCle)
     {
         // Préparer la requête SQL pour rechercher dans la colonne mots_cles
         $req = $this->bd->prepare('
