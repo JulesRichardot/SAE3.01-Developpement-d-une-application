@@ -22,8 +22,8 @@
                         <?php foreach ($jeux as $jeu): ?>
                             <tr>
                                 <td><?= htmlspecialchars($jeu['id_jeu']) ?></td>
-                                <td><?= htmlspecialchars($jeu['nom']) ?></td>
-                                <td><?= htmlspecialchars($jeu['categorie']) ?></td>
+                                <td><?= htmlspecialchars($jeu['titre']) ?></td>
+                                <td><?= htmlspecialchars($jeu['categories']) ?></td>
                                 <td>
                                     <button class="Bouton">Modifier</button>
                                     <button class="Bouton Noir">Supprimer</button>
