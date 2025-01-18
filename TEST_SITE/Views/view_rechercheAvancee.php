@@ -2,8 +2,8 @@
 <div class="container">
     <h1>Recherche Avancée</h1>
     <form class="recherche-avancee" action="index.php" method="GET">
-        <input type="hidden" name="controller" value="list">
-        <input type="hidden" name="action" value="jeuPresentation">
+        <input type="hidden" name="controller" value="recherche">
+        <input type="hidden" name="action" value="rechercheAvancee">
         <div class="form-group">
             <label for="titre-jeu">Titre du jeu</label>
             <input type="text" id="titre" name="titre" placeholder="Rechercher par titre" value="" oninput="desactiverChamp()">
