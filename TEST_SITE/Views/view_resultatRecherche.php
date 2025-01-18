@@ -7,7 +7,7 @@
         </thead>
         
         <tbody>
-            <tr><td><?php if (count($lesTitres) <= 0){echo "aucun titre ne correspond à la recherche";}?></td></tr>
+            <?php if (count($lesTitres) <= 0){echo " <tr><td>aucun titre ne correspond à la recherche </td></tr>";}?>
             <?php foreach ($lesTitres as $jeu): ?>
                 <tr>
                     <td><a href="?controller=list&action=jeuPresentation&id_jeu=<?= $jeu['id_jeu'] ?>"><?= htmlspecialchars($jeu['titre']) ?></a></td>
