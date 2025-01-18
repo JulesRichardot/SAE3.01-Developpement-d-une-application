@@ -156,8 +156,8 @@ class Model
 
     public function getJeuParTitre($unTitre)
     {
-        $req = $this->bd->prepare('SELECT * from jeu where titre LIKE "%' . $unTitre . '%"');
-        //$req->bindValue(':unTitre', $unTitre, PDO::PARAM_STR);
+        $req = $this->bd->prepare('SELECT * from jeu where titre LIKE :unTitre');
+        $req->bindValue(':unTitre', '%' . $unTitre . '%', PDO::PARAM_STR);
         $req->execute();
         $tab = $req->fetchAll(PDO::FETCH_ASSOC);
         return $tab;
