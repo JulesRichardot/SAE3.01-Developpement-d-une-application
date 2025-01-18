@@ -122,6 +122,12 @@ class Controller_monCompte extends Controller
             exit;
         }
 
+        // Vérifie que le mot de passe respecte les exigences
+        if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $nouveauMotDePasse)) {
+            header('Location: index.php?controller=monCompte&action=afficher&erreur=Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.');
+            exit;
+        }
+
         // Met à jour le mot de passe via le modèle
         try {
             $modele = Model::getModel();
@@ -132,6 +138,7 @@ class Controller_monCompte extends Controller
         }
         exit;
     }
+
 
 
 }
