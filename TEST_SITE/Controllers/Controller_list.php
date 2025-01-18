@@ -43,11 +43,11 @@ public function action_rechercheParMotCle() {
         "nbJoueur" => $m->getNbJoueurs(),
     ];
     if (isset($_GET["mot_cle"])) {
-        $resultats = $m->getMotCle($_GET["mot_cle"]);
+        $resultats = $m->getParMotCle($_GET["mot_cle"]);
         if (!empty($resultats)) {
-            $data["jeux"] = $resultats;
+            $data["lesTitres"] = $resultats;
             // Afficher les résultats dans la vue home.php
-            $this->render("home", $data);
+            $this->render("resultatRecherche", $data);
         } else {
             $this->action_error("Aucun jeu trouvé avec ce mot-clé !");
         }
