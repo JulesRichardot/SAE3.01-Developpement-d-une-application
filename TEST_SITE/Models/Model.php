@@ -171,21 +171,19 @@ public function getNbJoueurs(){
     return $tab;
 }
 
-public function searchJeux($keyword) {
-    // Recherche dans le titre et les mots clés (mots_cles)
+public function getMotCle($motCle) {
+    // Préparer la requête SQL pour rechercher dans la colonne mots_cles
     $req = $this->bd->prepare('
         SELECT * FROM jeu
-        WHERE titre LIKE :keyword 
-        OR mots_cles LIKE :keyword
+        WHERE mots_cles LIKE :motCle
     ');
-
-    // Préparer le mot-clé avec les % pour la recherche partielle
-    $likeKeyword = '%' . $keyword . '%';
-
-    $req->bindParam(':keyword', $likeKeyword, PDO::PARAM_STR);
+    $req->bindValue(':motCle', '%' . $motCle . '%', PDO::PARAM_STR);
     $req->execute();
-    return $req->fetchAll(PDO::FETCH_ASSOC);
+    $tab = $req->fetchAll(PDO::FETCH_ASSOC);
+    return $tab;
 }
+
+
 
 
 public function getDateDeSortie(){
