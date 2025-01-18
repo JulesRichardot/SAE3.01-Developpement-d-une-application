@@ -402,6 +402,77 @@ class Model
         ]);
     }
 
+    public function getInformationsDuJeu($id_jeu)
+    {
+        // Préparation de la requête SQL
+        $query = "
+            SELECT * FROM jeu WHERE id_jeu = :id_jeu
+        ";
+
+        // Préparation de l'exécution de la requête
+        $stmt = $this->bd->prepare($query);
+        $stmt->bindParam(':id_jeu', $id_jeu, PDO::PARAM_INT);
+
+        // Exécution de la requête
+        $stmt->execute();
+
+        // Récupération des résultats
+        $jeu = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Vérifier si des données ont été récupérées
+        if ($jeu) {
+            // Nettoyage des valeurs nulles
+            $data = [];
+            foreach ($jeu as $key => $value) {
+                if ($value === null) {
+                    $data[$key] = "";
+                } else {
+                    $data[$key] = $value;
+                }
+            }
+
+            return $data;
+        } else {
+            return null; // Pas de jeu trouvé avec cet ID
+        }
+    }
+
+    public function updateInfosJeu($infos) {
+        // Préparation de la requête SQL pour mettre à jour la table 'jeu'
+        $sql = "UPDATE jeu SET 
+                    titre = :titre_jeu, 
+                    date_parution_debut = :date_parution_debut, 
+                    date_parution_fin = :date_parution_fin, 
+                    information_date = :information_date,
+                    version = :version, 
+                    nombre_de_joueurs = :nombre_joueurs,
+                    age_indique = :age_min,
+                    mots_cles = :mots_cles
+                WHERE id_jeu = :id_jeu";
+    
+        // Préparation de la requête
+        $stmt = $this->bd->prepare($sql);
+    
+        // Lier les paramètres aux valeurs envoyées dans le formulaire
+        $stmt->bindParam(':id_jeu', $infos['id_jeu'], PDO::PARAM_INT);
+        $stmt->bindParam(':titre_jeu', $infos['titre_jeu'], PDO::PARAM_STR);
+        $stmt->bindParam(':date_parution_debut', $infos['date_parution_debut'], PDO::PARAM_INT);
+        $stmt->bindParam(':date_parution_fin', $infos['date_parution_fin'], PDO::PARAM_INT);
+        $stmt->bindParam(':information_date', $infos['information_date'], PDO::PARAM_STR);
+        $stmt->bindParam(':version', $infos['version'], PDO::PARAM_STR);
+        $stmt->bindParam(':nombre_joueurs', $infos['nombre_joueurs'], PDO::PARAM_STR);
+        $stmt->bindParam(':age_min', $infos['age_min'], PDO::PARAM_STR);
+        $stmt->bindParam(':mots_cles', $infos['mots_cles'], PDO::PARAM_STR);
+    
+        // Exécution de la requête
+        $stmt->execute();
+    
+        // Retourner un message de succès
+        return "Le jeu a bien été mis à jour.";
+    }
+
+    
+
 }
 
 ?>
