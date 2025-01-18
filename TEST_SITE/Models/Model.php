@@ -312,12 +312,11 @@ public function getReservations() {
 
 // Méthode pour récupérer tous les jeux
 public function getJeux() {
-    $query = "
-        SELECT jeu.id_jeu, jeu.titre, categorie.nom AS categorie 
-        FROM jeu
-        LEFT JOIN jeu_categorie ON jeu.id_jeu = jeu_categorie.id_jeu
-        LEFT JOIN categorie ON jeu_categorie.id_categorie = categorie.id_categorie
-    ";
+    $query = "SELECT jeu.id_jeu, jeu.titre, GROUP_CONCAT(categorie.nom ORDER BY categorie.nom ASC SEPARATOR ', ') AS categories
+              FROM jeu
+              LEFT JOIN jeu_categorie ON jeu.id_jeu = jeu_categorie.id_jeu
+              LEFT JOIN categorie ON jeu_categorie.id_categorie = categorie.id_categorie
+              GROUP BY jeu.id_jeu, jeu.titre";
     $req = $this->bd->prepare($query);
     $req->execute();
     return $req->fetchAll(PDO::FETCH_ASSOC);
