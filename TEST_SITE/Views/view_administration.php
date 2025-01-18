@@ -37,8 +37,8 @@
                                 <td><?= htmlspecialchars($jeu['titre']) ?></td>
                                 <td><?= htmlspecialchars($jeu['categories']) ?></td>
                                 <td>
-                                    <button class="Bouton">Modifier</button>
-                                    <button class="Bouton Noir">Supprimer</button>
+				<a href="index.php?controller=set&action=form_update" class="Bouton">Modifier</a>
+				<a href="index.php?controller=set&action=supprimer" class="Bouton">Supprimer</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
