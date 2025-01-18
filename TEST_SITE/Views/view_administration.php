@@ -4,7 +4,7 @@
 <div class="container">
         <h1>Panneau d'administration</h1>
 
-        <?php if ($role === 'admin' || $role === 'gestionnaire'): ?>
+        <?php if ($role === 'Admin' || $role === 'Gestionnaire'): ?>
             <!-- Gestion des jeux -->
             <div class="admin-section">
                 <h2>Gestion des jeux</h2>
