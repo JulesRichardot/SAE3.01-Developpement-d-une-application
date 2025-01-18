@@ -6,7 +6,7 @@ require_once "Models/Model.php";
 
 require_once "Controllers/Controller.php";
 
-$controllers = ["home", "list", "connexion_inscription", "monCompte", "administration", "recherche"];
+$controllers = ["home", "list", "connexion_inscription", "monCompte", "administration", "recherche", "set"];
 
 $controller_default = "home";
 
