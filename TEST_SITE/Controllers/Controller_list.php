@@ -44,30 +44,26 @@ class Controller_list extends Controller
         }
     }
 
-    public function action_search() {
-    // Vérifier si le mot-clé est passé via l'URL
-    if (isset($_GET['search_keyword'])) {
-        $keyword = $_GET['search_keyword'];
-
-        $m = Model::getModel();
-        // Rechercher les jeux avec le mot-clé
-        $jeux = $m->searchJeux($keyword);
-
-        $nb_jeux = count($jeux);
-
-        $data = [
-            'jeux' => $jeux,  // Liste des jeux trouvés
-            'nb_jeux' => $nb_jeux,  // Nombre total de jeux trouvés
-        ];
-        
-        $this->render('view_home', $data);
+public function action_rechercheParMotCle() {
+    $m = Model::getModel();
+    $data = [
+        "categorie" => $m->getCategories(),
+        "date" => $m->getDateDeSortie(),
+        "nbJoueur" => $m->getNbJoueurs(),
+    ];
+    if (isset($_GET["mot_cle"])) {
+        $resultats = $m->getMotCle($_GET["mot_cle"]);
+        if (!empty($resultats)) {
+            $data["jeux"] = $resultats;
+            // Afficher les résultats dans la vue home.php
+            $this->render("home", $data);
+        } else {
+            $this->action_error("Aucun jeu trouvé avec ce mot-clé !");
+        }
     } else {
-        // Si aucun mot-clé n'est fourni, rediriger ou afficher un message
-        $this->action_error('Veuillez entrer un mot-clé pour la recherche.');
+        $this->render("home", $data);
     }
 }
-
- 
     public function action_boiteJeu() {
         $model = Model::getModel();
         
