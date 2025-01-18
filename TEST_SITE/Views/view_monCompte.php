@@ -63,15 +63,21 @@
         <label for="confirmation_mot_de_passe">Confirmer le nouveau mot de passe</label>
         <input type="password" id="confirmation_mot_de_passe" name="confirmation_mot_de_passe" required>
 
+
         <button type="submit" class="Bouton">Modifier le mot de passe</button>
 
+        <br /><br />
+
         <!-- Message de succès/erreur pour la modification du mot de passe -->
-        <?php if (!empty($erreur) && strpos($erreur, 'mot de passe') !== false): ?>
+        <?php if (!empty($erreur)): ?>
             <p class="error-message"><?= htmlspecialchars($erreur) ?></p>
         <?php endif; ?>
-        <?php if (!empty($succes) && strpos($succes, 'Mot de passe') !== false): ?>
+        <?php if (!empty($succes)): ?>
             <p class="success-message"><?= htmlspecialchars($succes) ?></p>
         <?php endif; ?>
+
+        <br /><br />
+
     </form>
 </section>
 
