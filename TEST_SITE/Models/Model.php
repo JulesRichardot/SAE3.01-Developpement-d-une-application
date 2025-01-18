@@ -153,7 +153,7 @@ public function getJeuParTitre($unTitre){
     $req->bindValue(':unTitre', $unTitre, PDO::PARAM_STR);
     $req->execute();
     $tab = $req->fetchAll(PDO::FETCH_ASSOC);
-    return $tab;
+    return $tab[0];
 }
 
 public function getCategories(){
