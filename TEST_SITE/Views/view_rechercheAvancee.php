@@ -6,7 +6,7 @@
         <input type="hidden" name="action" value="rechercheAvancee">
         <div class="form-group">
             <label for="titre-jeu">Titre du jeu</label>
-            <input type="text" id="titre" name="titre" placeholder="Rechercher par titre" value="" oninput="desactiverChamp()">
+            <input type="text" id="titre" name="titre" placeholder="Rechercher par titre" value="" oninput="desactiverChamp()" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="categorie">Catégorie</label>
