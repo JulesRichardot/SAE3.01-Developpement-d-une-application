@@ -15,27 +15,24 @@ class Controller_monCompte extends Controller
      */
     public function action_afficher()
     {
-        // Vérifie si l'utilisateur est connecté
         if (!isset($_SESSION['utilisateur'])) {
             header('Location: index.php?controller=connexion_inscription&action=afficher&erreur_connexion=Veuillez vous connecter.');
             exit;
         }
 
-        // Récupère les informations générales
         $utilisateur = $_SESSION['utilisateur'];
-
-        // Récupère les informations complémentaires
         $modele = Model::getModel();
         $infoComplementaire = $modele->getInfoComplementaire($utilisateur['id']);
-
-        // Fusionne les informations générales et complémentaires
         $data = array_merge($utilisateur, $infoComplementaire);
 
-        // Charge la vue avec les données de l'utilisateur
+        // Ajout des messages d'erreur ou de succès
         $this->render("monCompte", [
-            'utilisateur' => $data
+            'utilisateur' => $data,
+            'erreur' => $_GET['erreur'] ?? '', // Récupère l'erreur dans l'URL
+            'succes' => $_GET['succes'] ?? '' // Récupère le succès dans l'URL
         ]);
     }
+
 
 
 
