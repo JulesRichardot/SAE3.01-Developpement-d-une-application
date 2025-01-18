@@ -281,9 +281,8 @@ public function updateInfoComplementaire($utilisateurId, $telephone, $adresse, $
     }
 }
 
-public function getInfoComplementaire($utilisateurId)
-{
-    $sql = "SELECT telephone, adresse, date_naissance FROM emprunteur WHERE emprunteur_id = :utilisateur_id";
+public function getInfoComplementaire($utilisateurId) {
+    $sql = "SELECT telephone, adresse FROM emprunteur WHERE emprunteur_id = :utilisateur_id";
     $stmt = $this->bd->prepare($sql);
     $stmt->execute([':utilisateur_id' => $utilisateurId]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
