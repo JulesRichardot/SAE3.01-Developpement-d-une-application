@@ -292,18 +292,20 @@ public function getInfoComplementaire($utilisateurId)
 
 
 public function getUtilisateurs() {
-    $query = "SELECT id_utilisateur, nom, email FROM utilisateur";
+    $query = "SELECT utilisateur_id, nom, email FROM utilisateur";
     $req = $this->bd->prepare($query);
     $req->execute();
     return $req->fetchAll(PDO::FETCH_ASSOC);
 }
 
 public function getReservations() {
-    $query = "SELECT reservation.id_reservation, jeu.nom AS nom_jeu, utilisateur.nom AS utilisateur, 
-                     reservation.date_reservation, reservation.statut 
-              FROM reservation
-              INNER JOIN jeu ON reservation.jeu_id = jeu.id_jeu
-              INNER JOIN utilisateur ON reservation.utilisateur_id = utilisateur.id_utilisateur";
+    $query = "SELECT pret.id_pret, jeu.titre AS nom_jeu, utilisateur.nom AS utilisateur, 
+                     pret.date_emprunt, pret.date_retour 
+              FROM pret
+              INNER JOIN boite ON pret.id_boite = boite.id_boite
+              INNER JOIN jeu ON boite.jeu_id = jeu.id_jeu
+              INNER JOIN emprunteur ON pret.emprunteur_id = emprunteur.emprunteur_id
+              INNER JOIN utilisateur ON emprunteur.emprunteur_id = utilisateur.utilisateur_id";
     $req = $this->bd->prepare($query);
     $req->execute();
     return $req->fetchAll(PDO::FETCH_ASSOC);
@@ -311,7 +313,12 @@ public function getReservations() {
 
 // Méthode pour récupérer tous les jeux
 public function getJeux() {
-    $query = "SELECT id_jeu, nom, categorie FROM jeu";
+    $query = "
+        SELECT jeu.id_jeu, jeu.titre, categorie.nom AS categorie 
+        FROM jeu
+        LEFT JOIN jeu_categorie ON jeu.id_jeu = jeu_categorie.id_jeu
+        LEFT JOIN categorie ON jeu_categorie.id_categorie = categorie.id_categorie
+    ";
     $req = $this->bd->prepare($query);
     $req->execute();
     return $req->fetchAll(PDO::FETCH_ASSOC);
