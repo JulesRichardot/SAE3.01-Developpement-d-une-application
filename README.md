@@ -1,79 +1,48 @@
-# SAE3.01: Développement d'une application<sub>2024-2025</sub>
+
+# SAE3.01: Développement d'une application
 
 ## Contexte
-L'Université Sorbonne Paris Nord possède une grande collection de jeux de société, incluant près de 17 000 jeux, certains datant du XIXe siècle. Cette collection nécessite une gestion rigoureuse pour garantir sa préservation et sa mise en valeur. Ce projet a pour objectif de développer une solution permettant de gérer cette collection, à travers une application web et un ensemble de scripts pour traiter et organiser les données.
+L'Université Sorbonne Paris Nord possède une collection exceptionnelle de plus de 17 000 jeux de société, certains datant du XIXe siècle. Ce projet vise à concevoir une application web accompagnée de scripts pour gérer, organiser, et valoriser cette collection.
 
-## Objectifs
-Le but de ce projet est de créer :
-- un script pour nettoyer et importer des données issues d'un fichier Excel.
-- un système de gestion de l'inventaire des jeux.
-- une base de données relationnelle pour structurer les informations sur les jeux.
-- une interface utilisateur simple et intuitive.
+## Fonctionnalités principales
+- **Nettoyage des données** : Correction des incohérences dans les fichiers Excel.
+- **Base de données relationnelle** : Organisation structurée des informations.
+- **Interface web** : Recherche avancée, gestion des prêts, et gestion de l'inventaire.
+- **Scripts Python** : Manipulation automatisée des données.
 
-## Structure du répertoire :
-
-Le répertoire principal est organisé comme suit : 
-
-```bash
-SAE3.01-main
-    │   README.md
-    │
-    ├───data
-    │       create_excel.py
-    │       inventaire_perso.xlsx
-    │       README.md
-    │
-    ├───SAE_game
-    │   │   boite_jeu.html
-    │   │   index.html
-    │   │   index.php
-    │   │   Jeu_presentation.html
-    │   │   style.css
-    │   │
-    │   └───App
-    │       ├───controllers
-    │       │       HomeController.php
-    │       │
-    │       ├───models
-    │       │       Database.php
-    │       │
-    │       └───views
-    │               home.php
-    │
-    └───script_nettoyage
-            main.py
-            nettoyage.py
-            README.md
-            utils.py
-            utils_test.py
+## Structure du projet
+```plaintext
+SAE3.01-main/
+├── app/              # Site web principal (MVC fonctionnel)
+├── sql/              # Scripts SQL pour la base de données
+├── scripts/          # Scripts Python et fichiers de données
+├── archive/          # Prototype initial en HTML (SAE_game)
+├── README.md         # Documentation principale
 ```
-
-## Fonctionnalités Principales
-- **Nettoyage des données** : Traitement et correction des incohérences dans les fichiers Excel.
-- **Importation des données** : Création de tables et insertion des données dans la base de données.
-- **Gestion de l'inventaire** : Interface pour ajouter, supprimer, ou modifier les jeux dans l'inventaire.
-- **Recherche Avancée** : Fonctionnalité de recherche par titre, auteur, catégorie, etc.
-- **Suivi des prêts** : Gestion de la localisation et des prêts de jeux.
-
-## Technologies Utilisées
-- **Langages de développement** : Python, PHP
-- **Base de données** : MySQL
-- **Outils de modélisation** : Diagrammes Entité-Association
-- **Interface utilisateur** : HTML, CSS, JavaScript
 
 ## Installation
-Assurez-vous d'avoir installé la bibliothèque nécessaires en exécutant la commande suivante :
-```bash
-pip install pandas
-```
+### Prérequis
+- **Python 3.x** et `pip`
+- Serveur web compatible PHP (comme XAMPP ou WAMP)
+- MySQL pour la base de données
 
-De plus, lorsque vous lancez les fichiers, il faut **impérativement** être dans le répertoire principal donc avoir comme sous-répertoire : data/ et script_nettoyage/ .
+### Étapes
+1. Installez les dépendances Python nécessaires :
+   ```bash
+   pip install pandas
+   ```
+2. Configurez la base de données avec les scripts SQL dans `sql/`.
+3. Lancez le serveur web pour accéder à `app/index.php`.
 
-## Equipe du projet
-Ce projet est réalisé par l'équipe suivante : 
+## Équipe du projet
 - **[Mehdi ARRAB](https://github.com/jadoothepooh/)**
 - **[Lasry BESKIWIN](https://github.com/Lasryy)**
 - **[Rania Bousfiha](https://github.com/rania212)**
 - **[Safiya NGUYEN](https://github.com/safiya-ng)**
 - **[Ahash PARTHIPAN](https://github.com/AhashPARTHIPAN)**
 - **[Jules RICHARDOT](https://github.com/JulesRichardot)**
+
+## Technologies utilisées
+- **Langages** : Python, PHP, SQL
+- **Base de données** : MySQL
+- **Frontend** : HTML, CSS, JS
