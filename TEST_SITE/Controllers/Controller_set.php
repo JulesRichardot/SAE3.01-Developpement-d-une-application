@@ -16,6 +16,7 @@ class Controller_set extends Controller
         $this->action_form_add();
     }
 
+    // ----------------------------- DEBUT UPDATE ----------------------------- //
     public function action_form_update()
     {
         $in_database = false;
@@ -81,6 +82,33 @@ class Controller_set extends Controller
         // Affichage du message de confirmation
         $data = [
             "title" => "Mise à jour du jeu",
+            "message" => $message,
+        ];
+        $this->render("message", $data);
+    }
+
+    // ----------------------------- FIN UPDATE ----------------------------- //
+
+    // ----------------------------- DEBUT REMOVE ----------------------------- //
+
+    public function action_remove()
+    {
+        if (isset($_GET["id_jeu"]) and preg_match("/^[1-9]\d*$/", $_GET["id_jeu"])) {
+            $id = $_GET["id_jeu"];
+
+            $m = Model::getModel();
+            $suppression = $m->removeJeuParId($id);
+            if ($suppression) {
+                $message = "Le jeu a été supprimé.";
+            } else {
+                $message = "Il n'y a pas de jeu avec l'identifiant :  " . $id . " !";
+            }
+        } else {
+            $message = "There is no id in the URL!";
+        }
+
+        $data = [
+            "title" => "Supprimage du jeu",
             "message" => $message,
         ];
         $this->render("message", $data);
