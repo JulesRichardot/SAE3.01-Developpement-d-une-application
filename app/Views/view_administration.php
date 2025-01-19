@@ -20,7 +20,7 @@
             <!-- Gestion des jeux -->
             <div class="admin-section">
                 <h2>Gestion des jeux</h2>
-                <button class="Bouton">Ajouter un jeu</button>
+                <a href="?controller=set&action=form_add"><button class="Bouton">Ajouter un jeu</button></a>
                 <table>
                     <thead>
                         <tr>
