@@ -99,7 +99,7 @@ public function action_rechercheParMotCle() {
 
         $m = Model::getModel();
 
-        //Récupération du nombre total de prix nobel
+        //Récupération du nombre total de jeux
         $nb_jeux = $m->getNbJeux();
 
         $nb_total_pages = ceil($nb_jeux / 25);
@@ -122,13 +122,13 @@ public function action_rechercheParMotCle() {
         }
         
         $data = [
-            //Nb prix nobels
+            //Nb de pages
             'nb_total_pages' => $nb_total_pages,
 
             //indice de la page de résultats visualisée
             'active' => $start,
 
-            //Récupération des prix nobel de la page $start
+            //Récupération des jeux de la page $start
             'liste' => $m->getJeuxWithLimit($offset, 25),
 
             //Début et fin des urls des pages
