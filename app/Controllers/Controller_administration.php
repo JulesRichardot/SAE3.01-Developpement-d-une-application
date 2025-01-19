@@ -28,8 +28,11 @@ class Controller_administration extends Controller {
                 'role' => $role
             ];
         } elseif ($role === 'Gestionnaire') {
-            $data['jeux'] = $model->getJeux();
-            $data['reservations'] = $model->getReservations();
+            $data = [
+                'jeux' => $model->getJeux(),
+                'reservations' => $model->getReservations(),
+                'role' => $role
+            ];
         }
 
         $this->render("administration", $data);
