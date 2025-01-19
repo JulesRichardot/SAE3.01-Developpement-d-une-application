@@ -655,6 +655,32 @@ class Model
         // Récupération des données sous forme de tableau associatif
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function removeUserParId($id)
+    {
+        try {
+            $this->bd->beginTransaction();
+
+            // Suppression des emprunts associés à l'utilisateur
+            $sql = "DELETE FROM emprunteur WHERE emprunteur_id = :id";
+            $stmt = $this->bd->prepare($sql);
+            $stmt->execute([':id' => $id]);
+
+            // Suppression de l'utilisateur
+            $sql = "DELETE FROM utilisateur WHERE utilisateur_id = :id";
+            $stmt = $this->bd->prepare($sql);
+            $stmt->execute([':id' => $id]);
+
+            // Commit de la transaction
+            $this->bd->commit();
+
+            return true;
+        } catch (Exception $e) {
+            // Si une erreur se produit, on annule la transaction
+            $this->bd->rollBack();
+            return false;
+        }
+    }
     
 }
 
