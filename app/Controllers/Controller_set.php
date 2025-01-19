@@ -216,6 +216,67 @@ class Controller_set extends Controller
     }
 
     // ----------------------------- FIN ADD ----------------------------- //
+    
+    // ----------------------------- DEBUT UPDATE USER ----------------------------- //
+
+    public function action_form_update_user()
+    {
+        // Vérification que l'ID est bien présent et valide
+        if (isset($_GET['id']) && preg_match("/^[1-9]\d*$/", $_GET['id'])) {
+            $id_utilisateur = $_GET['id'];
+
+            // Récupération des informations de l'utilisateur à partir du modèle
+            $m = Model::getModel();
+            $utilisateur = $m->getUtilisateurParId($id_utilisateur);
+
+            if ($utilisateur) {
+                // Envoie des informations de l'utilisateur pour les préremplir dans le formulaire
+                $data = [
+                    'utilisateur_id' => $utilisateur['utilisateur_id'],
+                    'nom' => $utilisateur['nom'],
+                    'email' => $utilisateur['email'],
+                    'role' => $utilisateur['role']
+                ];
+
+                // Affiche le formulaire de modification
+                $this->render('form_update_user', $data);
+            } else {
+                // Si l'utilisateur n'existe pas, afficher un message d'erreur
+                $this->action_error("L'utilisateur n'existe pas.");
+            }
+        } else {
+            // ID non valide ou manquant
+            $this->action_error("ID d'utilisateur invalide.");
+        }
+    }
+
+    public function action_update_user()
+    {
+        if (isset($_POST['utilisateur_id']) && isset($_POST['nom']) && isset($_POST['email']) && isset($_POST['role'])) {
+            $m = Model::getModel();
+
+            // Préparation des données
+            $id = $_POST['utilisateur_id'];
+            $nom = $_POST['nom'];
+            $email = $_POST['email'];
+            $role = $_POST['role'];
+
+            // Mise à jour des informations de l'utilisateur dans la base de données
+            $m->updateUtilisateur($id, $nom, $email, $role);
+
+            // Message de confirmation
+            $data = [
+                "title" => "Modifier l'utilisateur",
+                "message" => "Les informations de l'utilisateur ont été mises à jour avec succès."
+            ];
+            $this->render("message", $data);
+        } else {
+            // Si des informations sont manquantes
+            $this->action_error("Les informations envoyées sont incomplètes.");
+        }
+    }
+
+    // ----------------------------- FIN UPDATE USER ----------------------------- //
 
 
 }
