@@ -68,6 +68,19 @@ Décompressez ou placez le projet dans un répertoire local.
 3. **Insérer les données** :
    - Importez ensuite les scripts d'insertion `sql/script_insertion.sql`.
 
+4. **Configurer le fichier `identifiant.php`** :
+   - Ouvrez le fichier `app/identifiants/identifiant.php`.
+   - Remplacez les informations par celles correspondant à votre environnement :
+     ```php
+     <?php
+
+     $dsn = 'mysql:host=localhost;dbname=NomDeVotreBDD';
+     $username = 'VotreNomUtilisateur';
+     $password = 'VotreMotDePasse';
+
+     ?>
+     ```
+
 ---
 
 #### 3. Configurer le serveur web
@@ -107,3 +120,4 @@ Décompressez ou placez le projet dans un répertoire local.
 - **Langages** : Python, PHP, SQL
 - **Base de données** : MySQL
 - **Frontend** : HTML, CSS, JS
+```
