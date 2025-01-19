@@ -91,6 +91,11 @@ CREATE TABLE utilisateur (
 
 CREATE TABLE emprunteur (
     emprunteur_id INT PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    email VARCHAR(255),
+    telephone VARCHAR(20),
+    adresse TEXT,
+    date_naissance DATE,
     FOREIGN KEY (emprunteur_id) REFERENCES utilisateur(utilisateur_id)
 );
 
