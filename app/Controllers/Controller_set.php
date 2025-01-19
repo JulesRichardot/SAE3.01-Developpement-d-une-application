@@ -2,15 +2,7 @@
 
 class Controller_set extends Controller
 {
-    public function action_form_add()
-    {
-        $m = Model::getModel();
-        $data = [
-            "categories" => $m->getCategories(),
-        ];
-        $this->render("form_add", $data);
-    }
-
+    
     public function action_default()
     {
         $this->action_form_add();
