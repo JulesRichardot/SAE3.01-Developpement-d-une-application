@@ -20,9 +20,8 @@
 
     <div id="presentation">
         <h1>Collection de jeux de sociétés</h1>
-        <h4>Découvrez et gérez votre collection de jeux de sociétés</h4>
+        <h4>Découvrez notre collection de jeux de sociétés</h4>
         <a href="?controller=list&action=pagination"><input type='button' class="Bouton" value="Découvrir"/></a>
-        <input type='button' class="Bouton" value="Catégories"/>
     </div>
 
     <h1>Nos 10 jeux les plus populaires chez nos utilisateurs !</h1>
