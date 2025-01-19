@@ -12,6 +12,18 @@ L'Université Sorbonne Paris Nord possède une collection exceptionnelle de plus
 
 ---
 
+## Structure du projet
+```plaintext
+SAE3.01-main/
+├── app/              # Site web principal (MVC)
+├── sql/              # Scripts SQL pour la base de données
+├── scripts/          # Scripts Python et fichiers de données
+├── archive/          # Prototype initial en HTML
+├── README.md         # Documentation principale
+```
+
+---
+
 ## Installation
 
 ### Prérequis
@@ -80,18 +92,6 @@ Décompressez ou placez le projet dans un répertoire local.
      python main.py
      ```
 2. Ces scripts permettent de nettoyer et de préparer les données avant insertion.
-
----
-
-## Structure du projet
-```plaintext
-SAE3.01-main/
-├── app/              # Site web principal (MVC)
-├── sql/              # Scripts SQL pour la base de données
-├── scripts/          # Scripts Python et fichiers de données
-├── archive/          # Prototype initial en HTML
-├── README.md         # Documentation principale
-```
 
 ---
 
