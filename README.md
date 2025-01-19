@@ -1,6 +1,13 @@
 
 # SAE3.01: Développement d'une application
 
+## Aperçu du projet
+Voici un aperçu interactif de l'application :
+
+![Aperçu du site](archive/App/assets/images/site-demo.gif)
+
+---
+
 ## Contexte
 L'Université Sorbonne Paris Nord possède une collection exceptionnelle de plus de 17 000 jeux de société, certains datant du XIXe siècle. Ce projet vise à concevoir une application web accompagnée de scripts pour gérer, organiser, et valoriser cette collection.
 
