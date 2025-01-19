@@ -114,5 +114,111 @@ class Controller_set extends Controller
         $this->render("message", $data);
     }
 
+    // ----------------------------- FIN REMOVE ----------------------------- //
+
+    // ----------------------------- DEBUT ADD ----------------------------- //
+
+    public function action_form_add() {
+        // Vérification des catégories, auteurs, éditeurs et mécanismes
+        $m = Model::getModel();
+    
+        // Récupération des listes nécessaires à l'affichage du formulaire
+        $data = [
+            "categories" => $m->getIdOfCategories(),
+            "auteurs" => $m->getAuteurs(),
+            "editeurs" => $m->getEditeurs(),
+            "mecanismes" => $m->getMecanismes(),
+        ];
+    
+        // Affichage du formulaire d'ajout de jeu
+        $this->render("form_add", $data);  // Le formulaire d'ajout est affiché avec les données récupérées
+    }
+    
+    public function action_add() {
+        $ajout = false;
+    
+        // Test si les informations nécessaires sont fournies
+        if (isset($_POST["titre_jeu"]) && !preg_match("/^ *$/", $_POST["titre_jeu"])) {
+            $m = Model::getModel();
+    
+            // Vérification des autres champs, ceux qui ne sont pas required doivent être gérés comme null si vides
+            $infos = [];
+            $noms = [
+                'identifiant',
+                'titre_jeu', 
+                'date_parution_debut', 
+                'date_parution_fin', 
+                'information_date', 
+                'version', 
+                'nombre_joueurs', 
+                'age_min', 
+                'mots_cles'
+            ];
+    
+            foreach ($noms as $v) {
+                // Vérifie si la valeur existe et si elle n'est pas vide
+                $infos[$v] = isset($_POST[$v]) && !preg_match("/^ *$/", $_POST[$v]) ? $_POST[$v] : null;
+            }
+    
+            // Ajout du jeu dans la base
+            $jeu_id = $m->addJeu($infos);
+            if ($jeu_id === false) {
+                $data["message"] = "Erreur lors de l'ajout du jeu dans la base de données.";
+                $this->render("message", $data);
+                return;
+            }
+    
+            // Ajout des associations avec les autres tables
+            // Ajout des catégories
+            if (isset($_POST["categorie"])) {
+                foreach ($_POST["categorie"] as $categorie_id) {
+                    $m->addJeuCategorie($jeu_id, $categorie_id);
+                }
+            }
+    
+            // Ajout des auteurs
+            if (isset($_POST["auteur"])) {
+                foreach ($_POST["auteur"] as $auteur_id) {
+                    $m->addJeuAuteur($jeu_id, $auteur_id);
+                }
+            }
+    
+            // Ajout des éditeurs
+            if (isset($_POST["editeur"])) {
+                foreach ($_POST["editeur"] as $editeur_id) {
+                    $m->addJeuEditeur($jeu_id, $editeur_id);
+                }
+            }
+    
+            // Ajout des mécanismes (ajouter un mécanisme à partir du texte)
+            if (isset($_POST["mecanisme"]) && !empty($_POST["mecanisme"])) {
+                $mecanismes = explode(",", $_POST["mecanisme"]); // On sépare par des virgules
+                foreach ($mecanismes as $mecanisme) {
+                    $mecanisme = trim($mecanisme); // Enlever les espaces avant et après
+                    if (!empty($mecanisme)) {
+                        // Vérification si le mécanisme existe déjà dans la base de données
+                        $mecanisme_id = $m->getMecanismeIdByName($mecanisme);
+                        if ($mecanisme_id === false) {
+                            // Ajouter le mécanisme à la base s'il n'existe pas
+                            $mecanisme_id = $m->addMecanisme($mecanisme);
+                        }
+                        // Associer ce mécanisme au jeu
+                        $m->addJeuMecanisme($jeu_id, $mecanisme_id);
+                    }
+                }
+            }
+    
+            // Si tout est bon, succès
+            $ajout = true;
+        }
+    
+        // Affichage du message
+        $data = [
+            "title" => "Ajouter un jeu",
+            "message" => $ajout ? "Le jeu a été ajouté avec succès." : "Il y a eu un problème lors de l'ajout du jeu."
+        ];
+        $this->render("message", $data);
+    }
+
 
 }
