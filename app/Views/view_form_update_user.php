@@ -20,7 +20,7 @@
         <div class="form-group">
             <label for="role">Rôle :</label>
             <select id="role" name="role" required>
-                <option value="User" <?= $data['role'] === 'User' ? 'selected' : '' ?>>User</option>
+                <option value="Utilisateur" <?= $data['role'] === 'User' ? 'selected' : '' ?>>Utilisateur</option>
                 <option value="Admin" <?= $data['role'] === 'Admin' ? 'selected' : '' ?>>Admin</option>
                 <option value="Gestionnaire" <?= $data['role'] === 'Gestionnaire' ? 'selected' : '' ?>>Gestionnaire</option>
             </select>
