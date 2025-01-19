@@ -2,7 +2,7 @@
 
 class Controller_set extends Controller
 {
-    
+
     public function action_default()
     {
         $this->action_form_add();
@@ -155,7 +155,10 @@ class Controller_set extends Controller
             // Ajout du jeu dans la base
             $jeu_id = $m->addJeu($infos);
             if ($jeu_id === false) {
-                $data["message"] = "Erreur lors de l'ajout du jeu dans la base de données.";
+                $data = [
+                    "title" => "Ajouter un jeu",
+                    "message" => "Il y a eu un problème lors de l'ajout du jeu."
+                ];
                 $this->render("message", $data);
                 return;
             }
