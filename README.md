@@ -120,4 +120,3 @@ Décompressez ou placez le projet dans un répertoire local.
 - **Langages** : Python, PHP, SQL
 - **Base de données** : MySQL
 - **Frontend** : HTML, CSS, JS
-```
