@@ -393,7 +393,7 @@ class Model
         }
 
         // Met à jour avec le nouveau mot de passe haché
-        $nouveauMotDePasseHash = password_hash($nouveauMotDePasse, PASSWORD_BCRYPT);
+        $nouveauMotDePasseHash = password_hash($nouveauMotDePasse, PASSWORD_ARGON2ID);
         $sqlUpdate = "UPDATE utilisateur SET mot_de_passe = :nouveauMotDePasse WHERE utilisateur_id = :utilisateur_id";
         $stmtUpdate = $this->bd->prepare($sqlUpdate);
         $stmtUpdate->execute([
