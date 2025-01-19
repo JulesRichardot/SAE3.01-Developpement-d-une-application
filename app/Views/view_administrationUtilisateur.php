@@ -18,7 +18,7 @@
                     <tbody>
                         <?php foreach ($utilisateurs as $utilisateur): ?>
                             <tr>
-                                <td><?= htmlspecialchars($utilisateur['id_utilisateur']) ?></td>
+                                <td><?= htmlspecialchars($utilisateur['utilisateur_id']) ?></td>
                                 <td><?= htmlspecialchars($utilisateur['nom']) ?></td>
                                 <td><?= htmlspecialchars($utilisateur['email']) ?></td>
                                 <td>
