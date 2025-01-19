@@ -38,13 +38,25 @@
                                 <td><?= htmlspecialchars($jeu['categories']) ?></td>
                                 <td>
                                     <a href="?controller=set&action=form_update&id_jeu=<?php echo $jeu["id_jeu"]?>"><button class="Bouton">Modifier</button></a>
-                                    <a href="?controller=set&action=remove&id=<?php $jeu["id_jeu"] ?>"><button class="Bouton Noir">Supprimer</button></a>
-                                </td>
+                                    
+                                    <!-- Bouton supprimer avec confirmation -->
+                                    <button class="Bouton Noir" onclick="confirmSuppression(<?= $jeu['id_jeu'] ?>)">Supprimer</button>
+                            </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
         <?php endif; ?>
+
+        <!-- Script JavaScript pour confirmation -->
+        <script>
+            function confirmSuppression(idJeu) {
+                if (confirm("Êtes-vous sûr de vouloir supprimer ce jeu ?")) {
+                    // Rediriger vers la suppression si l'utilisateur confirme
+                    window.location.href = "?controller=set&action=remove&id_jeu=" + idJeu;
+                }
+            }
+        </script>
 
 <?php require_once "view_end.php" ?>
