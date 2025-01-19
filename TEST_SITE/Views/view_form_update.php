@@ -5,7 +5,7 @@
 <div id="container">
     <form class="form_update" action="?controller=set&action=update" method="post">
         <!-- ID caché pour identifier quel jeu est modifié -->
-        <p><input type="hidden" name="id_jeu" value="<?= $identifiant ?>" /></p>
+        <p><input type="hidden" name="id_jeu" value="<?= $id_jeu ?>" /></p>
 
         <!-- Titre du jeu -->
         <p><label> Titre : <input type="text" name="titre_jeu" value="<?= $titre ?>" /> </label></p>
