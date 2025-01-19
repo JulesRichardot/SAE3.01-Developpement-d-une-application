@@ -247,7 +247,7 @@ class Model
     /**
      * Ajoute un utilisateur avec des informations complémentaires facultatives.
      */
-    public function ajouterUtilisateur($nom, $email, $motDePasse, $telephone = null, $adresse = null, $dateNaissance = null)
+    public function ajouterUtilisateur($nom, $email, $motDePasse, $telephone, $adresse, $dateNaissance)
     {
         // Insertion dans la table utilisateur
         $sqlUtilisateur = "INSERT INTO utilisateur (nom, email, mot_de_passe, role) VALUES (:nom, :email, :mot_de_passe, 'Utilisateur')";
@@ -263,11 +263,13 @@ class Model
 
         // Si des informations complémentaires sont fournies, insérer dans la table emprunteur
         if ($telephone || $adresse || $dateNaissance) {
-            $sqlEmprunteur = "INSERT INTO emprunteur (emprunteur_id, telephone, adresse, date_naissance) 
-                          VALUES (:emprunteur_id, :telephone, :adresse, :date_naissance)";
+            $sqlEmprunteur = "INSERT INTO emprunteur (emprunteur_id, nom, email, telephone, adresse, date_naissance) 
+                          VALUES (:emprunteur_id, :nom, :email, :telephone, :adresse, :date_naissance)";
             $stmtEmprunteur = $this->bd->prepare($sqlEmprunteur);
             $stmtEmprunteur->execute([
                 ':emprunteur_id' => $utilisateurId,
+                ':nom' => $nom,
+                ':email' => $email,
                 ':telephone' => $telephone,
                 ':adresse' => $adresse,
                 ':date_naissance' => $dateNaissance
@@ -544,13 +546,11 @@ class Model
     // fonction de add sur chaque table en séparant
     public function addJeu($infos) {
         // Vérifiez que toutes les clés de $infos existent
-        if (isset($infos['titre_jeu'], $infos['date_parution_debut'], $infos['date_parution_fin'], 
-                  $infos['information_date'], $infos['version'], $infos['nombre_joueurs'], 
-                  $infos['age_min'], $infos['mots_cles'])) {
+        if (isset($infos['titre_jeu'], $infos['date_parution_debut'])) {
             
             $query = "INSERT INTO jeu (identifiant, titre, date_parution_debut, date_parution_fin, information_date, version, 
                                         nombre_de_joueurs, age_indique, mots_cles) 
-                      VALUES (:titre_jeu, :date_parution_debut, :date_parution_fin, :information_date, :version, 
+                      VALUES (:identifiant, :titre_jeu, :date_parution_debut, :date_parution_fin, :information_date, :version, 
                               :nombre_joueurs, :age_min, :mots_cles)";
             $stmt = $this->bd->prepare($query);
     
