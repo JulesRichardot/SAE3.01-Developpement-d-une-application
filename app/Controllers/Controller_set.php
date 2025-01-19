@@ -108,7 +108,7 @@ class Controller_set extends Controller
         }
 
         $data = [
-            "title" => "Supprimage du jeu",
+            "title" => "Suppression du jeu",
             "message" => $message,
         ];
         $this->render("message", $data);
