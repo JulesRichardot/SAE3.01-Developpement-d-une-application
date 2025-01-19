@@ -118,7 +118,7 @@ class Controller_connexion_inscription extends Controller
 
 
         // Hachage du mot de passe
-        $motDePasseHash = password_hash($motDePasse, PASSWORD_BCRYPT);
+        $motDePasseHash = password_hash($motDePasse, PASSWORD_ARGON2ID);
 
         // Création de l'utilisateur avec informations complémentaires
         $modele->ajouterUtilisateur($nom, $email, $motDePasseHash, $telephone, $adresse, $date_naissance);
