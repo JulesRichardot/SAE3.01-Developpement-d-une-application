@@ -278,5 +278,27 @@ class Controller_set extends Controller
 
     // ----------------------------- FIN UPDATE USER ----------------------------- //
 
+    public function action_remove_user()
+    {
+        if (isset($_GET["id_user"]) and preg_match("/^[1-9]\d*$/", $_GET["id_user"])) {
+            $id = $_GET["id_user"];
 
+            $m = Model::getModel();
+            $suppression = $m->removeUserParId($id);
+            if ($suppression) {
+                $message = "L'utilisateur a été supprimé.";
+            } else {
+                $message = "Il n'y a pas d'utilisateur avec l'identifiant :  " . $id . " !";
+            }
+        } else {
+            $message = "There is no id in the URL!";
+        }
+
+        $data = [
+            "title" => "Suppression d'utilisateur",
+            "message" => $message,
+        ];
+        $this->render("message", $data);
+    }
+    
 }
