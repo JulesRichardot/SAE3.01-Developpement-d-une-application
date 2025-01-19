@@ -471,6 +471,45 @@ class Model
         return "Le jeu a bien été mis à jour.";
     }
 
+    public function removeJeuParId($id)
+    {
+        // Faire une transaction pour voir si tout se supprime.
+        try {
+            // Démarrer une transaction pour garantir que toutes les suppressions se font ensemble
+            $this->bd->beginTransaction();
+
+            // Supprimer les enregistrements dans les tables dépendantes
+            $requete1 = $this->bd->prepare('DELETE FROM jeu_categorie WHERE id_jeu = :id');
+            $requete1->bindParam(':id', $id, PDO::PARAM_INT);
+            $requete1->execute();
+
+            $requete2 = $this->bd->prepare('DELETE FROM jeu_auteur WHERE id_jeu = :id');
+            $requete2->bindParam(':id', $id, PDO::PARAM_INT);
+            $requete2->execute();
+
+            $requete3 = $this->bd->prepare('DELETE FROM jeu_editeur WHERE id_jeu = :id');
+            $requete3->bindParam(':id', $id, PDO::PARAM_INT);
+            $requete3->execute();
+
+            $requete4 = $this->bd->prepare('DELETE FROM jeu_mecanisme WHERE id_jeu = :id');
+            $requete4->bindParam(':id', $id, PDO::PARAM_INT);
+            $requete4->execute();
+
+            // Maintenant, supprimer le jeu lui-même
+            $requete5 = $this->bd->prepare('DELETE FROM jeu WHERE id_jeu = :id');
+            $requete5->bindParam(':id', $id, PDO::PARAM_INT);
+            $requete5->execute();
+
+            // Si tout s'est bien passé, valider la transaction
+            $this->bd->commit();
+            return true;
+        } catch (Exception $e) {
+            // En cas d'erreur, annuler la transaction pour éviter des suppressions partielles
+            $this->bd->rollBack();
+            return false;
+        }
+    }
+
     
 
 }
