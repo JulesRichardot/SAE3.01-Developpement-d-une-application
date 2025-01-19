@@ -632,6 +632,29 @@ class Model
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ? $result['mecanisme_id'] : false;
     }
+
+    public function updateUtilisateur($id, $nom, $email, $role)
+    {
+        $sql = "UPDATE utilisateur SET nom = :nom, email = :email, role = :role WHERE utilisateur_id = :id";
+        $stmt = $this->bd->prepare($sql);
+        $stmt->execute([
+            ':nom' => $nom,
+            ':email' => $email,
+            ':role' => $role,
+            ':id' => $id
+        ]);
+    }
+
+    public function getUtilisateurParId($id)
+    {
+        // Préparation de la requête SQL pour récupérer les informations de l'utilisateur par ID
+        $sql = "SELECT * FROM utilisateur WHERE utilisateur_id = :id";
+        $stmt = $this->bd->prepare($sql);
+        $stmt->execute([':id' => $id]);
+
+        // Récupération des données sous forme de tableau associatif
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
     
 }
 
