@@ -57,6 +57,7 @@ SET
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- Supprimer les tables existantes
+DROP TABLE IF EXISTS jeu_mecanisme;
 DROP TABLE IF EXISTS jeu_categorie;
 DROP TABLE IF EXISTS jeu_auteur;
 DROP TABLE IF EXISTS jeu_editeur;
@@ -190,4 +191,12 @@ CREATE TABLE jeu_editeur (
     PRIMARY KEY (id_jeu, editeur_id),
     FOREIGN KEY (id_jeu) REFERENCES jeu(id_jeu),
     FOREIGN KEY (editeur_id) REFERENCES editeur(editeur_id)
+);
+
+CREATE TABLE jeu_mecanisme (
+    id_jeu INT NOT NULL,
+    id_mecanisme INT NOT NULL,
+    PRIMARY KEY (id_jeu, id_mecanisme),
+    FOREIGN KEY (id_jeu) REFERENCES jeu(id_jeu),
+    FOREIGN KEY (id_mecanisme) REFERENCES mecanisme(mecanisme_id)
 );
