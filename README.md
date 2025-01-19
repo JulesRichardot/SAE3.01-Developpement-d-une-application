@@ -2,7 +2,7 @@
 # SAE3.01: Développement d'une application
 
 ## Aperçu du projet
-Voici un aperçu interactif de l'application :
+Voici un aperçu de l'application :
 
 ![Aperçu du site](archive/App/assets/images/site-demo.gif)
 
