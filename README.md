@@ -31,7 +31,7 @@ SAE3.01-main/
 
 ---
 
-## Installation
+## Installation (Seules les personnes possédant l'inventaire privé pourront)
 
 ### Prérequis
 1. **Logiciels nécessaires** :
@@ -56,7 +56,7 @@ Décompressez ou placez le projet dans un répertoire local.
 ---
 
 #### 2. Préparer la base de données
-1. **Importer l'inventaire fictif** :
+1. **Importer l'inventaire** :
    - Déplacez le fichier `inventaire.csv` dans le répertoire suivant (selon la version MySQL installée) :
      ```
      C:/ProgramData/MySQL/MySQL Server <VERSION>/Uploads/inventaire.csv
