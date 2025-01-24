@@ -1,7 +1,7 @@
 
 # SAE3.01: Développement d'une application
 
-##⚠️ Attention
+## ⚠️ Attention
 Ce projet a été réalisé dans le cadre d’un projet universitaire.
 L’inventaire utilisé est privé et n’est pas inclus dans ce dépôt GitHub.
 
