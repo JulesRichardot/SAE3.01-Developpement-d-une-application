@@ -31,7 +31,7 @@ SAE3.01-main/
 
 ---
 
-## Installation (Seules les personnes possédant l'inventaire privé pourront)
+## Installation (⚠️ Seules les personnes possédant l'inventaire privé pourront ⚠️)
 
 ### Prérequis
 1. **Logiciels nécessaires** :
