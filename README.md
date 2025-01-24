@@ -1,12 +1,6 @@
 
 # SAE3.01: Développement d'une application
 
-## ⚠️ Attention
-Ce projet a été réalisé dans le cadre d’un projet universitaire.
-L’inventaire utilisé est privé et n’est pas inclus dans ce dépôt GitHub.
-
-👉 Pour le faire fonctionner, récupérez les données appelées "temporaire" dans le dossier archive.
-
 ## Aperçu du projet
 Voici un aperçu de l'application :
 
